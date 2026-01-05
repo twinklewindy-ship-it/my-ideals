@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import { bootstrapDevProfile } from "./dev/bootstrap.ts";
 
-bootstrapDevProfile();
+await bootstrapDevProfile();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
