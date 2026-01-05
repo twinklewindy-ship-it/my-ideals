@@ -7,6 +7,7 @@ export async function bootstrapDevProfile() {
   console.info("[dev] Bootstrapping sample profile");
 
   const sampleProfile: Profile = await fetch('/sample/profile.json').then(res => res.json());
+  console.info("[dev] Sample profile id:", sampleProfile.id);
 
   // Adjust templateLink to be absolute URL
   sampleProfile.templateLink = `${window.location.origin}/${sampleProfile.templateLink}`;
