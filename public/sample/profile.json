@@ -1,0 +1,14 @@
+{
+  "magic": "my-ideals-profile",
+  "version": 1,
+  "id": "development-profile00",
+  "name": "(For development) =ME",
+  "templateLink": "/sample/template.json",
+  "templateId": "equal-me",
+  "collections": [
+    {
+      "id": "2026-new-year",
+      "status": [false, false, false, true, true, true]
+    }
+  ]
+}

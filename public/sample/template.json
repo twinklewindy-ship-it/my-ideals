@@ -1,0 +1,42 @@
+{
+  "magic": "my-ideals-template",
+  "version": 1,
+  "id": "equal-me",
+  "name": "=ME (イコールミー)",
+  "members": [
+    {"id": "noguchi-nanaka", "name": "野口 菜々風"},
+    {"id": "yamamoto-moeko", "name": "山本 萌子"}
+  ],
+  "collections": [
+    {
+      "id": "2026-new-year",
+      "name": "2026年新春",
+      "items": [
+        {
+          "member": "noguchi-nanaka",
+          "title": "2026年新春 野口菜々風 ヒキ"
+        },
+        {
+          "member": "noguchi-nanaka",
+          "title": "2026年新春 野口菜々風 チュウ"
+        },
+        {
+          "member": "noguchi-nanaka",
+          "title": "2026年新春 野口菜々風 ヨリ"
+        },
+        {
+          "member": "yamamoto-moeko",
+          "title": "2026年新春 山本萌子 ヒキ"
+        },
+        {
+          "member": "yamamoto-moeko",
+          "title": "2026年新春 山本萌子 チュウ"
+        },
+        {
+          "member": "yamamoto-moeko",
+          "title": "2026年新春 山本萌子 ヨリ"
+        }
+      ]
+    }
+  ]
+}
