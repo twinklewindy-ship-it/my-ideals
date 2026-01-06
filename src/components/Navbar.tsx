@@ -1,9 +1,9 @@
-import { type ProfileSummary } from '@/storage/localStorage';
+import { type ProfileEntry } from '@/storage/localStorage';
 import { ProfileSelector } from './ProfileSelector';
 
 type NavbarProps = {
-  profiles: ProfileSummary[];
-  activeProfile: ProfileSummary | null;
+  profiles: ProfileEntry[];
+  activeProfile: ProfileEntry | null;
   onSelectProfile: (profileId: string) => void;
 };
 

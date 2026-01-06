@@ -9,14 +9,14 @@ const LOCAL_STORAGE_KEYS = {
   profile: (id: string) => `${PROFILE_KEY_PREFIX}${id}`,
 } as const;
 
-export type ProfileSummary = {
+export type ProfileEntry = {
   id: string;
   name: string;
 };
 
 export type ProfileIndex = {
   active: string | null;
-  profiles: ProfileSummary[];
+  profiles: ProfileEntry[];
 };
 
 const ProfileIndexSchema = z.object({
@@ -43,7 +43,7 @@ function generateProfileIndex(): ProfileIndex | null {
         return null;
       }
     })
-    .filter((p): p is ProfileSummary => p !== null);
+    .filter((p): p is ProfileEntry => p !== null);
 
   if (!profiles || profiles.length === 0) {
     return null;

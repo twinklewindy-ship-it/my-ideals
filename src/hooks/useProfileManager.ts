@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { useImmer } from 'use-immer';
 import { nanoid } from 'nanoid';
-import { ProfileStorage, type ProfileIndex, type ProfileSummary } from '@/storage/localStorage';
+import { ProfileStorage, type ProfileIndex, type ProfileEntry } from '@/storage/localStorage';
 
 export function useProfileManager() {
   const [index, setIndex] = useImmer<ProfileIndex>(ProfileStorage.getProfileIndex());
@@ -67,7 +67,7 @@ export function useProfileManager() {
     URL.revokeObjectURL(url);
   }, []);
 
-  const activeProfile: ProfileSummary | null =
+  const activeProfile: ProfileEntry | null =
     index.profiles.find(p => p.id === index.active) || null;
 
   return {

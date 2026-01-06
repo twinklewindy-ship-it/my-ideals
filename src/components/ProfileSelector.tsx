@@ -1,14 +1,14 @@
 // components/profile/ProfileSelector.tsx
 import { useState, useRef } from 'react';
 import { type Profile } from '@/domain/profile';
-import { type ProfileIndex, type ProfileSummary } from '@/storage/localStorage';
+import { type ProfileIndex, type ProfileEntry } from '@/storage/localStorage';
 import { ProfileDropdown } from './ProfileDropdown';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/solid';
 import { ProfileDrawer } from './ProfileDrawer';
 
 type ProfileSelectorProps = {
-  profiles: ProfileSummary[];
-  activeProfile: ProfileSummary | null;
+  profiles: ProfileEntry[];
+  activeProfile: ProfileEntry | null;
   onSelect: (profileId: string) => void;
   onCreate: (name: string, templateId: string, templateLink: string) => void;
   onImport: (profile: Profile) => void;

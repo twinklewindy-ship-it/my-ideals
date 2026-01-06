@@ -1,9 +1,9 @@
-import { type ProfileSummary } from '@/storage/localStorage';
+import { type ProfileEntry } from '@/storage/localStorage';
 import { ArrowUpTrayIcon, CheckIcon, PlusIcon } from '@heroicons/react/24/solid';
 
 export type ProfileListProps = {
-  profiles: ProfileSummary[];
-  activeProfile: ProfileSummary | null;
+  profiles: ProfileEntry[];
+  activeProfile: ProfileEntry | null;
   onSelect: (profileId: string) => void;
   onCreate: () => void;
   onImport: () => void;
