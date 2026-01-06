@@ -36,7 +36,13 @@ export function ProfileList({
               ) : (
                 <span className="w-4" />
               )}
-              <span className="truncate">{profile.name}</span>
+
+              <div className="min-w-0 flex-1">
+                <span className="truncate">{profile.name}</span>
+                <div className="truncate text-xs text-gray-400">
+                  ID: <span className="font-mono">{profile.id}</span>
+                </div>
+              </div>
             </button>
           ))}
         </div>
