@@ -7,6 +7,7 @@ import {
   buildWorkingProfile,
   extractProfileFromWorking,
 } from '../domain/working';
+import { ProfileStorage } from '../storage/localStorage';
 
 export function useWorkingProfile(profileId: string) {
   const [working, setWorking] = useImmer<WorkingProfile | null>(null);
@@ -18,10 +19,8 @@ export function useWorkingProfile(profileId: string) {
 
     async function load() {
       try {
-        const rawProfile = localStorage.getItem(`my-ideals:profile:${profileId}`);
-        if (!rawProfile) throw new Error('Profile not found');
-
-        const profile = ProfileSchema.parse(JSON.parse(rawProfile));
+        const profile = ProfileStorage.getProfile(profileId);
+        if (!profile) throw new Error('Profile not found');
 
         const res = await fetch(profile.templateLink);
         const template = TemplateSchema.parse(await res.json());
@@ -69,6 +68,7 @@ export function useWorkingProfile(profileId: string) {
 
   useEffect(() => {
     if (working && !isLoading) {
+      // TODO: Not saving on loading, use debounce?
       saveProfile();
     }
   }, [working, isLoading, saveProfile]);

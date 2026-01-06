@@ -3,6 +3,10 @@ import { CollectionPanel } from './CollectionPanel';
 import { useState, useMemo } from 'react';
 import type { WorkingProfile } from '../domain/working';
 
+type CollectionPageProps = {
+  profileId: string;
+};
+
 function useFilteredCollections(working: WorkingProfile | null, selectedMember: string) {
   return useMemo(() => {
     if (!working) {
@@ -20,8 +24,9 @@ function useFilteredCollections(working: WorkingProfile | null, selectedMember: 
   }, [working, selectedMember]);
 }
 
-export function CollectionPage() {
-  const { working, isLoading, error, toggleStatus } = useWorkingProfile('development-profile00');
+export function CollectionPage({ profileId }: CollectionPageProps) {
+  console.log('Rendering CollectionPage with profileId:', profileId);
+  const { working, isLoading, error, toggleStatus } = useWorkingProfile(profileId);
   const [selectedMember, setSelectedMember] = useState<string>('all');
   const filteredCollections = useFilteredCollections(working, selectedMember);
 
