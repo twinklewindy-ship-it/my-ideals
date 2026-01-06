@@ -1,15 +1,15 @@
 import { useEffect, useState, useCallback } from 'react';
+import { useImmer } from 'use-immer';
 import { ProfileSchema } from '../schema/profile';
 import { TemplateSchema } from '../schema/template';
 import {
   type WorkingProfile,
   buildWorkingProfile,
   extractProfileFromWorking,
-  toggleItemStatus,
 } from '../domain/working';
 
 export function useWorkingProfile(profileId: string) {
-  const [working, setWorking] = useState<WorkingProfile | null>(null);
+  const [working, setWorking] = useImmer<WorkingProfile | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -41,7 +41,7 @@ export function useWorkingProfile(profileId: string) {
     return () => {
       cancelled = true;
     };
-  }, [profileId]);
+  }, [profileId, setWorking]);
 
   const saveProfile = useCallback(() => {
     if (!working) return;
@@ -52,15 +52,20 @@ export function useWorkingProfile(profileId: string) {
     localStorage.setItem(`my-ideals:profile:${profileId}`, JSON.stringify(profile));
   }, [working, profileId]);
 
-  const toggleStatus = useCallback((collectionId: string, itemId: string) => {
-    console.log(`Toggling collection ${collectionId}, item ${itemId}`);
-    setWorking(prev => {
-      if (!prev) {
-        return prev;
-      }
-      return toggleItemStatus(prev, collectionId, itemId);
-    });
-  }, []);
+  const toggleStatus = useCallback(
+    (collectionId: string, itemId: string) => {
+      console.log(`Toggling collection ${collectionId}, item ${itemId}`);
+      setWorking(draft => {
+        if (!draft) return;
+        const collection = draft.collections.find(c => c.id === collectionId);
+        if (!collection) return;
+        const item = collection.items.find(i => i.id === itemId);
+        if (!item) return;
+        item.status = !item.status;
+      });
+    },
+    [setWorking]
+  );
 
   useEffect(() => {
     if (working && !isLoading) {
