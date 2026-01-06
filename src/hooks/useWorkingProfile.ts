@@ -1,13 +1,13 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useImmer } from 'use-immer';
-import { ProfileSchema } from '../domain/profile';
-import { TemplateSchema } from '../domain/template';
+import { ProfileSchema } from '@/domain/profile';
+import { TemplateSchema } from '@/domain/template';
 import {
   type WorkingProfile,
   buildWorkingProfile,
   extractProfileFromWorking,
-} from '../domain/working';
-import { ProfileStorage } from '../storage/localStorage';
+} from '@/domain/working';
+import { ProfileStorage } from '@/storage/localStorage';
 
 export function useWorkingProfile(profileId: string) {
   const [working, setWorking] = useImmer<WorkingProfile | null>(null);

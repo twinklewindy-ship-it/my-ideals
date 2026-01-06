@@ -1,5 +1,5 @@
 import z from 'zod';
-import { type Profile, ProfileSchema } from '../domain/profile';
+import { type Profile, ProfileSchema } from '@/domain/profile';
 
 const LOCAL_STORAGE_PREFIX = 'my-ideals';
 const PROFILE_KEY_PREFIX = `${LOCAL_STORAGE_PREFIX}:profile:`;

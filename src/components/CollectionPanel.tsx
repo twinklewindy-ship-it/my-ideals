@@ -1,4 +1,4 @@
-import { type WorkingProfile } from '../domain/working';
+import { type WorkingProfile } from '@/domain/working';
 import { ImageCheckCard } from './ImageCheckCard';
 
 type CollectionPanelProps = {

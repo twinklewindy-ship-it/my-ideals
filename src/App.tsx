@@ -1,6 +1,6 @@
-import { Navbar } from './components/Navbar';
-import { CollectionPage } from './components/CollectionPage';
-import { useProfileManager } from './hooks/useProfileManager';
+import { Navbar } from '@/components/Navbar';
+import { CollectionPage } from '@/components/CollectionPage';
+import { useProfileManager } from '@/hooks/useProfileManager';
 
 export default function App() {
   const { profileIndex, setActiveProfile } = useProfileManager();

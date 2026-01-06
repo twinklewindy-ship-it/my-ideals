@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { useImmer } from 'use-immer';
 import { nanoid } from 'nanoid';
-import { type ProfileIndex, ProfileStorage } from '../storage/localStorage';
+import { type ProfileIndex, ProfileStorage } from '@/storage/localStorage';
 
 export function useProfileManager() {
   const [index, setIndex] = useImmer<ProfileIndex>(ProfileStorage.getProfileIndex());

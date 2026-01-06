@@ -1,6 +1,6 @@
 import { type WorkingCollection, type WorkingProfile } from './types';
-import { type Profile } from '../profile';
-import { type Template } from '../template';
+import { type Profile } from '@/domain/profile';
+import { type Template } from '@/domain/template';
 
 export function buildWorkingProfile(profile: Profile, template: Template): WorkingProfile {
   const { collections: profileCollections, ...profileMeta } = profile;
@@ -38,26 +38,6 @@ export function extractProfileFromWorking(working: WorkingProfile): Profile {
         collection.id,
         Object.fromEntries(collection.items.map(item => [item.id, item.status])),
       ])
-    ),
-  };
-}
-
-export function toggleItemStatus(
-  working: WorkingProfile,
-  collectionId: string,
-  itemId: string
-): WorkingProfile {
-  return {
-    ...working,
-    collections: working.collections.map(collection =>
-      collection.id === collectionId
-        ? {
-            ...collection,
-            items: collection.items.map(item =>
-              item.id === itemId ? { ...item, status: !item.status } : item
-            ),
-          }
-        : collection
     ),
   };
 }

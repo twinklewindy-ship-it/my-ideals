@@ -1,7 +1,7 @@
 // components/Navbar.tsx
 import { useState, useRef } from 'react';
-import { useProfileManager } from '../hooks/useProfileManager';
-import { type ProfileIndex } from '../storage/localStorage';
+import { useProfileManager } from '@/hooks/useProfileManager';
+import { type ProfileIndex } from '@/storage/localStorage';
 import {
   ArrowDownTrayIcon,
   ArrowUpTrayIcon,

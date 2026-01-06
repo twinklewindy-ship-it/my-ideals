@@ -1,7 +1,7 @@
-import { useWorkingProfile } from '../hooks/useWorkingProfile';
-import { CollectionPanel } from './CollectionPanel';
 import { useState, useMemo } from 'react';
-import type { WorkingProfile } from '../domain/working';
+import type { WorkingProfile } from '@/domain/working';
+import { useWorkingProfile } from '@/hooks/useWorkingProfile';
+import { CollectionPanel } from './CollectionPanel';
 
 type CollectionPageProps = {
   profileId: string;

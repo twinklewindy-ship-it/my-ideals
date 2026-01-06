@@ -1,5 +1,5 @@
-import { type Profile } from '../profile';
-import { type Template } from '../template';
+import { type Profile } from '@/domain/profile';
+import { type Template } from '@/domain/template';
 
 export type WorkingCollection = {
   id: string;
