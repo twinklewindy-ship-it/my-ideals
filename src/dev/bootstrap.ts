@@ -1,4 +1,4 @@
-import { type Profile } from '../schema/profile';
+import { type Profile } from '../domain/profile';
 
 export async function bootstrapDevProfile() {
   // Only run in dev

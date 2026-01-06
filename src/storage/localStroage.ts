@@ -1,4 +1,5 @@
-import { ProfileSchema, type Profile } from '../schema/profile';
+import { type Profile } from '../domain/profile';
+import { ProfileSchema } from '../schema/profile';
 
 const STORAGE_PREFIX = 'my-ideals';
 
