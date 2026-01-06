@@ -5,13 +5,19 @@ import { type ProfileEntry } from '@/storage/localStorage';
 import { ProfileDropdown } from './ProfileDropdown';
 import { ProfileDrawer } from './ProfileDrawer';
 import { ProfileExportButton } from './ProfileExportButton';
+import { ImportConflictDialog, type ImportConflictAction } from './ProfileImportConflictDialog';
+
+type PendingImport = {
+  profile: Profile;
+  existingId: string;
+};
 
 type ProfileSelectorProps = {
   profiles: ProfileEntry[];
   activeProfile: ProfileEntry | null;
   onSelect: (profileId: string) => void;
   onCreate: (name: string, templateId: string, templateLink: string) => void;
-  onImport: (profile: Profile) => void;
+  onImport: (profile: Profile, overwrite?: boolean) => void;
 };
 
 export function ProfileSelector({
@@ -22,6 +28,7 @@ export function ProfileSelector({
   onImport,
 }: ProfileSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [pendingImport, setPendingImport] = useState<PendingImport | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const open = () => setIsOpen(true);
@@ -49,15 +56,44 @@ export function ProfileSelector({
     const reader = new FileReader();
     reader.onload = event => {
       try {
-        const profile = JSON.parse(event.target?.result as string);
-        onImport(profile);
-        close();
+        const profile = JSON.parse(event.target?.result as string) as Profile;
+        const existingProfile = profiles.find(p => p.id === profile.id);
+
+        if (existingProfile) {
+          setPendingImport({
+            profile,
+            existingId: existingProfile.id,
+          });
+        } else {
+          onImport(profile);
+          close();
+        }
       } catch {
         alert('Invalid profile file');
       }
     };
     reader.readAsText(file);
     e.target.value = '';
+  };
+
+  const handleConflictAction = (action: ImportConflictAction) => {
+    if (!pendingImport) return;
+
+    const { profile } = pendingImport;
+
+    switch (action) {
+      case 'overwrite':
+        onImport(profile, true);
+        break;
+      case 'duplicate':
+        onImport(profile, false);
+        break;
+      case 'cancel':
+        break;
+    }
+
+    setPendingImport(null);
+    close();
   };
 
   const handleImportClick = () => {
@@ -101,6 +137,13 @@ export function ProfileSelector({
         accept=".json"
         onChange={handleFileChange}
         className="hidden"
+      />
+
+      {/* Import Conflict Dialog */}
+      <ImportConflictDialog
+        isOpen={pendingImport !== null}
+        profileName={pendingImport?.profile.name ?? ''}
+        onAction={handleConflictAction}
       />
     </>
   );

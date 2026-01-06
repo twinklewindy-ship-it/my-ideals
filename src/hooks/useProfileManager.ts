@@ -1,12 +1,14 @@
 // hooks/useProfileManager.ts
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useImmer } from 'use-immer';
 import { nanoid } from 'nanoid';
 import { ProfileStorage, type ProfileIndex, type ProfileEntry } from '@/storage/localStorage';
+import { type Profile } from '@/domain/profile';
 
 export function useProfileManager() {
   const [index, setIndex] = useImmer<ProfileIndex>(ProfileStorage.getProfileIndex());
 
+  useEffect(() => ProfileStorage.setProfileIndex(index), [index]);
   // TODO: validate profile index data on startup
 
   const setActiveProfile = useCallback(
@@ -49,6 +51,25 @@ export function useProfileManager() {
     [setIndex]
   );
 
+  const importProfile = useCallback(
+    (profile: Profile, overwrite: boolean = false) => {
+      const existingIndex = index.profiles.findIndex(p => p.id === profile.id);
+      const finalProfile =
+        existingIndex >= 0 && !overwrite ? { ...profile, id: nanoid() } : profile;
+
+      ProfileStorage.setProfile(finalProfile);
+
+      setIndex(draft => {
+        if (existingIndex >= 0 && overwrite) {
+          draft.profiles.splice(existingIndex, 1);
+        }
+        draft.profiles.push({ id: finalProfile.id, name: finalProfile.name });
+        draft.active = finalProfile.id;
+      });
+    },
+    [index.profiles, setIndex]
+  );
+
   const activeProfile: ProfileEntry | null =
     index.profiles.find(p => p.id === index.active) || null;
 
@@ -58,5 +79,6 @@ export function useProfileManager() {
     setActiveProfile,
     deleteProfile,
     renameProfile,
+    importProfile,
   };
 }

@@ -3,7 +3,7 @@ import { CollectionPage } from '@/components/CollectionPage';
 import { useProfileManager } from '@/hooks/useProfileManager';
 
 export default function App() {
-  const { profiles, activeProfile, setActiveProfile } = useProfileManager();
+  const { profiles, activeProfile, setActiveProfile, importProfile } = useProfileManager();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -11,6 +11,7 @@ export default function App() {
         profiles={profiles}
         activeProfile={activeProfile}
         onSelectProfile={setActiveProfile}
+        onImportProfile={importProfile}
       />
 
       <main>
