@@ -26,12 +26,14 @@ export function CollectionPanel({ id, name, items, onToggle }: CollectionPanelPr
 
       {/* Grid of cards - 6 columns */}
       <div className="p-4">
-        <div className="
+        <div
+          className="
             grid grid-cols-3 lg:grid-cols-6 
             gap-2 lg:gap-4
             max-w-[360px] lg:max-w-[960px]
             mx-auto
-          ">
+          "
+        >
           {items.map((item, index) => (
             <ImageCheckCard
               key={`${item.member}-${item.title}`}

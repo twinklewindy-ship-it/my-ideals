@@ -4,8 +4,9 @@ const STORAGE_PREFIX = 'my-ideals';
 
 export function loadProfile(id: string): Profile | null {
   const raw = localStorage.getItem(`${STORAGE_PREFIX}:profile:${id}`);
-  if (!raw)
+  if (!raw) {
     return null;
+  }
 
   try {
     const json = JSON.parse(raw);

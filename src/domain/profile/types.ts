@@ -4,11 +4,11 @@ type ProfileCollection = {
 };
 
 export type Profile = {
-  magic: "my-ideals-profile";
+  magic: 'my-ideals-profile';
   version: 1;
   id: string;
   name: string;
   templateId: string;
   templateLink: string;
   collections: ProfileCollection[];
-}
+};

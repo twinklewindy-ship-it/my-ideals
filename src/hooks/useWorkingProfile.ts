@@ -1,7 +1,11 @@
-import { useEffect, useState, useCallback } from "react";
-import { ProfileSchema } from "../schema/profile";
-import { TemplateSchema } from "../schema/template";
-import { type WorkingProfile, buildWorkingProfile, extractProfileFromWorking } from "../domain/working";
+import { useEffect, useState, useCallback } from 'react';
+import { ProfileSchema } from '../schema/profile';
+import { TemplateSchema } from '../schema/template';
+import {
+  type WorkingProfile,
+  buildWorkingProfile,
+  extractProfileFromWorking,
+} from '../domain/working';
 
 export function useWorkingProfile(profileId: string) {
   const [working, setWorking] = useState<WorkingProfile | null>(null);
@@ -14,23 +18,20 @@ export function useWorkingProfile(profileId: string) {
     async function load() {
       try {
         const rawProfile = localStorage.getItem(`my-ideals:profile:${profileId}`);
-        if (!rawProfile)
-          throw new Error("Profile not found");
+        if (!rawProfile) throw new Error('Profile not found');
 
         const profile = ProfileSchema.parse(JSON.parse(rawProfile));
 
         const res = await fetch(profile.templateLink);
         const template = TemplateSchema.parse(await res.json());
 
-        if (cancelled)
-          return;
+        if (cancelled) return;
 
         setWorking(buildWorkingProfile(profile, template));
       } catch (e) {
-        setError(e instanceof Error ? e.message : "Unknown error");
+        setError(e instanceof Error ? e.message : 'Unknown error');
       } finally {
-        if (!cancelled)
-          setIsLoading(false);
+        if (!cancelled) setIsLoading(false);
       }
     }
 
@@ -41,11 +42,10 @@ export function useWorkingProfile(profileId: string) {
   }, []);
 
   const saveProfile = useCallback(() => {
-    if (!working)
-      return;
+    if (!working) return;
 
     const profile = extractProfileFromWorking(working);
-    console.log("Saving profile:", profile);
+    console.log('Saving profile:', profile);
     ProfileSchema.parse(profile);
     localStorage.setItem(`my-ideals:profile:${profileId}`, JSON.stringify(profile));
   }, [working]);
@@ -57,14 +57,14 @@ export function useWorkingProfile(profileId: string) {
       return {
         ...prev,
         collections: prev.collections.map(collection => {
-          if (collection.id !== collectionId)
+          if (collection.id !== collectionId) {
             return collection;
+          }
 
           return {
             ...collection,
             items: collection.items.map((item, idx) => {
-              if (idx !== itemIndex)
-                return item;
+              if (idx !== itemIndex) return item;
               return { ...item, status: !item.status };
             }),
           };

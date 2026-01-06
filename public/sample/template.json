@@ -4,8 +4,8 @@
   "id": "equal-me",
   "name": "=ME (イコールミー)",
   "members": [
-    {"id": "noguchi-nanaka", "name": "野口 菜々風"},
-    {"id": "yamamoto-moeko", "name": "山本 萌子"}
+    { "id": "noguchi-nanaka", "name": "野口 菜々風" },
+    { "id": "yamamoto-moeko", "name": "山本 萌子" }
   ],
   "collections": [
     {

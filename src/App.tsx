@@ -2,7 +2,8 @@ import { useWorkingProfile } from './hooks/useWorkingProfile';
 import { CollectionPanel } from './components/CollectionPanel';
 
 export default function App() {
-  const { working, isLoading, error, toggleItemStatus } = useWorkingProfile('development-profile00');
+  const { working, isLoading, error, toggleItemStatus } =
+    useWorkingProfile('development-profile00');
 
   if (isLoading) {
     return <div className="p-4">Loading…</div>;
@@ -21,9 +22,7 @@ export default function App() {
   return (
     <div>
       <div className="p-4">
-        <h1 className="text-xl font-bold mb-4">
-          My Ideals - Idol Namashashin Tracking App
-        </h1>
+        <h1 className="text-xl font-bold mb-4">My Ideals - Idol Namashashin Tracking App</h1>
       </div>
       <main className="mx-auto max-w-7xl px-4 py-6 space-y-6">
         {working.collections.map(collection => (
@@ -32,7 +31,7 @@ export default function App() {
             id={collection.id}
             name={collection.name}
             items={collection.items}
-            onToggle={(itemIndex) => toggleItemStatus(collection.id, itemIndex)}
+            onToggle={itemIndex => toggleItemStatus(collection.id, itemIndex)}
           />
         ))}
       </main>

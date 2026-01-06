@@ -13,7 +13,7 @@ type TemplateCollection = {
 };
 
 export type Template = {
-  magic: "my-ideals-template";
+  magic: 'my-ideals-template';
   version: 1;
   id: string;
   name: string;

@@ -1,5 +1,5 @@
-import { type Profile } from "../profile";
-import { type Template } from "../template";
+import { type Profile } from '../profile';
+import { type Template } from '../template';
 
 type WorkingCollection = {
   id: string;
@@ -12,7 +12,7 @@ type WorkingCollection = {
 };
 
 export type WorkingProfile = {
-  profile: Omit<Profile, "collections">;
-  template: Omit<Template, "collections">;
+  profile: Omit<Profile, 'collections'>;
+  template: Omit<Template, 'collections'>;
   collections: WorkingCollection[];
-}
+};
