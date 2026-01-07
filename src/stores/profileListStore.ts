@@ -137,7 +137,7 @@ export const useProfileListStore = create<ProfileListStore>()(
         name: 'my-ideals:profile-list',
         partialize: state => ({
           profiles: state.profiles,
-          active: state.activeId,
+          activeId: state.activeId,
         }),
       }
     )
