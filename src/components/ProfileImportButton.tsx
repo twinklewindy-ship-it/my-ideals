@@ -3,6 +3,7 @@ import { ZodError } from 'zod';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { ProfileSchema, type Profile } from '@/domain/profile';
 import { useProfileListStore } from '@/stores/profileListStore';
+import { useWorkingProfileStore } from '@/stores/workingProfileStore';
 import { ErrorDialog } from '@/components/ui/ErrorDialog';
 import { InlineCode } from '@/components/ui/InlineCode';
 
@@ -21,6 +22,7 @@ export function ProfileImportButton({ children, className }: ProfileImportButton
   const [error, setError] = useState<string | null>(null);
   const [pendingImport, setPendingImport] = useState<PendingImport | null>(null);
 
+  const activeProfileId = useProfileListStore(state => state.activeId);
   const profiles = useProfileListStore(state => state.profiles);
   const importProfile = useProfileListStore(state => state.importProfile);
 
@@ -66,9 +68,14 @@ export function ProfileImportButton({ children, className }: ProfileImportButton
         importProfile(pendingImport.profile, action === 'overwrite');
       }
 
+      // Trigger UI reload if overwriting current profile
+      if (pendingImport.existingId === activeProfileId) {
+        useWorkingProfileStore.getState().load(pendingImport.existingId);
+      }
+
       setPendingImport(null);
     },
-    [pendingImport, importProfile]
+    [pendingImport, importProfile, activeProfileId]
   );
 
   return (
