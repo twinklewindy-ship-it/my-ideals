@@ -1,11 +1,7 @@
 import { useState, useMemo } from 'react';
 import type { WorkingProfile } from '@/domain/working';
-import { useWorkingProfile } from '@/hooks/useWorkingProfile';
+import { useWorkingProfileStore } from '@/stores/workingProfileStore';
 import { CollectionPanel } from './CollectionPanel';
-
-type CollectionPageProps = {
-  profileId: string;
-};
 
 function useFilteredCollections(working: WorkingProfile | null, selectedMember: string) {
   return useMemo(() => {
@@ -24,10 +20,13 @@ function useFilteredCollections(working: WorkingProfile | null, selectedMember: 
   }, [working, selectedMember]);
 }
 
-export function CollectionPage({ profileId }: CollectionPageProps) {
-  console.log('Rendering CollectionPage with profileId:', profileId);
-  const { working, isLoading, error, toggleStatus } = useWorkingProfile(profileId);
+export function CollectionPage() {
   const [selectedMember, setSelectedMember] = useState<string>('all');
+
+  const working = useWorkingProfileStore(state => state.working);
+  const isLoading = useWorkingProfileStore(state => state.isLoading);
+  const error = useWorkingProfileStore(state => state.error);
+
   const filteredCollections = useFilteredCollections(working, selectedMember);
 
   if (isLoading) {
@@ -76,7 +75,6 @@ export function CollectionPage({ profileId }: CollectionPageProps) {
           id={collection.id}
           name={collection.name}
           items={collection.items}
-          onToggle={itemId => toggleStatus(collection.id, itemId)}
         />
       ))}
     </main>

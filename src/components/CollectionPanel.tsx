@@ -1,14 +1,16 @@
 import { type WorkingProfile } from '@/domain/working';
+import { useWorkingProfileStore } from '@/stores/workingProfileStore';
 import { ImageCheckCard } from './ImageCheckCard';
 
 type CollectionPanelProps = {
   id: string;
   name: string;
   items: WorkingProfile['collections'][0]['items'];
-  onToggle: (itemId: string) => void;
 };
 
-export function CollectionPanel({ id: _id, name, items, onToggle }: CollectionPanelProps) {
+export function CollectionPanel({ id, name, items }: CollectionPanelProps) {
+  const toggleStatus = useWorkingProfileStore(state => state.toggleStatus);
+
   return (
     <section className="rounded-lg border border-gray-200 bg-white shadow-sm">
       {/* Header */}
@@ -31,7 +33,7 @@ export function CollectionPanel({ id: _id, name, items, onToggle }: CollectionPa
               src={`${window.location.origin}/sample/sample_photo.png`}
               text={item.title}
               checked={item.status}
-              onChange={() => onToggle(item.id)}
+              onChange={() => toggleStatus(id, item.id)}
             />
           ))}
         </div>

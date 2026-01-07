@@ -21,9 +21,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      <main>
-        {activeProfileId ? <CollectionPage profileId={activeProfileId} /> : <EmptyPage />}
-      </main>
+      <main>{activeProfileId ? <CollectionPage /> : <EmptyPage />}</main>
     </div>
   );
 }
