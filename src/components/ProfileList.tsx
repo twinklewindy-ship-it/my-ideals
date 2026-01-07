@@ -1,13 +1,31 @@
-import { useProfileListStore } from '@/stores/profileListStore';
-import { ArrowUpTrayIcon, CheckIcon, PlusIcon } from '@heroicons/react/24/solid';
+import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useProfileListStore, type ProfileListEntry } from '@/stores/profileListStore';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
+import { ArrowUpTrayIcon, CheckIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { ProfileImportButton } from './ProfileImportButton';
 import { ProfileCreateButton } from './ProfileCreateButton';
 
 export function ProfileList() {
   const profiles = useProfileListStore(state => state.profiles);
   const activeProfileId = useProfileListStore(state => state.activeId);
-
   const selectProfile = useProfileListStore(state => state.setActiveProfile);
+  const deleteProfile = useProfileListStore(state => state.deleteProfile);
+
+  const [deleteTarget, setDeleteTarget] = useState<ProfileListEntry | null>(null);
+
+  const handleDeleteClick = (e: React.MouseEvent, profile: ProfileListEntry) => {
+    e.stopPropagation();
+    setDeleteTarget(profile);
+  };
+
+  const handleConfirmDelete = (value: string) => {
+    if (value === 'delete' && deleteTarget) {
+      deleteProfile(deleteTarget.id);
+      // TODO: toast.success(`Profile "${deleteTarget.name}" deleted`);
+    }
+    setDeleteTarget(null);
+  };
 
   return (
     <>
@@ -32,9 +50,15 @@ export function ProfileList() {
 
               <div className="min-w-0 flex-1">
                 <span className="truncate">{profile.name}</span>
-                <div className="truncate text-xs text-gray-400">
-                  ID: <span className="font-mono">{profile.id}</span>
-                </div>
+                <div className="truncate font-mono text-xs text-gray-400">ID: {profile.id}</div>
+              </div>
+
+              {/* Delete button */}
+              <div
+                onClick={e => handleDeleteClick(e, profile)}
+                className="shrink-0 rounded p-1 text-gray-400 hover:bg-red-100 hover:text-red-600"
+              >
+                <TrashIcon className="h-4 w-4" />
               </div>
             </button>
           ))}
@@ -58,6 +82,25 @@ export function ProfileList() {
           <ArrowUpTrayIcon className="h-4 w-4" />
           Import Profile
         </ProfileImportButton>
+
+        {/* Delete Confirm Dialog */}
+        {createPortal(
+          <ConfirmDialog
+            isOpen={deleteTarget !== null}
+            title="Delete Profile"
+            message={
+              <>
+                Are you sure you want to delete <strong>{deleteTarget?.name}</strong>?
+                <br />
+                This action cannot be undone.
+              </>
+            }
+            options={[{ label: 'Delete', value: 'delete', variant: 'danger' }]}
+            onSelect={handleConfirmDelete}
+            onCancel={() => setDeleteTarget(null)}
+          />,
+          document.body
+        )}
       </div>
     </>
   );
