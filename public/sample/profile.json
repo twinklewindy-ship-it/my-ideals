@@ -3,9 +3,11 @@
   "version": 1,
   "id": "development-profile00",
   "name": "=ME 生写真",
-  "templateLink": "https://raw.githubusercontent.com/monaka-ikonoi/my-ideals/refs/heads/main/public/sample/template.json",
-  "templateId": "equal-me",
-  "templateRevision": 1,
+  "template": {
+    "id": "equal-me",
+    "link": "https://raw.githubusercontent.com/monaka-ikonoi/my-ideals/refs/heads/main/public/sample/template.json",
+    "revision": 1
+  },
   "collections": {
     "2026-new-year": {
       "nanaka-hiki": true,

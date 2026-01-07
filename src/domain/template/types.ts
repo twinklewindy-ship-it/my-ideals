@@ -21,6 +21,8 @@ export type Template = {
   revision: number;
   id: string;
   name: string;
+  description?: string;
+  author?: string;
   members: TemplateMember[];
   collections: TemplateCollection[];
 };

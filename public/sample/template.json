@@ -3,7 +3,9 @@
   "version": 1,
   "revision": 1,
   "id": "equal-me",
-  "name": "=ME (イコールミー)",
+  "name": "=ME (イコールミー) 生写真",
+  "description": "(開発用)\n=ME (イコールミー)は、日本の10人組女性アイドルグループ",
+  "author": "Tomita Mokeo",
   "members": [
     { "id": "noguchi-nanaka", "name": "野口 菜々風" },
     { "id": "yamamoto-moeko", "name": "山本 萌子" }

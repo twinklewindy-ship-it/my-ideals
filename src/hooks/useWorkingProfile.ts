@@ -22,7 +22,7 @@ export function useWorkingProfile(profileId: string) {
         const profile = ProfileStorage.getProfile(profileId);
         if (!profile) throw new Error('Profile not found');
 
-        const res = await fetch(profile.templateLink);
+        const res = await fetch(profile.template.link);
         const template = TemplateSchema.parse(await res.json());
 
         if (cancelled) return;

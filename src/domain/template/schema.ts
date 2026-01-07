@@ -23,6 +23,8 @@ export const TemplateSchema = z.object({
   revision: z.number(),
   id: z.string(),
   name: z.string(),
+  description: z.string().optional(),
+  author: z.string().optional(),
   members: z.array(TemplateMember),
   collections: z.array(TemplateCollection),
 });
