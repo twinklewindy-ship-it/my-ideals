@@ -2,17 +2,28 @@ import { useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { CollectionPage } from '@/components/CollectionPage';
 import { useProfileListStore } from './stores/profileListStore';
+import { useWorkingProfileStore } from './stores/workingProfileStore';
 import { LoadingPage } from './components/ui/LoadingPage';
 import { EmptyPage } from './components/EmptyPage';
 
 export default function App() {
-  const initialize = useProfileListStore(state => state.initialize);
   const isInitialized = useProfileListStore(state => state.isInitialized);
   const activeProfileId = useProfileListStore(state => state.activeId);
 
   useEffect(() => {
-    initialize();
-  }, [initialize]);
+    useProfileListStore.getState().initialize();
+  }, []);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      useWorkingProfileStore.getState().flush();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   if (!isInitialized) {
     return <LoadingPage />;
