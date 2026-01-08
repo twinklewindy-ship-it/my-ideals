@@ -3,6 +3,7 @@ import type { WorkingProfile } from '@/domain/working';
 import { useWorkingProfileStore } from '@/stores/workingProfileStore';
 import { CollectionPanel } from './CollectionPanel';
 import { LoadingPage } from './ui/LoadingPage';
+import { ErrorPage } from './ui/ErrorPage';
 
 function useFilteredCollections(working: WorkingProfile | null, selectedMember: string) {
   return useMemo(() => {
@@ -35,7 +36,7 @@ export function CollectionPage() {
   }
 
   if (error) {
-    return <div className="p-4 text-red-600">Error: {error}</div>;
+    return <ErrorPage error={error} />;
   }
 
   if (!working) {
