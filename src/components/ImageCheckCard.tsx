@@ -1,25 +1,44 @@
+import { useState } from 'react';
+
 type ImageCheckCardProps = {
   src: string;
+  fallbackSrc?: string;
   text: string;
   checked: boolean;
   onChange: () => void;
 };
 
-export function ImageCheckCard({ src, text, checked, onChange }: ImageCheckCardProps) {
+export function ImageCheckCard({ src, fallbackSrc, text, checked, onChange }: ImageCheckCardProps) {
+  const [imgSrc, setImgSrc] = useState(src);
+  const [showAlt, setShowAlt] = useState(false);
+
   return (
     <label className="relative block w-full cursor-pointer select-none">
       {/* Hidden controlling checkbox */}
       <input type="checkbox" className="peer sr-only" checked={checked} onChange={onChange} />
 
       {/* Image */}
-      <img
-        src={src}
-        alt={text}
-        loading="lazy"
-        decoding="async"
-        className="aspect-[7/10] w-full rounded-md object-cover transition
-          peer-not-checked:opacity-50"
-      />
+      {showAlt ? (
+        <div
+          className="flex aspect-[7/10] w-full items-center justify-center rounded-md bg-gray-200
+            p-2 text-center text-sm whitespace-pre-line text-gray-600 transition
+            peer-not-checked:opacity-50"
+        >
+          {text.split(' ').join('\n')}
+        </div>
+      ) : (
+        <img
+          src={imgSrc}
+          alt={text}
+          loading="lazy"
+          decoding="async"
+          onError={() =>
+            fallbackSrc && imgSrc !== fallbackSrc ? setImgSrc(fallbackSrc) : setShowAlt(true)
+          }
+          className="aspect-[7/10] w-full rounded-md object-cover transition
+            peer-not-checked:opacity-50"
+        />
+      )}
 
       {/* Bottom bar */}
       <div
