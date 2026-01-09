@@ -6,6 +6,9 @@ export function buildWorkingProfile(profile: Profile, template: Template): Worki
   const { collections: profileCollections, ...profileMeta } = profile;
   const { collections: templateCollections, ...templateMeta } = template;
 
+  // Ensure the revision sync only applies to working profile
+  profileMeta.template = structuredClone(profile.template);
+
   const collections: WorkingCollection[] = templateCollections.map(tc => {
     const statusMap = profileCollections[tc.id] || {};
 
@@ -18,6 +21,9 @@ export function buildWorkingProfile(profile: Profile, template: Template): Worki
       })),
     };
   });
+
+  // Profile and template is synced (assigning initial value above)
+  profileMeta.template.revision = templateMeta.revision;
 
   return {
     template: templateMeta,

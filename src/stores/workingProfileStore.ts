@@ -1,7 +1,6 @@
-// stores/workingProfileStore.ts
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import { ProfileSchema } from '@/domain/profile';
+import { debounce } from 'lodash-es';
 import { TemplateSchema } from '@/domain/template';
 import {
   type WorkingProfile,
@@ -10,13 +9,14 @@ import {
 } from '@/domain/working';
 import { ProfileStorage } from '@/storage/profileStorage';
 import { useProfileListStore } from './profileListStore';
-import { debounce } from 'lodash-es';
+import { type ProfileTemplateDiff, diffProfileTemplate } from '@/utils/diffProfileTemplate';
 
 type WorkingProfileStore = {
   // State
   working: WorkingProfile | null;
   isLoading: boolean;
   error: string | null;
+  changes: ProfileTemplateDiff | null;
 
   // Actions
   load: (profileId: string) => Promise<void>;
@@ -40,6 +40,7 @@ export const useWorkingProfileStore = create<WorkingProfileStore>()(
       working: null,
       isLoading: false,
       error: null,
+      changes: null,
 
       load: async (profileId: string) => {
         debouncedSave.flush();
@@ -48,6 +49,7 @@ export const useWorkingProfileStore = create<WorkingProfileStore>()(
           state.working = null;
           state.isLoading = true;
           state.error = null;
+          state.changes = null;
         });
 
         try {
@@ -58,11 +60,24 @@ export const useWorkingProfileStore = create<WorkingProfileStore>()(
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
           const template = TemplateSchema.parse(await res.json());
+
+          let changes: ProfileTemplateDiff | null = null;
+          if (profile.template.revision !== template.revision) {
+            changes = diffProfileTemplate(profile, template);
+            console.log('Calculated diff', changes);
+          }
+
           const working = buildWorkingProfile(profile, template);
+          // Save if there is an update
+          if (working.profile.template.revision !== profile.template.revision) {
+            console.log(`Profile updated to template rev ${working.profile.template.revision}`);
+            ProfileStorage.setProfile(extractProfileFromWorking(working));
+          }
 
           set(state => {
             state.working = working;
             state.isLoading = false;
+            state.changes = changes;
           });
         } catch (e) {
           set(state => {
