@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { PencilIcon, ClipboardIcon, CheckIcon } from '@heroicons/react/24/outline';
+import { PencilIcon, LinkIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline';
 import { InlineCode } from './ui/InlineCode';
 import { ConfirmDialog } from './ui/ConfirmDialog';
 import type { WorkingProfile } from '@/domain/working';
@@ -67,9 +67,9 @@ export function ProfileInfo({ working, renameFn }: ProfileInfoProps) {
             title="Copy template link"
           >
             {copied ? (
-              <CheckIcon className="h-4 w-4 text-green-500" />
+              <ClipboardDocumentCheckIcon className="h-4 w-4 text-green-500" />
             ) : (
-              <ClipboardIcon className="h-4 w-4" />
+              <LinkIcon className="h-4 w-4" />
             )}
           </button>
         </div>
@@ -84,6 +84,12 @@ export function ProfileInfo({ working, renameFn }: ProfileInfoProps) {
                 type="text"
                 value={newName}
                 onChange={e => setNewName(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleSaveName();
+                  }
+                }}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 text-base
                   focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
                 autoFocus
