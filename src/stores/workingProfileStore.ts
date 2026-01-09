@@ -60,6 +60,11 @@ export const useWorkingProfileStore = create<WorkingProfileStore>()(
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
           const template = TemplateSchema.parse(await res.json());
+          if (template.id !== profile.template.id) {
+            throw Error(
+              `Template mismatch. Expected "${profile.template.id}" but got "${template.id}".`
+            );
+          }
 
           let changes: ProfileTemplateDiff | null = null;
           if (profile.template.revision !== 0 && profile.template.revision !== template.revision) {
