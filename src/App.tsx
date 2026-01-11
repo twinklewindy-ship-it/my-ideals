@@ -5,6 +5,7 @@ import { useProfileListStore } from './stores/profileListStore';
 import { useWorkingProfileStore } from './stores/workingProfileStore';
 import { LoadingPage } from './components/ui/LoadingPage';
 import { EmptyPage } from './components/EmptyPage';
+import { DisclaimerDialog } from './components/DisclaimerDialog';
 
 export default function App() {
   const isInitialized = useProfileListStore(state => state.isInitialized);
@@ -31,6 +32,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <DisclaimerDialog />
+
       <Navbar />
 
       <main>{activeProfileId ? <CollectionPage /> : <EmptyPage />}</main>
