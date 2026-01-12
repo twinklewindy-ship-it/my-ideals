@@ -34,7 +34,8 @@ function useFilteredCollections(
           selectedMembers.size === 0
             ? collection.items
             : collection.items.filter(item => selectedMembers.has(item.member)),
-      }));
+      }))
+      .filter(collection => collection.items.length > 0);
   }, [working, selectedMembers, searchQuery]);
 }
 
