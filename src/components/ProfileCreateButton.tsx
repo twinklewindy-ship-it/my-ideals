@@ -1,6 +1,12 @@
 import { useState, useCallback, useEffect, useRef, type ReactNode } from 'react';
 import { z, ZodError } from 'zod';
-import { XMarkIcon, ArrowPathIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import {
+  XMarkIcon,
+  ArrowPathIcon,
+  CheckCircleIcon,
+  UsersIcon,
+  LinkIcon,
+} from '@heroicons/react/24/outline';
 import { TemplateSchema, type Template } from '@/domain/template';
 import { type ProfileTemplateInfo } from '@/domain/profile';
 import { useProfileListStore } from '@/stores/profileListStore';
@@ -200,8 +206,22 @@ export function ProfileCreateButton({ children, className }: ProfileCreateButton
                           </div>
                         )}
                         {fetchState.template.author && (
-                          <div className="mt-1 text-xs text-gray-400">
-                            by {fetchState.template.author}
+                          <div className="mt-1 flex items-center gap-1 text-xs text-gray-400">
+                            <UsersIcon className="h-4 w-4" />
+                            {fetchState.template.author}
+                          </div>
+                        )}
+                        {fetchState.template.link && (
+                          <div className="mt-1 flex items-center gap-1 text-xs text-gray-400">
+                            <LinkIcon className="h-4 w-4" />
+                            <a
+                              href={fetchState.template.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="truncate underline hover:text-gray-600"
+                            >
+                              {fetchState.template.link}
+                            </a>
                           </div>
                         )}
                       </div>

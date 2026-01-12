@@ -6,6 +6,7 @@
   "name": "=ME (イコールミー) 生写真",
   "description": "(開発用)\n=ME (イコールミー)は、日本の10人組女性アイドルグループ",
   "author": "Tomita Mokeo",
+  "link": "https://github.com/monaka-ikonoi/my-ideals",
   "imageResourceType": "inline",
   "members": [
     { "id": "noguchi-nanaka", "name": "野口 菜々風" },

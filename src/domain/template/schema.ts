@@ -27,6 +27,7 @@ export const TemplateSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
   author: z.string().optional(),
+  link: z.url().optional(),
   imageResourceType: z.enum(['inline', 'baseUrl']),
   imageBaseUrl: TemplateResourceBaseUrlSchema.optional(),
   members: z.array(TemplateMember),

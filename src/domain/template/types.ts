@@ -26,6 +26,7 @@ export type Template = {
   name: string;
   description?: string;
   author?: string;
+  link?: string;
   imageResourceType: 'inline' | 'baseUrl';
   imageBaseUrl?: TemplateResourceBaseUrl;
   members: TemplateMember[];
