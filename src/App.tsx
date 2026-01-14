@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { CollectionPage } from '@/components/CollectionPage';
 import { useProfileListStore } from './stores/profileListStore';
-import { useWorkingProfileStore } from './stores/workingProfileStore';
+import { useActiveProfileStore } from './stores/activeProfileStore';
 import { LoadingPage } from './components/ui/LoadingPage';
 import { EmptyPage } from './components/EmptyPage';
 import { DisclaimerDialog } from './components/DisclaimerDialog';
@@ -17,7 +17,7 @@ export default function App() {
 
   useEffect(() => {
     const handleBeforeUnload = () => {
-      useWorkingProfileStore.getState().flush();
+      useActiveProfileStore.getState().flush();
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);

@@ -1,29 +1,27 @@
 import { useState, useMemo } from 'react';
-import { createPortal } from 'react-dom';
-import type { WorkingProfile } from '@/domain/working';
-import { useWorkingProfileStore } from '@/stores/workingProfileStore';
+import { useActiveProfileStore } from '@/stores/activeProfileStore';
+import type { Template } from '@/domain/template';
 import { CollectionPanel } from './CollectionPanel';
 import { LoadingPage } from './ui/LoadingPage';
 import { ErrorPage } from './ui/ErrorPage';
-import { ConfirmDialog } from './ui/ConfirmDialog';
-import { ProfileTemplateDiffContent } from './ProfileTemplateDiffContent';
 import { CollectionFilter } from './CollectionFilter';
 import { ProfileInfo } from './ProfileInfo';
-import { useProfileListStore } from '@/stores/profileListStore';
 
 function useFilteredCollections(
-  working: WorkingProfile | null,
+  template: Template | null,
   selectedMembers: Set<string>,
   searchQuery: string
 ) {
   return useMemo(() => {
-    if (!working) return [];
+    if (!template) return [];
+
+    console.log('Apply filter');
 
     const query = searchQuery.trim().toLowerCase();
 
-    if (selectedMembers.size === 0 && !searchQuery) return working.collections;
+    if (selectedMembers.size === 0 && !searchQuery) return template.collections;
 
-    return working.collections
+    return template.collections
       .filter(collection => {
         if (!query) return true;
         return collection.name.toLowerCase().includes(query);
@@ -36,20 +34,21 @@ function useFilteredCollections(
             : collection.items.filter(item => selectedMembers.has(item.member)),
       }))
       .filter(collection => collection.items.length > 0);
-  }, [working, selectedMembers, searchQuery]);
+  }, [template, selectedMembers, searchQuery]);
 }
 
 export function CollectionPage() {
-  const working = useWorkingProfileStore(state => state.working);
-  const isLoading = useWorkingProfileStore(state => state.isLoading);
-  const error = useWorkingProfileStore(state => state.error);
+  const profile = useActiveProfileStore(state => state.profile);
+  const template = useActiveProfileStore(state => state.template);
+  const isLoading = useActiveProfileStore(state => state.isLoading);
+  const error = useActiveProfileStore(state => state.error);
 
-  const changes = useWorkingProfileStore(state => state.changes);
-  const hasChanges = changes && (changes.added.length > 0 || changes.removed.length > 0);
+  // const changes = useWorkingProfileStore(state => state.changes);
+  // const hasChanges = changes && (changes.added.length > 0 || changes.removed.length > 0);
 
   const [selectedMembers, setSelectedMembers] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState('');
-  const filteredCollections = useFilteredCollections(working, selectedMembers, searchQuery);
+  const filteredCollections = useFilteredCollections(template, selectedMembers, searchQuery);
 
   if (isLoading) {
     return <LoadingPage />;
@@ -59,23 +58,17 @@ export function CollectionPage() {
     return <ErrorPage error={error} />;
   }
 
-  if (!working) {
+  if (!template || !profile) {
     return; // This should never reached
   }
 
   return (
     <main className="mx-auto max-w-7xl space-y-6 px-4 py-6">
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-        <ProfileInfo
-          working={working}
-          renameFn={name => {
-            useWorkingProfileStore.getState().updateName(name);
-            useProfileListStore.getState().renameProfile(working.profile.id, name);
-          }}
-        />
+        <ProfileInfo />
         <div className="my-4 border-t border-gray-200" />
         <CollectionFilter
-          members={working.template.members}
+          members={template.members}
           selectedMembers={selectedMembers}
           onMemberChange={setSelectedMembers}
           searchQuery={searchQuery}
@@ -85,16 +78,11 @@ export function CollectionPage() {
 
       {/* Collections */}
       {filteredCollections.map(collection => (
-        <CollectionPanel
-          key={collection.id}
-          id={collection.id}
-          name={collection.name}
-          items={collection.items}
-        />
+        <CollectionPanel key={collection.id} collection={collection} />
       ))}
 
       {/* Diff Dialog */}
-      {createPortal(
+      {/* {createPortal(
         <ConfirmDialog
           isOpen={!!hasChanges}
           title="Template Updated"
@@ -105,7 +93,7 @@ export function CollectionPage() {
           onCancel={() => useWorkingProfileStore.setState({ changes: null })}
         />,
         document.body
-      )}
+      )} */}
     </main>
   );
 }

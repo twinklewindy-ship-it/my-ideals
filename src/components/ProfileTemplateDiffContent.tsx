@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import type { WorkingProfile } from '@/domain/working';
 import type { ProfileTemplateDiff, CollectionChange } from '@/utils/diffProfileTemplate';
+import type { Template } from '@/domain/template';
 
 function CollectionTree({
   collection,
@@ -61,10 +61,10 @@ function CollectionTree({
 }
 
 export function ProfileTemplateDiffContent({
-  working,
+  template,
   changes,
 }: {
-  working: WorkingProfile;
+  template: Template;
   changes: ProfileTemplateDiff | null;
 }) {
   if (!changes) return null;
@@ -75,8 +75,8 @@ export function ProfileTemplateDiffContent({
   return (
     <div className="space-y-4">
       <p className="text-gray-600">
-        Template <strong>{working.template.name}</strong> has been updated to revision{' '}
-        {working.template.revision} with following changes
+        Template <strong>{template.name}</strong> has been updated to revision {template.revision}{' '}
+        with following changes
       </p>
 
       {/* Added */}
