@@ -22,8 +22,6 @@ function syncProfileWithTemplate(profile: Profile, template: Template): Profile 
     }
   }
 
-  console.log(`Profile updated to template rev ${template.revision}`);
-
   return {
     ...profile,
     collections,
@@ -77,7 +75,7 @@ export const useActiveProfileStore = create<activeProfileStore>()(
         });
 
         try {
-          const profile = ProfileStorage.getProfile(profileId);
+          let profile = ProfileStorage.getProfile(profileId);
           if (!profile) throw new Error('Profile not found');
 
           const res = await fetch(profile.template.link);
@@ -91,8 +89,9 @@ export const useActiveProfileStore = create<activeProfileStore>()(
           }
 
           if (profile.template.revision !== template.revision) {
-            syncProfileWithTemplate(profile, template);
+            profile = syncProfileWithTemplate(profile, template);
             ProfileStorage.setProfile(profile);
+            console.log(`Profile updated to template rev ${template.revision}`);
           }
 
           set(state => {
