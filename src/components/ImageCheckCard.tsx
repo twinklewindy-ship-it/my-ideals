@@ -30,6 +30,7 @@ export const ImageCheckCard = memo(function ImageCheckCard({
     <label className="relative block w-full cursor-pointer select-none">
       {/* Hidden controlling checkbox */}
       <input
+        id={`${collectionId}-${item.id}`}
         type="checkbox"
         className="peer sr-only"
         checked={isChecked}
@@ -66,7 +67,13 @@ export const ImageCheckCard = memo(function ImageCheckCard({
       >
         <span className="truncate">{item.name}</span>
         {/* Visual checkbox (mirrors state) */}
-        <input type="checkbox" checked={isChecked} readOnly className="pointer-events-none" />
+        <input
+          id={`dummy-${collectionId}-${item.id}`}
+          readOnly
+          type="checkbox"
+          checked={isChecked}
+          className="pointer-events-none"
+        />
       </div>
     </label>
   );

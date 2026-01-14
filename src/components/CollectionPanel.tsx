@@ -39,7 +39,11 @@ export const CollectionPanel = memo(function CollectionPanel({ collection }: Col
             lg:gap-4"
         >
           {collection.items.map(item => (
-            <ImageCheckCard key={item.id} collectionId={collection.id} item={item} />
+            <ImageCheckCard
+              key={`${collection.id}-${item.id}`}
+              collectionId={collection.id}
+              item={item}
+            />
           ))}
         </div>
       </div>
