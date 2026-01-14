@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Virtuoso } from 'react-virtuoso';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { CollectionPanel } from './CollectionPanel';
 import { LoadingPage } from './ui/LoadingPage';
@@ -39,10 +40,24 @@ export function CollectionPage() {
         <CollectionFilter searchQuery={searchQuery} onSearchChange={setSearchQuery} />
       </div>
 
-      {/* Collections */}
-      {filteredCollections.map(collection => (
-        <CollectionPanel key={collection.id} collection={collection} />
-      ))}
+      {/* Collections - Virtualized*/}
+      <Virtuoso
+        data={filteredCollections}
+        useWindowScroll
+        overscan={3}
+        itemContent={(_, collection) => (
+          <div className="pb-6">
+            <CollectionPanel collection={collection} />
+          </div>
+        )}
+        components={{
+          EmptyPlaceholder: () => (
+            <div className="flex h-40 items-center justify-center text-gray-500">
+              No collections found
+            </div>
+          ),
+        }}
+      />
 
       {/* Diff Dialog */}
       {/* {createPortal(
