@@ -23,7 +23,7 @@ export const CollectionPanel = memo(function CollectionPanel({ collection }: Col
   }, [collection.items, statusMap]);
 
   return (
-    <section className="rounded-lg border border-gray-200 bg-white shadow-sm">
+    <div className="rounded-lg border border-gray-200 bg-white shadow-sm">
       {/* Header */}
       <div className="border-b border-gray-200 px-4 py-3">
         <h2 className="text-lg font-semibold text-gray-800">{collection.name}</h2>
@@ -43,6 +43,6 @@ export const CollectionPanel = memo(function CollectionPanel({ collection }: Col
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 });
