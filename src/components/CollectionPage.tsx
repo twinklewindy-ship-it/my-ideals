@@ -16,9 +16,8 @@ export function CollectionPage() {
   // const changes = useWorkingProfileStore(state => state.changes);
   // const hasChanges = changes && (changes.added.length > 0 || changes.removed.length > 0);
 
-  const [selectedMembers, setSelectedMembers] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState('');
-  const filteredCollections = useFilteredCollections(selectedMembers, searchQuery);
+  const filteredCollections = useFilteredCollections(searchQuery);
 
   if (isLoading) {
     return <LoadingPage />;
@@ -37,13 +36,7 @@ export function CollectionPage() {
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
         <ProfileInfo />
         <div className="my-4 border-t border-gray-200" />
-        <CollectionFilter
-          members={template.members}
-          selectedMembers={selectedMembers}
-          onMemberChange={setSelectedMembers}
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-        />
+        <CollectionFilter searchQuery={searchQuery} onSearchChange={setSearchQuery} />
       </div>
 
       {/* Collections */}

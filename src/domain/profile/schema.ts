@@ -12,5 +12,6 @@ export const ProfileSchema = z.object({
   id: z.nanoid(),
   name: z.string(),
   template: ProfileTemplateInfoSchema,
+  selectedMembers: z.array(z.string()).default([]),
   collections: z.record(z.string(), z.record(z.string(), z.boolean())),
 });

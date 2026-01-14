@@ -45,6 +45,7 @@ type activeProfileStore = {
   clear: () => void;
   flush: () => void;
   toggleStatus: (collectionId: string, itemId: string) => void;
+  toggleMember: (member: string) => void;
   updateName: (name: string) => void;
 };
 
@@ -131,6 +132,20 @@ export const useActiveProfileStore = create<activeProfileStore>()(
           state.profile.collections[collectionId][itemId] = !current;
         });
 
+        debouncedSave();
+      },
+
+      toggleMember: (member: string) => {
+        set(state => {
+          if (!state.profile) return;
+
+          const selectedMembers = state.profile.selectedMembers;
+          if (selectedMembers.includes(member)) {
+            state.profile.selectedMembers = selectedMembers.filter(m => m !== member);
+          } else {
+            state.profile.selectedMembers = [...selectedMembers, member];
+          }
+        });
         debouncedSave();
       },
 

@@ -80,6 +80,7 @@ export const useProfileListStore = create<ProfileListStore>()(
             id,
             name,
             template: templateInfo,
+            selectedMembers: [],
             collections: {},
           };
 

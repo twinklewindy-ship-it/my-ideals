@@ -10,5 +10,6 @@ export type Profile = {
   id: string;
   name: string;
   template: ProfileTemplateInfo;
+  selectedMembers: string[];
   collections: Record<string, Record<string, boolean>>;
 };

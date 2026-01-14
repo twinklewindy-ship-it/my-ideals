@@ -2,26 +2,30 @@ import { useMemo } from 'react';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { debugLog } from '@/utils/debug';
 
-export function useFilteredCollections(selectedMembers: Set<string>, searchQuery: string) {
+export function useFilteredCollections(searchQuery: string) {
   const collections = useActiveProfileStore(state => state.template?.collections);
+  const selectedMembers = useActiveProfileStore(state => state.profile?.selectedMembers);
+
   return useMemo(() => {
     if (!collections) return [];
 
-    debugLog.store.log('Apply filter');
-
+    const selected = new Set(selectedMembers);
     const query = searchQuery.trim().toLowerCase();
 
-    if (selectedMembers.size === 0 && !searchQuery) return collections;
+    if (selected.size === 0 && !searchQuery) return collections;
 
-    return collections.reduce<typeof collections>((acc, collection) => {
+    debugLog.store.log('Apply filter');
+    debugLog.store.time('filter');
+
+    const result = collections.reduce<typeof collections>((acc, collection) => {
       if (query && !collection.name.toLowerCase().includes(query)) {
         return acc;
       }
 
       const items =
-        selectedMembers.size === 0
+        selected.size === 0
           ? collection.items
-          : collection.items.filter(item => selectedMembers.has(item.member));
+          : collection.items.filter(item => selected.has(item.member));
 
       if (items.length > 0) {
         acc.push({ ...collection, items });
@@ -29,5 +33,8 @@ export function useFilteredCollections(selectedMembers: Set<string>, searchQuery
 
       return acc;
     }, []);
+
+    debugLog.store.timeEnd('filter');
+    return result;
   }, [collections, selectedMembers, searchQuery]);
 }

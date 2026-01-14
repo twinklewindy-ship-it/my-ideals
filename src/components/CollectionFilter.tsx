@@ -1,32 +1,15 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { type TemplateMember } from '@/domain/template';
+import { useActiveProfileStore } from '@/stores/activeProfileStore';
 
 type CollectionFilterProps = {
-  members: TemplateMember[];
-  selectedMembers: Set<string>;
-  onMemberChange: (members: Set<string>) => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
 };
 
-export function CollectionFilter({
-  members,
-  selectedMembers,
-  onMemberChange,
-  searchQuery,
-  onSearchChange,
-}: CollectionFilterProps) {
-  const handleMemberToggle = (memberId: string) => {
-    const next = new Set(selectedMembers);
-
-    if (next.has(memberId)) {
-      next.delete(memberId);
-    } else {
-      next.add(memberId);
-    }
-
-    onMemberChange(next);
-  };
+export function CollectionFilter({ searchQuery, onSearchChange }: CollectionFilterProps) {
+  const members = useActiveProfileStore(state => state.template!.members);
+  const selectedMembers = useActiveProfileStore(state => state.profile!.selectedMembers);
+  const toggleMember = useActiveProfileStore(state => state.toggleMember);
 
   return (
     <div className="space-y-3">
@@ -34,9 +17,9 @@ export function CollectionFilter({
         {members.map(member => (
           <button
             key={member.id}
-            onClick={() => handleMemberToggle(member.id)}
+            onClick={() => toggleMember(member.id)}
             className={`rounded-full px-4 py-1.5 text-base font-medium transition-colors ${
-              selectedMembers.has(member.id)
+              selectedMembers.includes(member.id)
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
