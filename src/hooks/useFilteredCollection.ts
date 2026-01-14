@@ -13,18 +13,21 @@ export function useFilteredCollections(selectedMembers: Set<string>, searchQuery
 
     if (selectedMembers.size === 0 && !searchQuery) return collections;
 
-    return collections
-      .filter(collection => {
-        if (!query) return true;
-        return collection.name.toLowerCase().includes(query);
-      })
-      .map(collection => ({
-        ...collection,
-        items:
-          selectedMembers.size === 0
-            ? collection.items
-            : collection.items.filter(item => selectedMembers.has(item.member)),
-      }))
-      .filter(collection => collection.items.length > 0);
+    return collections.reduce<typeof collections>((acc, collection) => {
+      if (query && !collection.name.toLowerCase().includes(query)) {
+        return acc;
+      }
+
+      const items =
+        selectedMembers.size === 0
+          ? collection.items
+          : collection.items.filter(item => selectedMembers.has(item.member));
+
+      if (items.length > 0) {
+        acc.push({ ...collection, items });
+      }
+
+      return acc;
+    }, []);
   }, [collections, selectedMembers, searchQuery]);
 }
