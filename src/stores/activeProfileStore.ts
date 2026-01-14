@@ -5,6 +5,7 @@ import { type Profile } from '@/domain/profile';
 import { TemplateSchema, type Template } from '@/domain/template';
 import { ProfileStorage } from '@/storage/profileStorage';
 import { useProfileListStore } from './profileListStore';
+import { debugLog } from '@/utils/debug';
 
 function syncProfileWithTemplate(profile: Profile, template: Template): Profile {
   const collections = { ...profile.collections };
@@ -56,7 +57,7 @@ export const useActiveProfileStore = create<activeProfileStore>()(
       if (!profile) return;
 
       ProfileStorage.setProfile(profile);
-      console.log(`Profile ${profile.id} saved`);
+      debugLog.store.log(`Profile ${profile.id} saved`);
     }, 500);
 
     return {
