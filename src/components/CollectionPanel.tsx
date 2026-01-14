@@ -1,7 +1,8 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { type TemplateCollection } from '@/domain/template';
 import { ImageCheckCard } from './ImageCheckCard';
 import { debugLog } from '@/utils/debug';
+import { useActiveProfileStore } from '@/stores/activeProfileStore';
 
 type CollectionPanelProps = {
   collection: TemplateCollection;
@@ -10,14 +11,25 @@ type CollectionPanelProps = {
 export const CollectionPanel = memo(function CollectionPanel({ collection }: CollectionPanelProps) {
   debugLog.render.log(`CollectionPanel render: ${collection.id}`);
 
+  const statusMap = useActiveProfileStore(state => state.profile?.collections[collection.id]);
+  const stats = useMemo(() => {
+    let checked = 0;
+    for (const item of collection.items) {
+      if (statusMap?.[item.id]) {
+        checked++;
+      }
+    }
+    return { total: collection.items.length, checked };
+  }, [collection.items, statusMap]);
+
   return (
     <section className="rounded-lg border border-gray-200 bg-white shadow-sm">
       {/* Header */}
       <div className="border-b border-gray-200 px-4 py-3">
         <h2 className="text-lg font-semibold text-gray-800">{collection.name}</h2>
-        {/* <p className="text-sm text-gray-500">
-          {collection.items.filter(i => i.status).length} / {items.length} 収集済み
-        </p> */}
+        <p className="text-sm text-gray-500">
+          {stats.checked} / {stats.total} 収集済み
+        </p>
       </div>
 
       {/* Grid of cards */}
