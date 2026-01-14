@@ -1,13 +1,15 @@
 import { memo } from 'react';
 import { type TemplateCollection } from '@/domain/template';
 import { ImageCheckCard } from './ImageCheckCard';
+import { debugLog } from '@/utils/debug';
 
 type CollectionPanelProps = {
   collection: TemplateCollection;
 };
 
 export const CollectionPanel = memo(function CollectionPanel({ collection }: CollectionPanelProps) {
-  console.log(`CollectionPanel render: ${collection.id}`);
+  debugLog.render.log(`CollectionPanel render: ${collection.id}`);
+
   return (
     <section className="rounded-lg border border-gray-200 bg-white shadow-sm">
       {/* Header */}

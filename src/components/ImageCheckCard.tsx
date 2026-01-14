@@ -1,6 +1,7 @@
 import { useState, memo } from 'react';
 import { urlFromBaseUrl, type TemplateCollectionItem } from '@/domain/template';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
+import { debugLog } from '@/utils/debug';
 
 type ImageCheckCardProps = {
   collectionId: string;
@@ -11,7 +12,8 @@ export const ImageCheckCard = memo(function ImageCheckCard({
   collectionId,
   item,
 }: ImageCheckCardProps) {
-  console.log(`ImageCheckCard render: ${collectionId} ${item.id}`);
+  debugLog.render.log(`ImageCheckCard render: ${collectionId} ${item.id}`);
+
   const baseUrlConfig = useActiveProfileStore(state => state.template!.imageBaseUrl);
   const fallbackSrc = baseUrlConfig?.fallback;
   const isChecked = useActiveProfileStore(

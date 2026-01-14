@@ -6,6 +6,7 @@ import { LoadingPage } from './ui/LoadingPage';
 import { ErrorPage } from './ui/ErrorPage';
 import { CollectionFilter } from './CollectionFilter';
 import { ProfileInfo } from './ProfileInfo';
+import { debugLog } from '@/utils/debug';
 
 function useFilteredCollections(
   template: Template | null,
@@ -15,7 +16,7 @@ function useFilteredCollections(
   return useMemo(() => {
     if (!template) return [];
 
-    console.log('Apply filter');
+    debugLog.store.log('Apply filter');
 
     const query = searchQuery.trim().toLowerCase();
 
