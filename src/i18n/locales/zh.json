@@ -15,5 +15,8 @@
       "content-confim": "确定要删除 <strong>{{name}}</strong> 吗？",
       "content-warn": "此操作无法撤销。"
     }
+  },
+  "settings": {
+    "language": "语言"
   }
 }

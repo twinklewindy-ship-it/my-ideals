@@ -1,6 +1,7 @@
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ProfileList } from './ProfileList';
 import { useProfileListStore } from '@/stores/profileListStore';
+import { SettingsPanel } from './SettingsPanel';
 
 type ProfileDrawerProps = {
   isOpen: boolean;
@@ -48,9 +49,15 @@ export function ProfileDrawer({ isOpen, onOpen, onClose }: ProfileDrawerProps) {
               </div>
             )}
 
-            {/* List */}
-            <div className="overflow-y-auto">
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto">
+              {/* Profile List */}
               <ProfileList />
+
+              {/* Settings */}
+              <div className="border-t border-gray-200">
+                <SettingsPanel />
+              </div>
             </div>
           </div>
         </>

@@ -15,5 +15,8 @@
       "content-confim": "Are you sure you want to delete <strong>{{name}}</strong> ?",
       "content-warn": "This action cannot be undone."
     }
+  },
+  "settings": {
+    "language": "Language"
   }
 }

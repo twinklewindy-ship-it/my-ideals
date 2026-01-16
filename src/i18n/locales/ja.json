@@ -15,5 +15,8 @@
       "content-confim": "<strong>{{name}}</strong> を削除しますか？",
       "content-warn": "この操作は取り消せません。"
     }
+  },
+  "settings": {
+    "language": "言語"
   }
 }
