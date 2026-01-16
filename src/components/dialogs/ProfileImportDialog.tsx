@@ -105,9 +105,11 @@ export function ProfileImportDialog({ isOpen, onClose }: ProfileImportDialogProp
 
   return createPortal(
     <>
-      <div className="fixed inset-0 z-50 bg-black/50" onClick={handleClose} />
-
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-50 bg-black/50" />
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4"
+        onClick={handleClose}
+      >
         <div
           className="w-full max-w-lg rounded-lg bg-white text-left shadow-xl"
           onClick={e => e.stopPropagation()}

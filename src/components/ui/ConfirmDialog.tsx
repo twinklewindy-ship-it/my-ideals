@@ -39,13 +39,16 @@ export function ConfirmDialog({
   return createPortal(
     <>
       {/* Backdrop */}
-      <div className="fixed inset-0 z-50 bg-black/50" onClick={onCancel} />
-
+      <div className="fixed inset-0 z-50 bg-black/50" />
       {/* Dialog */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 text-left">
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 text-left"
+        onClick={onCancel}
+      >
         <div
           className="w-auto max-w-[90vw] min-w-[20rem] rounded-lg bg-white shadow-xl sm:max-w-3xl
             sm:min-w-[28rem]"
+          onClick={e => e.stopPropagation()}
         >
           {/* Header */}
           <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
