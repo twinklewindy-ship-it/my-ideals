@@ -6,6 +6,7 @@ import {
   XMarkIcon,
   ArrowPathIcon,
   CheckCircleIcon,
+  XCircleIcon,
   UsersIcon,
   LinkIcon,
 } from '@heroicons/react/24/outline';
@@ -168,6 +169,9 @@ export function ProfileCreateDialog({ isOpen, onClose }: ProfileCreateDialogProp
                   )}
                   {fetchState.status === 'success' && (
                     <CheckCircleIcon className="h-4 w-4 text-green-500" />
+                  )}
+                  {fetchState.status === 'error' && (
+                    <XCircleIcon className="h-4 w-4 text-red-500" />
                   )}
                 </div>
               </div>
