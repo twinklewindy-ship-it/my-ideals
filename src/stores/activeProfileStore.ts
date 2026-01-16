@@ -118,7 +118,7 @@ export const useActiveProfileStore = create<activeProfileStore>()(
 
       flush: () => debouncedSave.flush(),
 
-      confirmSyncChanges(cleanup: boolean) {
+      confirmSyncChanges: (cleanup: boolean) => {
         const { profile, template, pendingSync } = get();
 
         if (!profile || !template) return;
