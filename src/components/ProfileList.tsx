@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { useProfileListStore, type ProfileListEntry } from '@/stores/profileListStore';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
@@ -100,27 +99,24 @@ export function ProfileList({ onSelect }: ProfileListProps) {
         </button>
 
         {/* Delete Confirm Dialog */}
-        {createPortal(
-          <ConfirmDialog
-            isOpen={deleteTarget !== null}
-            title={t('profile.delete-dialog.title')}
-            message={
-              <p>
-                <Trans
-                  i18nKey="profile.delete-dialog.content-confim"
-                  values={{ name: deleteTarget?.name }}
-                  components={{ strong: <strong /> }}
-                />
-                <br />
-                {t('profile.delete-dialog.content-warn')}
-              </p>
-            }
-            options={[{ label: t('common.delete'), value: 'delete', variant: 'danger' }]}
-            onSelect={handleConfirmDelete}
-            onCancel={() => setDeleteTarget(null)}
-          />,
-          document.body
-        )}
+        <ConfirmDialog
+          isOpen={deleteTarget !== null}
+          title={t('profile.delete-dialog.title')}
+          message={
+            <p>
+              <Trans
+                i18nKey="profile.delete-dialog.content-confim"
+                values={{ name: deleteTarget?.name }}
+                components={{ strong: <strong /> }}
+              />
+              <br />
+              {t('profile.delete-dialog.content-warn')}
+            </p>
+          }
+          options={[{ label: t('common.delete'), value: 'delete', variant: 'danger' }]}
+          onSelect={handleConfirmDelete}
+          onCancel={() => setDeleteTarget(null)}
+        />
       </div>
     </>
   );

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { createPortal } from 'react-dom';
 import type { Template } from '@/domain/template';
 import type { ProfileTemplateDiff, CollectionChange } from '@/utils/syncProfile';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
@@ -141,7 +140,7 @@ export function ProfileTemplateDiffDialog() {
       ]
     : [{ label: 'Got it', value: 'ok', variant: 'primary' as const }];
 
-  return createPortal(
+  return (
     <ConfirmDialog
       isOpen={!!hasChanges}
       title="Template Updated"
@@ -150,7 +149,6 @@ export function ProfileTemplateDiffDialog() {
       showCancel={false}
       onSelect={handleSelect}
       onCancel={() => confirmSyncChanges(false)}
-    />,
-    document.body
+    />
   );
 }

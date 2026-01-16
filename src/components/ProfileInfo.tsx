@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { PencilIcon, LinkIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline';
 import { InlineCode } from './ui/InlineCode';
 import { ConfirmDialog } from './ui/ConfirmDialog';
@@ -74,32 +73,29 @@ export function ProfileInfo() {
       </div>
 
       {/* Rename Dialog */}
-      {createPortal(
-        <ConfirmDialog
-          isOpen={isEditingName}
-          title="Edit Profile Name"
-          message={
-            <input
-              type="text"
-              value={newName}
-              onChange={e => setNewName(e.target.value)}
-              onKeyDown={e => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  handleSaveName();
-                }
-              }}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-base
-                focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-              autoFocus
-            />
-          }
-          options={[{ label: 'Save', value: 'save', variant: 'primary' }]}
-          onSelect={handleSaveName}
-          onCancel={() => setIsEditingName(false)}
-        />,
-        document.body
-      )}
+      <ConfirmDialog
+        isOpen={isEditingName}
+        title="Edit Profile Name"
+        message={
+          <input
+            type="text"
+            value={newName}
+            onChange={e => setNewName(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSaveName();
+              }
+            }}
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-base
+              focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+            autoFocus
+          />
+        }
+        options={[{ label: 'Save', value: 'save', variant: 'primary' }]}
+        onSelect={handleSaveName}
+        onCancel={() => setIsEditingName(false)}
+      />
     </div>
   );
 }
