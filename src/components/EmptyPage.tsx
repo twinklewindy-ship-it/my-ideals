@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { PlusIcon, ArrowUpTrayIcon } from '@heroicons/react/24/outline';
 import { useDialogStore } from '@/stores/dialogStore';
-import { ProfileImportButton } from './ProfileImportButton';
 
 export function EmptyPage() {
   const { t } = useTranslation();
@@ -20,13 +19,14 @@ export function EmptyPage() {
             <PlusIcon className="h-4 w-4" />
             {t('profile.create')}
           </button>
-          <ProfileImportButton
+          <button
+            onClick={() => useDialogStore.getState().openImportProfile()}
             className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium
               text-white hover:bg-blue-700"
           >
             <ArrowUpTrayIcon className="h-4 w-4" />
             {t('profile.import')}
-          </ProfileImportButton>
+          </button>
         </div>
       </div>
     </div>

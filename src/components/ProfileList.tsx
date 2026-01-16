@@ -4,7 +4,6 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useProfileListStore, type ProfileListEntry } from '@/stores/profileListStore';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { ArrowUpTrayIcon, CheckIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
-import { ProfileImportButton } from './ProfileImportButton';
 import { useDialogStore } from '@/stores/dialogStore';
 
 type ProfileListProps = {
@@ -88,13 +87,17 @@ export function ProfileList({ onSelect }: ProfileListProps) {
           <PlusIcon className="h-4 w-4" />
           {t('profile.create')}
         </button>
-        <ProfileImportButton
+        <button
+          onClick={() => {
+            useDialogStore.getState().openImportProfile();
+            onSelect?.();
+          }}
           className="flex w-full items-center gap-2 px-3 py-2 text-sm text-gray-700
             hover:bg-gray-100"
         >
           <ArrowUpTrayIcon className="h-4 w-4" />
           {t('profile.import')}
-        </ProfileImportButton>
+        </button>
 
         {/* Delete Confirm Dialog */}
         {createPortal(

@@ -1,6 +1,6 @@
 import { useDialogStore } from '@/stores/dialogStore';
 import { ProfileCreateDialog } from './dialogs/ProfileCreateDialog';
-// import { ProfileImportDialog } from './ProfileImportDialog';
+import { ProfileImportDialog } from './dialogs/ProfileImportDialog';
 
 export function GlobalDialogs() {
   const activeDialog = useDialogStore(state => state.activeDialog);
@@ -9,10 +9,7 @@ export function GlobalDialogs() {
   return (
     <>
       <ProfileCreateDialog isOpen={activeDialog === 'create-profile'} onClose={closeDialog} />
-      {/* <ProfileImportDialog 
-        isOpen={activeDialog === 'import-profile'} 
-        onClose={closeDialog} 
-      /> */}
+      <ProfileImportDialog isOpen={activeDialog === 'import-profile'} onClose={closeDialog} />
     </>
   );
 }
