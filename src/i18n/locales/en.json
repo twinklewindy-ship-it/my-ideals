@@ -61,8 +61,7 @@
       "select-file-hint": "JSON file exported from this app",
       "conflict-message": "A profile with this ID already exists. You can overwrite it or create a copy.",
       "collections-count": "{{count}} collection(s)",
-      "stats": "{{count}} / {{total}} collected",
-      "template-info": "Template: {{id}} (rev. {{revision}})"
+      "stats": "{{count}} / {{total}} collected"
     },
     "profile-delete": {
       "title": "Delete Profile",
