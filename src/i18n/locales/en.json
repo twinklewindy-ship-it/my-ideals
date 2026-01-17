@@ -25,7 +25,8 @@
     "list": "Profiles",
     "copy-template-link": "Copy template link",
     "not-selected": "No Profile Selected",
-    "not-selected-hint": "Create or import a profile to get started"
+    "not-selected-hint": "Create or import a profile to get started",
+    "rename": "Rename Profile"
   },
   "settings": {
     "language": "Language"
@@ -67,6 +68,9 @@
       "title": "Delete Profile",
       "content-confim": "Are you sure you want to delete <strong>{{name}}</strong> ?",
       "content-warn": "This action cannot be undone."
+    },
+    "profile-rename": {
+      "title": "Edit Profile Name"
     }
   }
 }

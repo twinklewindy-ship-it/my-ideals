@@ -25,7 +25,8 @@
     "list": "プロファイル",
     "copy-template-link": "テンプレートリンクをコピー",
     "not-selected": "プロファイル未選択",
-    "not-selected-hint": "プロファイルを作成またはインポートしはじめる"
+    "not-selected-hint": "プロファイルを作成またはインポートしはじめる",
+    "rename": "プロファイル名を変更"
   },
   "settings": {
     "language": "言語"
@@ -66,6 +67,9 @@
       "title": "プロファイルを削除",
       "content-confim": "<strong>{{name}}</strong> を削除しますか？",
       "content-warn": "この操作は取り消せません。"
+    },
+    "profile-rename": {
+      "title": "プロファイル名編集"
     }
   }
 }

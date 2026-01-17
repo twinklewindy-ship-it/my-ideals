@@ -4,22 +4,27 @@ type DialogState =
   | { type: null }
   | { type: 'create-profile' }
   | { type: 'import-profile' }
-  | { type: 'delete-profile'; profileId: string; profileName: string };
+  | { type: 'delete-profile'; profileId: string; profileName: string }
+  | { type: 'rename-profile'; profileId: string; profileName: string };
 
 type DialogStore = {
   activeDialog: DialogState;
+  closeDialog: () => void;
+
   openCreateProfile: () => void;
   openImportProfile: () => void;
   openDeleteProfile: (profileId: string, profileName: string) => void;
-  closeDialog: () => void;
+  openRenameProfile: (profileId: string, profileName: string) => void;
 };
 
 export const useDialogStore = create<DialogStore>(set => ({
   activeDialog: { type: null },
+  closeDialog: () => set({ activeDialog: { type: null } }),
 
   openCreateProfile: () => set({ activeDialog: { type: 'create-profile' } }),
   openImportProfile: () => set({ activeDialog: { type: 'import-profile' } }),
   openDeleteProfile: (profileId, profileName) =>
     set({ activeDialog: { type: 'delete-profile', profileId, profileName } }),
-  closeDialog: () => set({ activeDialog: { type: null } }),
+  openRenameProfile: (profileId, profileName) =>
+    set({ activeDialog: { type: 'rename-profile', profileId, profileName } }),
 }));

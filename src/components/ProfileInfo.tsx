@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PencilIcon, LinkIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline';
 import { InlineCode } from './ui/InlineCode';
-import { ConfirmDialog } from './ui/ConfirmDialog';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
-import { useProfileListStore } from '@/stores/profileListStore';
+import { useDialogStore } from '@/stores/dialogStore';
 
 export function ProfileInfo() {
   const { t } = useTranslation();
@@ -13,27 +12,11 @@ export function ProfileInfo() {
   const template = useActiveProfileStore(state => state.template!);
 
   const [copied, setCopied] = useState(false);
-  const [isEditingName, setIsEditingName] = useState(false);
-  const [newName, setNewName] = useState('');
 
   const handleCopyLink = async () => {
     await navigator.clipboard.writeText(profile.template.link);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleEditName = () => {
-    setNewName(profile.name);
-    setIsEditingName(true);
-  };
-
-  const handleSaveName = () => {
-    const name = newName.trim();
-    if (name) {
-      useActiveProfileStore.getState().updateName(name);
-      useProfileListStore.getState().renameProfile(profile.id, name);
-      setIsEditingName(false);
-    }
   };
 
   return (
@@ -43,9 +26,9 @@ export function ProfileInfo() {
         <div className="flex items-center gap-2">
           <h1 className="text-xl font-semibold text-gray-900">{profile.name}</h1>
           <button
-            onClick={handleEditName}
+            onClick={() => useDialogStore.getState().openRenameProfile(profile.id, profile.name)}
             className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
-            title="Edit name"
+            title={t('profile.rename')}
           >
             <PencilIcon className="h-4 w-4" />
           </button>
@@ -74,31 +57,6 @@ export function ProfileInfo() {
           )}
         </button>
       </div>
-
-      {/* Rename Dialog */}
-      <ConfirmDialog
-        isOpen={isEditingName}
-        title="Edit Profile Name"
-        message={
-          <input
-            type="text"
-            value={newName}
-            onChange={e => setNewName(e.target.value)}
-            onKeyDown={e => {
-              if (e.key === 'Enter') {
-                e.preventDefault();
-                handleSaveName();
-              }
-            }}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2 text-base
-              focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-            autoFocus
-          />
-        }
-        options={[{ label: t('common.save'), value: 'save', variant: 'primary' }]}
-        onSelect={handleSaveName}
-        onCancel={() => setIsEditingName(false)}
-      />
     </div>
   );
 }
