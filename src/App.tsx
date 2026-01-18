@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from '@/components/Navbar';
 import { CollectionPage } from '@/components/CollectionPage';
 import { useProfileListStore } from './stores/profileListStore';
@@ -8,8 +9,14 @@ import { EmptyPage } from './components/EmptyPage';
 import { GlobalDialogs } from './components/GlobalDialogs';
 
 export default function App() {
+  const { t } = useTranslation();
+
   const isInitialized = useProfileListStore(state => state.isInitialized);
   const activeProfileId = useProfileListStore(state => state.activeId);
+
+  useEffect(() => {
+    document.title = `${t('app.name')} - ${t('app.tagline')}`;
+  }, [t]);
 
   useEffect(() => {
     useProfileListStore.getState().initialize();
