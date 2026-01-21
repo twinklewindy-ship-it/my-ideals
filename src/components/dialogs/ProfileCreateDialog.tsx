@@ -119,7 +119,12 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
               <>
                 <div className="space-y-4 rounded-lg bg-gray-50 p-4">
                   <div>
-                    <div className="text-sm font-medium text-gray-900">{template.name}</div>
+                    <div>
+                      <div className="text-sm font-medium text-gray-900">{template.name}</div>
+                      <div className="mt-0.5 font-mono text-xs text-gray-500">
+                        ID: {template.id} (rev. {template.revision})
+                      </div>
+                    </div>
                     {template.description && (
                       <div className="mt-1 text-sm whitespace-pre-line text-gray-500">
                         {template.description}
