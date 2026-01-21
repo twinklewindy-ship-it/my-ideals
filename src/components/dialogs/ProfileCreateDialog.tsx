@@ -1,8 +1,6 @@
-import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
+import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { debounce } from 'lodash-es';
-import { z, ZodError } from 'zod';
 import {
   XMarkIcon,
   ArrowPathIcon,
@@ -11,16 +9,8 @@ import {
   UsersIcon,
   LinkIcon,
 } from '@heroicons/react/24/outline';
-import { TemplateSchema, type Template } from '@/domain/template';
-import { type ProfileTemplateInfo } from '@/domain/profile';
 import { useProfileListStore } from '@/stores/profileListStore';
-
-type FetchState =
-  | { status: 'idle' }
-  | { status: 'invalid-url' }
-  | { status: 'loading' }
-  | { status: 'success'; template: Template }
-  | { status: 'error'; message: string };
+import { useTemplateFetcher } from '@/hooks/useTemplateFetcher';
 
 type ProfileCreateDialogProps = {
   onClose: () => void;
@@ -29,91 +19,26 @@ type ProfileCreateDialogProps = {
 export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
   const { t } = useTranslation();
 
-  const [templateUrl, setTemplateUrl] = useState('');
   const [profileName, setProfileName] = useState('');
-  const [templateInfo, setTemplateInfo] = useState<ProfileTemplateInfo | null>(null);
-  const [fetchState, setFetchState] = useState<FetchState>({ status: 'idle' });
 
-  const abortControllerRef = useRef<AbortController | null>(null);
   const createProfile = useProfileListStore(state => state.createProfile);
 
-  useEffect(() => {
-    return () => {
-      abortControllerRef.current?.abort();
-    };
-  }, []);
-
-  const fetchTemplate = useCallback(
-    async (url: string, signal: AbortSignal) => {
-      setFetchState({ status: 'loading' });
-
-      try {
-        const response = await fetch(url, { signal });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        const template = TemplateSchema.parse(data);
-
-        setFetchState({ status: 'success', template });
-        setProfileName(template.name);
-        setTemplateInfo({ id: template.id, link: templateUrl.trim(), revision: template.revision });
-      } catch (e) {
-        if (e instanceof Error && e.name === 'AbortError') return;
-
-        let message = 'Failed to fetch template';
-        if (e instanceof ZodError) {
-          message = `Invalid template:\n${e.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('\n')}`;
-        } else if (e instanceof Error) {
-          message = e.message;
-        }
-
-        setFetchState({ status: 'error', message });
-      }
+  const {
+    url,
+    setUrl,
+    state: fetchState,
+    template,
+  } = useTemplateFetcher({
+    onSuccess: template => {
+      setProfileName(template.name);
     },
-    [templateUrl]
-  );
-
-  const debouncedFetch = useMemo(
-    () =>
-      debounce((url: string) => {
-        abortControllerRef.current?.abort();
-        const controller = new AbortController();
-        abortControllerRef.current = controller;
-        fetchTemplate(url, controller.signal);
-      }, 500),
-    [fetchTemplate]
-  );
-
-  useEffect(() => {
-    const trimmed = templateUrl.trim();
-
-    if (!trimmed) {
-      setFetchState({ status: 'idle' });
-      return;
-    }
-
-    const urlResult = z.url().safeParse(trimmed);
-    if (!urlResult.success) {
-      setFetchState({ status: 'invalid-url' });
-      return;
-    }
-
-    debouncedFetch(trimmed);
-
-    return () => {
-      debouncedFetch.cancel();
-      abortControllerRef.current?.abort();
-    };
-  }, [templateUrl, debouncedFetch]);
+  });
 
   const handleCreate = () => {
     const name = profileName.trim();
-    if (fetchState.status !== 'success' || !name || !templateInfo) return;
+    if (fetchState.status !== 'success' || !name || !template) return;
 
-    createProfile(name, templateInfo);
+    createProfile(name, { id: template.id, link: url.trim(), revision: template.revision });
     onClose();
   };
 
@@ -147,8 +72,8 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
               <div className="relative mt-1">
                 <input
                   type="url"
-                  value={templateUrl}
-                  onChange={e => setTemplateUrl(e.target.value)}
+                  value={url}
+                  onChange={e => setUrl(e.target.value)}
                   placeholder={t('dialog.profile-create.template-url-placeholder')}
                   className={`w-full rounded-lg border px-3 py-2 pr-10 text-sm focus:ring-1
                     focus:outline-none ${
@@ -190,34 +115,32 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
             )}
 
             {/* Success: Template Info + Name */}
-            {fetchState.status === 'success' && (
+            {fetchState.status === 'success' && template && (
               <>
                 <div className="space-y-4 rounded-lg bg-gray-50 p-4">
                   <div>
-                    <div className="text-sm font-medium text-gray-900">
-                      {fetchState.template.name}
-                    </div>
-                    {fetchState.template.description && (
+                    <div className="text-sm font-medium text-gray-900">{template.name}</div>
+                    {template.description && (
                       <div className="mt-1 text-sm whitespace-pre-line text-gray-500">
-                        {fetchState.template.description}
+                        {template.description}
                       </div>
                     )}
-                    {fetchState.template.author && (
+                    {template.author && (
                       <div className="mt-1 flex items-center gap-1 text-xs text-gray-400">
                         <UsersIcon className="h-4 w-4" />
-                        {fetchState.template.author}
+                        {template.author}
                       </div>
                     )}
-                    {fetchState.template.link && (
+                    {template.link && (
                       <div className="mt-1 flex items-center gap-1 text-xs text-gray-400">
                         <LinkIcon className="h-4 w-4" />
                         <a
-                          href={fetchState.template.link}
+                          href={template.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="truncate underline hover:text-gray-600"
                         >
-                          {fetchState.template.link}
+                          {template.link}
                         </a>
                       </div>
                     )}
