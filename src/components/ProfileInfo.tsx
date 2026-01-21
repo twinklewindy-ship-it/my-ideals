@@ -42,9 +42,15 @@ export function ProfileInfo() {
 
       {/* Template */}
       <div className="flex items-center gap-1 text-sm text-gray-500">
-        <span>
-          {t('common.template')}: {template.name} / <span className="font-mono">{template.id}</span>
-        </span>
+        <div>
+          <span className="block sm:inline">
+            {t('common.template')}: {template.name}
+          </span>
+          <span className="hidden sm:mx-2 sm:inline">/</span>
+          <span className="block font-mono text-gray-500 sm:inline">
+            {profile.template.id} (rev. {profile.template.revision})
+          </span>
+        </div>
         <button
           onClick={handleCopyLink}
           className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
