@@ -12,6 +12,11 @@ import {
   type ProfileTemplateDiff,
 } from '@/utils/syncProfile';
 
+export type LoadError =
+  | null
+  | { type: 'template'; message: string }
+  | { type: 'profile'; message: string };
+
 type activeProfileStore = {
   // State
   profile: Profile | null;
@@ -19,7 +24,7 @@ type activeProfileStore = {
   changes: ProfileTemplateDiff | null;
   pendingSync: boolean;
   isLoading: boolean;
-  error: string | null;
+  error: LoadError | null;
 
   // Actions
   load: (profileId: string) => Promise<void>;
@@ -62,46 +67,76 @@ export const useActiveProfileStore = create<activeProfileStore>()(
           state.error = null;
         });
 
-        try {
-          let profile = ProfileStorage.getProfile(profileId);
-          if (!profile) throw new Error('Profile not found');
-
-          const res = await fetch(profile.template.link);
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-          const template = TemplateSchema.parse(await res.json());
-          if (template.id !== profile.template.id) {
-            throw Error(
-              `Template mismatch. Expected "${profile.template.id}" but got "${template.id}".`
-            );
-          }
-
-          let changes: ProfileTemplateDiff | null = null;
-          let pendingSync = false;
-          if (profile.template.revision !== template.revision) {
-            if (profile.template.revision !== 0) {
-              changes = diffProfileWithTemplate(profile, template);
-              pendingSync = changes.removed.length > 0;
-            }
-            if (!pendingSync) {
-              profile = syncProfileWithTemplate(profile, template, false);
-              ProfileStorage.setProfile(profile);
-            }
-          }
-
+        const setError = (
+          type: Exclude<LoadError, null>['type'],
+          message: string,
+          profile: Profile | null = null
+        ) => {
+          debugLog.store.log(`Failed to load ${type}: ${message}`);
           set(state => {
+            state.error = { type, message: `${type}: ${message}` };
             state.profile = profile;
-            state.template = template;
-            state.changes = changes;
-            state.pendingSync = pendingSync;
             state.isLoading = false;
           });
-        } catch (e) {
-          set(state => {
-            state.error = e instanceof Error ? e.message : 'Unknown error';
-            state.isLoading = false;
-          });
+        };
+
+        let profile = ProfileStorage.getProfile(profileId);
+        if (!profile) {
+          setError('profile', `Unable to load Profile ${profileId}`);
+          return;
         }
+
+        let res: Response;
+        try {
+          res = await fetch(profile.template.link);
+        } catch (e) {
+          setError('template', `${e instanceof Error ? e.message : 'Network error'}`, profile);
+          return;
+        }
+
+        if (!res.ok) {
+          setError('template', `HTTP ${res.status}: ${res.statusText}`, profile);
+          return;
+        }
+
+        const data = await res.json();
+        const result = TemplateSchema.safeParse(data);
+
+        if (!result.success) {
+          const errors = result.error.issues
+            .map(i => `${i.path.join('.')}: ${i.message}`)
+            .join('\n');
+          setError('template', `Invalid template:\n${errors}`, profile);
+          return;
+        }
+
+        const template = result.data;
+        if (template.id !== profile.template.id) {
+          return;
+        }
+
+        let changes: ProfileTemplateDiff | null = null;
+        let pendingSync = false;
+        if (profile.template.revision !== template.revision) {
+          if (profile.template.revision !== 0) {
+            changes = diffProfileWithTemplate(profile, template);
+            pendingSync = changes.removed.length > 0;
+          }
+          if (!pendingSync) {
+            profile = syncProfileWithTemplate(profile, template, false);
+            ProfileStorage.setProfile(profile);
+          }
+        }
+
+        set(state => {
+          state.profile = profile;
+          state.template = template;
+          state.changes = changes;
+          state.pendingSync = pendingSync;
+          state.isLoading = false;
+        });
+
+        debugLog.store.log(`Loaded profile ${profile.name}, ${profileId}`);
       },
 
       clear: () => {

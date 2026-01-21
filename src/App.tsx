@@ -41,7 +41,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
-      <main>{activeProfileId ? <CollectionPage /> : <EmptyPage />}</main>
+      {activeProfileId ? <CollectionPage /> : <EmptyPage />}
 
       <GlobalDialogs />
     </div>

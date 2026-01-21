@@ -5,7 +5,7 @@ import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { useFilteredCollections } from '@/hooks/useFilteredCollection';
 import { CollectionPanel } from './CollectionPanel';
 import { LoadingPage } from './ui/LoadingPage';
-import { ErrorPage } from './ui/ErrorPage';
+import { ProfileErrorPage } from './ProfileErrorPage';
 import { CollectionFilter } from './CollectionFilter';
 import { ProfileInfo } from './ProfileInfo';
 import { ScrollToTop } from './ui/ScrollToTop';
@@ -27,7 +27,7 @@ export function CollectionPage() {
   }
 
   if (error) {
-    return <ErrorPage error={error} />;
+    return <ProfileErrorPage error={error} />;
   }
 
   if (!template || !profile) {

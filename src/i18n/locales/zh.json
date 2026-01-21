@@ -31,7 +31,9 @@
     "copy-template-link": "复制模板链接",
     "not-selected": "未选择档案",
     "not-selected-hint": "创建或导入档案以开始使用",
-    "rename": "重命名档案"
+    "rename": "重命名档案",
+    "edit-template-url": "编辑模板链接",
+    "save-backup": "保存备份"
   },
   "settings": {
     "language": "语言"

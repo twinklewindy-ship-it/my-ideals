@@ -31,7 +31,9 @@
     "copy-template-link": "Copy template link",
     "not-selected": "No Profile Selected",
     "not-selected-hint": "Create or import a profile to get started",
-    "rename": "Rename Profile"
+    "rename": "Rename Profile",
+    "edit-template-url": "Edit Template URL",
+    "save-backup": "Save Backup"
   },
   "settings": {
     "language": "Language"

@@ -31,7 +31,9 @@
     "copy-template-link": "テンプレートリンクをコピー",
     "not-selected": "プロファイル未選択",
     "not-selected-hint": "プロファイルを作成またはインポートしはじめる",
-    "rename": "プロファイル名を変更"
+    "rename": "プロファイル名を変更",
+    "edit-template-url": "テンプレートURLを編集",
+    "save-backup": "バックアップを保存"
   },
   "settings": {
     "language": "言語"
