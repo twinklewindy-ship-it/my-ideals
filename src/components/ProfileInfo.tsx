@@ -42,7 +42,7 @@ export function ProfileInfo() {
 
       {/* Template */}
       <div className="flex items-center gap-1 text-sm text-gray-500">
-        <div>
+        <div className="flex-1 sm:flex-initial">
           <span className="block sm:inline">
             {t('common.template')}: {template.name}
           </span>
