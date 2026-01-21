@@ -55,9 +55,6 @@
     },
     "profile-create": {
       "title": "New Profile",
-      "template-url": "Template URL",
-      "template-url-placeholder": "Paste template link here..",
-      "invalid-url": "Invalid URL format",
       "profile-name": "Profile Name"
     },
     "profile-import": {
@@ -88,6 +85,17 @@
       "keep": "Keep removed data",
       "cleanup": "Clean up",
       "confirm": "Got it"
+    },
+    "profile-edit-template-url": {
+      "title": "Edit Template URL"
+    }
+  },
+  "input": {
+    "template-url": {
+      "label": "Template URL",
+      "placeholder": "Paste template link here..",
+      "invalid-url": "Invalid URL format",
+      "id-mismatch": "Template ID mismatch. Expected \\\"{{expected}}\\\", got \\\"{{actual}}\\\"."
     }
   }
 }

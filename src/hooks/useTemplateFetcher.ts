@@ -8,15 +8,18 @@ export type TemplateFetchState =
   | { status: 'invalid-url' }
   | { status: 'loading' }
   | { status: 'success'; template: Template }
+  | { status: 'id-mismatch'; actualId: string }
   | { status: 'error'; message: string };
 
 type TemplateFetcherOptions = {
   initialUrl?: string;
+  templateId?: string;
   onSuccess?: (template: Template) => void;
 };
 
 export function useTemplateFetcher({
   initialUrl = '',
+  templateId,
   onSuccess = () => {},
 }: TemplateFetcherOptions) {
   const [url, setUrl] = useState(initialUrl);
@@ -32,34 +35,42 @@ export function useTemplateFetcher({
     };
   }, []);
 
-  const fetchTemplate = useCallback(async (fetchUrl: string, signal: AbortSignal) => {
-    setState({ status: 'loading' });
+  const fetchTemplate = useCallback(
+    async (fetchUrl: string, signal: AbortSignal) => {
+      setState({ status: 'loading' });
 
-    try {
-      const response = await fetch(fetchUrl, { signal });
+      try {
+        const response = await fetch(fetchUrl, { signal });
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const template = TemplateSchema.parse(data);
+
+        if (templateId && template.id !== templateId) {
+          setState({ status: 'id-mismatch', actualId: template.id });
+          return;
+        }
+
+        setState({ status: 'success', template });
+        onSuccessRef.current?.(template);
+      } catch (e) {
+        if (e instanceof Error && e.name === 'AbortError') return;
+
+        let message = 'Failed to fetch template';
+        if (e instanceof ZodError) {
+          message = `Invalid template:\n${e.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('\n')}`;
+        } else if (e instanceof Error) {
+          message = e.message;
+        }
+
+        setState({ status: 'error', message });
       }
-
-      const data = await response.json();
-      const template = TemplateSchema.parse(data);
-
-      setState({ status: 'success', template });
-      onSuccessRef.current?.(template);
-    } catch (e) {
-      if (e instanceof Error && e.name === 'AbortError') return;
-
-      let message = 'Failed to fetch template';
-      if (e instanceof ZodError) {
-        message = `Invalid template:\n${e.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('\n')}`;
-      } else if (e instanceof Error) {
-        message = e.message;
-      }
-
-      setState({ status: 'error', message });
-    }
-  }, []);
+    },
+    [templateId]
+  );
 
   const debouncedFetch = useMemo(
     () =>

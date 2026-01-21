@@ -1,16 +1,10 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  XMarkIcon,
-  ArrowPathIcon,
-  CheckCircleIcon,
-  XCircleIcon,
-  UsersIcon,
-  LinkIcon,
-} from '@heroicons/react/24/outline';
+import { XMarkIcon, UsersIcon, LinkIcon } from '@heroicons/react/24/outline';
 import { useProfileListStore } from '@/stores/profileListStore';
 import { useTemplateFetcher } from '@/hooks/useTemplateFetcher';
+import { TemplateUrlInput } from '../TemplateUrlInput';
 
 type ProfileCreateDialogProps = {
   onClose: () => void;
@@ -64,48 +58,7 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
 
           {/* Content */}
           <div className="space-y-4 px-4 py-4">
-            {/* Template URL */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                {t('dialog.profile-create.template-url')}
-              </label>
-              <div className="relative mt-1">
-                <input
-                  type="url"
-                  value={url}
-                  onChange={e => setUrl(e.target.value)}
-                  placeholder={t('dialog.profile-create.template-url-placeholder')}
-                  className={`w-full rounded-lg border px-3 py-2 pr-10 text-sm focus:ring-1
-                    focus:outline-none ${
-                      fetchState.status === 'invalid-url' || fetchState.status === 'error'
-                        ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                        : fetchState.status === 'success'
-                          ? 'border-green-300 focus:border-green-500 focus:ring-green-500'
-                          : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
-                    } `}
-                  autoFocus
-                />
-                {/* Status Indicator */}
-                <div className="absolute top-1/2 right-3 -translate-y-1/2">
-                  {fetchState.status === 'loading' && (
-                    <ArrowPathIcon className="h-4 w-4 animate-spin text-gray-400" />
-                  )}
-                  {fetchState.status === 'success' && (
-                    <CheckCircleIcon className="h-4 w-4 text-green-500" />
-                  )}
-                  {fetchState.status === 'error' && (
-                    <XCircleIcon className="h-4 w-4 text-red-500" />
-                  )}
-                </div>
-              </div>
-
-              {/* Inline hint/error */}
-              {fetchState.status === 'invalid-url' && (
-                <p className="mt-1 text-xs text-red-500">
-                  {t('dialog.profile-create.invalid-url')}
-                </p>
-              )}
-            </div>
+            <TemplateUrlInput url={url} onUrlChange={setUrl} state={fetchState} autoFocus />
 
             {/* Fetch Error */}
             {fetchState.status === 'error' && (

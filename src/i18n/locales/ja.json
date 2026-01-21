@@ -55,9 +55,6 @@
     },
     "profile-create": {
       "title": "新規プロファイル作成",
-      "template-url": "テンプレートURL",
-      "template-url-placeholder": "テンプレートのリンクを貼り付け",
-      "invalid-url": "無効なURL形式です",
       "profile-name": "プロファイル名"
     },
     "profile-import": {
@@ -88,6 +85,17 @@
       "keep": "データを保持",
       "cleanup": "クリーンアップ",
       "confirm": "OK"
+    },
+    "profile-edit-template-url": {
+      "title": "テンプレートURLを編集"
+    }
+  },
+  "input": {
+    "template-url": {
+      "label": "テンプレートURL",
+      "placeholder": "テンプレートのリンクを貼り付け",
+      "invalid-url": "無効なURL形式です",
+      "id-mismatch": "テンプレートIDが一致しません。期待値「{{expected}}」、実際「{{actual}}」。"
     }
   }
 }

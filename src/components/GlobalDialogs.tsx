@@ -5,6 +5,7 @@ import { ProfileCreateDialog } from './dialogs/ProfileCreateDialog';
 import { ProfileImportDialog } from './dialogs/ProfileImportDialog';
 import { ProfileDeleteDialog } from './dialogs/ProfileDeleteDialog';
 import { ProfileRenameDialog } from './dialogs/ProfileRenameDialog';
+import { ProfileEditTemplateUrlDialog } from './dialogs/ProfileEditTemplateUrl';
 import { AboutDialog } from './dialogs/AboutDialog';
 
 export function GlobalDialogs() {
@@ -29,6 +30,14 @@ export function GlobalDialogs() {
         <ProfileRenameDialog
           profileId={activeDialog.profileId}
           profileName={activeDialog.profileName}
+          onClose={closeDialog}
+        />
+      )}
+      {activeDialog.type === 'edit-profile-template-url' && (
+        <ProfileEditTemplateUrlDialog
+          profileId={activeDialog.profileId}
+          templateId={activeDialog.templateId}
+          currentUrl={activeDialog.currentUrl}
           onClose={closeDialog}
         />
       )}

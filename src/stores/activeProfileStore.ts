@@ -29,6 +29,7 @@ type activeProfileStore = {
   toggleStatus: (collectionId: string, itemId: string) => void;
   toggleMember: (member: string) => void;
   updateName: (name: string) => void;
+  updateTemplateUrl: (url: string) => void;
 };
 
 export const useActiveProfileStore = create<activeProfileStore>()(
@@ -173,6 +174,16 @@ export const useActiveProfileStore = create<activeProfileStore>()(
         set(state => {
           if (state.profile) {
             state.profile.name = name;
+          }
+        });
+        debouncedSave();
+      },
+
+      updateTemplateUrl: (url: string) => {
+        set(state => {
+          if (state.profile) {
+            state.profile.template.link = url;
+            debugLog.store.log(`Profile ${state.profile.id} template link updated to ${url}`);
           }
         });
         debouncedSave();

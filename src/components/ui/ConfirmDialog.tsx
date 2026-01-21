@@ -9,6 +9,8 @@ const ButtonStyles = {
   danger: 'bg-red-600 text-white hover:bg-red-700',
 };
 
+const DisabledStyle = 'opacity-50 cursor-not-allowed';
+
 type ConfirmDialogProps = {
   isOpen: boolean;
   title: string;
@@ -17,6 +19,7 @@ type ConfirmDialogProps = {
     label: string;
     value: string;
     variant?: 'primary' | 'secondary' | 'danger';
+    disabled?: boolean;
   }[];
   onSelect: (value: string) => void;
   onCancel: () => void;
@@ -74,9 +77,10 @@ export function ConfirmDialog({
             {options.map(option => (
               <button
                 key={option.value}
+                disabled={option.disabled}
                 onClick={() => onSelect(option.value)}
                 className={`rounded-lg px-4 py-2 text-sm font-medium ${ ButtonStyles[option.variant
-                ?? 'secondary'] } `}
+                ?? 'secondary'] } ${option.disabled ? DisabledStyle : ''}`}
               >
                 {option.label}
               </button>

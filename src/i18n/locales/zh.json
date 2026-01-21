@@ -55,9 +55,6 @@
     },
     "profile-create": {
       "title": "新建档案",
-      "template-url": "模板链接",
-      "template-url-placeholder": "在此粘贴模板链接",
-      "invalid-url": "链接格式无效",
       "profile-name": "档案名称"
     },
     "profile-import": {
@@ -88,6 +85,17 @@
       "keep": "保留数据",
       "cleanup": "清理",
       "confirm": "知道了"
+    },
+    "profile-edit-template-url": {
+      "title": "编辑模板链接"
+    }
+  },
+  "input": {
+    "template-url": {
+      "label": "模板链接",
+      "placeholder": "在此粘贴模板链接",
+      "invalid-url": "链接格式无效",
+      "id-mismatch": "模板 ID 不匹配。期望 \\\"{{expected}}\\\"，实际 \\\"{{actual}}\\\"。"
     }
   }
 }

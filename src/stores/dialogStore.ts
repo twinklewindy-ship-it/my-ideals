@@ -6,6 +6,12 @@ type DialogState =
   | { type: 'import-profile' }
   | { type: 'delete-profile'; profileId: string; profileName: string }
   | { type: 'rename-profile'; profileId: string; profileName: string }
+  | {
+      type: 'edit-profile-template-url';
+      profileId: string;
+      templateId: string;
+      currentUrl: string;
+    }
   | { type: 'about' };
 
 type DialogStore = {
@@ -16,6 +22,7 @@ type DialogStore = {
   openImportProfile: () => void;
   openDeleteProfile: (profileId: string, profileName: string) => void;
   openRenameProfile: (profileId: string, profileName: string) => void;
+  openEditProfileTemplateUrl: (profileId: string, templateId: string, currentUrl: string) => void;
   openAbout: () => void;
 };
 
@@ -29,5 +36,14 @@ export const useDialogStore = create<DialogStore>(set => ({
     set({ activeDialog: { type: 'delete-profile', profileId, profileName } }),
   openRenameProfile: (profileId, profileName) =>
     set({ activeDialog: { type: 'rename-profile', profileId, profileName } }),
+  openEditProfileTemplateUrl: (profileId, templateId, currentUrl) =>
+    set({
+      activeDialog: {
+        type: 'edit-profile-template-url',
+        profileId,
+        templateId,
+        currentUrl,
+      },
+    }),
   openAbout: () => set({ activeDialog: { type: 'about' } }),
 }));
