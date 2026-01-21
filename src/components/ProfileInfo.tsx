@@ -69,7 +69,7 @@ export function ProfileInfo() {
               .openEditProfileTemplateUrl(profile.id, template.id, profile.template.link)
           }
           className="rounded p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
-          title={t('profile.copy-template-link')}
+          title={t('profile.edit-template-url')}
         >
           <PencilIcon className="h-4 w-4" />
         </button>
