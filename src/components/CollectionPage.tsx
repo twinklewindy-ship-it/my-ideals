@@ -1,11 +1,8 @@
 import { useDeferredValue, useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 import { useTranslation } from 'react-i18next';
-import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { useFilteredCollections } from '@/hooks/useFilteredCollection';
 import { CollectionPanel } from './CollectionPanel';
-import { LoadingPage } from './ui/LoadingPage';
-import { ProfileErrorPage } from './ProfileErrorPage';
 import { CollectionFilter } from './CollectionFilter';
 import { ProfileInfo } from './ProfileInfo';
 import { ScrollToTop } from './ui/ScrollToTop';
@@ -13,26 +10,9 @@ import { ScrollToTop } from './ui/ScrollToTop';
 export function CollectionPage() {
   const { t } = useTranslation();
 
-  const profile = useActiveProfileStore(state => state.profile);
-  const template = useActiveProfileStore(state => state.template);
-  const isLoading = useActiveProfileStore(state => state.isLoading);
-  const error = useActiveProfileStore(state => state.error);
-
   const [searchQuery, setSearchQuery] = useState('');
   const deferredQuery = useDeferredValue(searchQuery);
   const filteredCollections = useFilteredCollections(deferredQuery);
-
-  if (isLoading) {
-    return <LoadingPage />;
-  }
-
-  if (error) {
-    return <ProfileErrorPage error={error} />;
-  }
-
-  if (!template || !profile) {
-    return; // This should never reached
-  }
 
   return (
     <main className="mx-auto max-w-7xl space-y-6 px-4 py-6">

@@ -1,18 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import { XCircleIcon } from '@heroicons/react/24/outline';
 import { useProfileListStore } from '@/stores/profileListStore';
-import { useActiveProfileStore, type LoadError } from '@/stores/activeProfileStore';
+import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { useDialogStore } from '@/stores/dialogStore';
 import { ProfileExportButton } from './ProfileExportButton';
 import { ArrowPathIcon, PencilIcon } from '@heroicons/react/24/outline';
 
-type ProfileErrorPageProps = {
-  error: Exclude<LoadError, null>;
-};
-
-export function ProfileErrorPage({ error }: ProfileErrorPageProps) {
+export function ProfileErrorPage() {
   const { t } = useTranslation();
 
+  const error = useActiveProfileStore(state => state.error!);
   const profileId = useProfileListStore(state => state.activeId!);
   const profile = useActiveProfileStore(state => state.profile);
 

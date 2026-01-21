@@ -13,7 +13,6 @@ import {
 } from '@/utils/syncProfile';
 
 export type LoadError =
-  | null
   | { type: 'template'; message: string }
   | { type: 'profile'; message: string };
 
