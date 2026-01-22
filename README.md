@@ -19,11 +19,12 @@ https://my-ideals.notequal.me/
 
 ### Create a Profile
 
-1. Click the profile dropdown in the top-left corner
-2. Select **"Create Profile"**
-3. Paste a template URL (get this from your community or template creator)
-4. Enter a profile name
-5. Click **"Create"**
+1. From the menu below, select **“New Profile”**.
+   - **On PC**: click the dropdown list in the top-right corner
+   - **On mobile**: tap the three-line (hamburger) menu in the top-right corner
+2. Paste the template URL (obtained from the community or the template creator)
+3. Enter a profile name
+4. Click **“Create”**
 
 ### Filter by Member
 
