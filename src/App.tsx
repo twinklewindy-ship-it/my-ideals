@@ -14,6 +14,7 @@ export default function App() {
 
   useEffect(() => {
     document.title = `${t('app.name')} - ${t('app.tagline')}`;
+    if (import.meta.env.DEV) document.title = `[DEV] ${document.title}`;
   }, [t]);
 
   useEffect(() => {
