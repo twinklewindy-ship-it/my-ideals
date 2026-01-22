@@ -11,15 +11,21 @@ export function CollectionPage() {
   const { t } = useTranslation();
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [hideCompleted, setHideCompleted] = useState(false);
   const deferredQuery = useDeferredValue(searchQuery);
-  const filteredCollections = useFilteredCollections(deferredQuery);
+  const filteredCollections = useFilteredCollections(deferredQuery, hideCompleted);
 
   return (
     <main className="mx-auto max-w-7xl space-y-6 px-4 py-6">
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
         <ProfileInfo />
         <div className="my-4 border-t border-gray-200" />
-        <CollectionFilter searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+        <CollectionFilter
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          hideCompleted={hideCompleted}
+          setHideCompleted={setHideCompleted}
+        />
       </div>
 
       {/* Collections - Virtualized*/}

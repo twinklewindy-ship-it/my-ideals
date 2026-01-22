@@ -5,9 +5,16 @@ import { useActiveProfileStore } from '@/stores/activeProfileStore';
 type CollectionFilterProps = {
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  hideCompleted: boolean;
+  setHideCompleted: (enabled: boolean) => void;
 };
 
-export function CollectionFilter({ searchQuery, onSearchChange }: CollectionFilterProps) {
+export function CollectionFilter({
+  searchQuery,
+  onSearchChange,
+  hideCompleted,
+  setHideCompleted,
+}: CollectionFilterProps) {
   const { t } = useTranslation();
 
   const members = useActiveProfileStore(state => state.template!.members);
@@ -34,27 +41,43 @@ export function CollectionFilter({ searchQuery, onSearchChange }: CollectionFilt
 
       <div className="border-t border-gray-200" />
 
-      <div className="relative">
-        <MagnifyingGlassIcon
-          className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400"
-        />
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={e => onSearchChange(e.target.value)}
-          placeholder={t('collection.search-placeholder')}
-          className="w-full rounded-lg border border-gray-300 bg-gray-50 py-2 pr-10 pl-10 text-base
-            focus:border-blue-500 focus:bg-white focus:ring-1 focus:ring-blue-500
-            focus:outline-none"
-        />
-        {searchQuery && (
-          <button
-            onClick={() => onSearchChange('')}
-            className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-          >
-            <XMarkIcon className="h-5 w-5" />
-          </button>
-        )}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="relative flex-1">
+          <MagnifyingGlassIcon
+            className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400"
+          />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={e => onSearchChange(e.target.value)}
+            placeholder={t('collection.search-placeholder')}
+            className="w-full rounded-lg border border-gray-300 bg-gray-50 py-2 pr-10 pl-10
+              text-base focus:border-blue-500 focus:bg-white focus:ring-1 focus:ring-blue-500
+              focus:outline-none"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => onSearchChange('')}
+              className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400
+                hover:text-gray-600"
+            >
+              <XMarkIcon className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+
+        <label
+          className="flex cursor-pointer items-center gap-2 text-sm whitespace-nowrap text-gray-600
+            select-none"
+        >
+          <input
+            type="checkbox"
+            checked={hideCompleted}
+            onChange={e => setHideCompleted(e.target.checked)}
+            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+          />
+          {t('collection.hide-completed')}
+        </label>
       </div>
     </div>
   );

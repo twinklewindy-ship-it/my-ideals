@@ -41,7 +41,8 @@
   "collection": {
     "collected": "{{count}} / {{total}} 収集済み",
     "search-placeholder": "セットを検索...",
-    "no-result": "セットが見つかりません"
+    "no-result": "セットが見つかりません",
+    "hide-completed": "コンプリートセットを非表示"
   },
   "dialog": {
     "disclaimer": {

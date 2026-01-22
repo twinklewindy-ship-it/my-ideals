@@ -41,7 +41,8 @@
   "collection": {
     "collected": "{{count}} / {{total}} Collected",
     "search-placeholder": "Search collections...",
-    "no-result": "No collections found"
+    "no-result": "No collections found",
+    "hide-completed": "Hide completed collections"
   },
   "dialog": {
     "disclaimer": {
