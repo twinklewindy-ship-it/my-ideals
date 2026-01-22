@@ -23,23 +23,27 @@ export function CollectionFilter({
 
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap gap-2">
-        {members.map(member => (
-          <button
-            key={member.id}
-            onClick={() => toggleMember(member.id)}
-            className={`rounded-full px-4 py-1.5 text-base font-medium transition-colors ${
-              selectedMembers.includes(member.id)
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            {member.name}
-          </button>
-        ))}
-      </div>
+      {members.length > 1 && (
+        <>
+          <div className="flex flex-wrap gap-2">
+            {members.map(member => (
+              <button
+                key={member.id}
+                onClick={() => toggleMember(member.id)}
+                className={`rounded-full px-4 py-1.5 text-base font-medium transition-colors ${
+                  selectedMembers.includes(member.id)
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {member.name}
+              </button>
+            ))}
+          </div>
 
-      <div className="border-t border-gray-200" />
+          <div className="border-t border-gray-200" />
+        </>
+      )}
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
         <div className="relative flex-1">
