@@ -4,14 +4,14 @@ import { useActiveProfileStore } from '@/stores/activeProfileStore';
 
 type CollectionFilterProps = {
   searchQuery: string;
-  onSearchChange: (query: string) => void;
+  setSearchQuery: (query: string) => void;
   hideCompleted: boolean;
   setHideCompleted: (enabled: boolean) => void;
 };
 
 export function CollectionFilter({
   searchQuery,
-  onSearchChange,
+  setSearchQuery,
   hideCompleted,
   setHideCompleted,
 }: CollectionFilterProps) {
@@ -41,7 +41,7 @@ export function CollectionFilter({
 
       <div className="border-t border-gray-200" />
 
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
         <div className="relative flex-1">
           <MagnifyingGlassIcon
             className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 text-gray-400"
@@ -49,7 +49,7 @@ export function CollectionFilter({
           <input
             type="text"
             value={searchQuery}
-            onChange={e => onSearchChange(e.target.value)}
+            onChange={e => setSearchQuery(e.target.value)}
             placeholder={t('collection.search-placeholder')}
             className="w-full rounded-lg border border-gray-300 bg-gray-50 py-2 pr-10 pl-10
               text-base focus:border-blue-500 focus:bg-white focus:ring-1 focus:ring-blue-500
@@ -57,7 +57,7 @@ export function CollectionFilter({
           />
           {searchQuery && (
             <button
-              onClick={() => onSearchChange('')}
+              onClick={() => setSearchQuery('')}
               className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400
                 hover:text-gray-600"
             >

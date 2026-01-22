@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useDeferredValue } from 'react';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { debugLog } from '@/utils/debug';
 
-export function useFilteredCollections(searchQuery: string, hideCompleted: boolean) {
+function useFilteredCollections(searchQuery: string, hideCompleted: boolean) {
   const collections = useActiveProfileStore(state => state.template?.collections);
   const selectedMembers = useActiveProfileStore(state => state.profile?.selectedMembers);
 
@@ -49,4 +49,21 @@ export function useFilteredCollections(searchQuery: string, hideCompleted: boole
     debugLog.store.timeEnd('filter');
     return result;
   }, [collections, selectedMembers, searchQuery, hideCompleted]);
+}
+
+export function useCollectionFilter() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [hideCompleted, setHideCompleted] = useState(false);
+  const deferredQuery = useDeferredValue(searchQuery);
+  const filteredCollections = useFilteredCollections(deferredQuery, hideCompleted);
+
+  return {
+    filterProps: {
+      searchQuery,
+      setSearchQuery,
+      hideCompleted,
+      setHideCompleted,
+    },
+    filteredCollections,
+  };
 }

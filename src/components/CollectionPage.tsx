@@ -1,7 +1,6 @@
-import { useDeferredValue, useState } from 'react';
 import { Virtuoso } from 'react-virtuoso';
 import { useTranslation } from 'react-i18next';
-import { useFilteredCollections } from '@/hooks/useFilteredCollection';
+import { useCollectionFilter } from '@/hooks/useFilteredCollection';
 import { CollectionPanel } from './CollectionPanel';
 import { CollectionFilter } from './CollectionFilter';
 import { ProfileInfo } from './ProfileInfo';
@@ -10,22 +9,14 @@ import { ScrollToTop } from './ui/ScrollToTop';
 export function CollectionPage() {
   const { t } = useTranslation();
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [hideCompleted, setHideCompleted] = useState(false);
-  const deferredQuery = useDeferredValue(searchQuery);
-  const filteredCollections = useFilteredCollections(deferredQuery, hideCompleted);
+  const { filteredCollections, filterProps } = useCollectionFilter();
 
   return (
     <main className="mx-auto max-w-7xl space-y-6 px-4 py-6">
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
         <ProfileInfo />
         <div className="my-4 border-t border-gray-200" />
-        <CollectionFilter
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-          hideCompleted={hideCompleted}
-          setHideCompleted={setHideCompleted}
-        />
+        <CollectionFilter {...filterProps} />
       </div>
 
       {/* Collections - Virtualized*/}
