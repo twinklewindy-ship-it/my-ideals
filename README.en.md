@@ -22,7 +22,7 @@ https://my-ideals.notequal.me/
 1. From the menu below, select **“New Profile”**.
    - **On PC**: click the dropdown list in the top-right corner
    - **On mobile**: tap the three-line (hamburger) menu in the top-right corner
-2. Paste the template URL (obtained from the community or the template creator)
+2. Paste the template URL (obtained from [here](https://github.com/monaka-ikonoi/my-ideals/issues/1) or the template creator)
 3. Enter a profile name
 4. Click **“Create”**
 
