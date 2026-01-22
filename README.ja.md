@@ -1,6 +1,6 @@
 # My Ideals - 生写真コレクション記録アプリ
 
-[English](./README.md) | [日本語](./README.ja.md) | [中文](./README.zh.md)
+[English](./README.en.md) | [日本語](./README.ja.md) | [中文](./README.zh.md)
 
 My Ideals は、アイドルの生写真コレクションを管理するための Web アプリです。
 

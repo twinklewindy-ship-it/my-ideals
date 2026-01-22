@@ -1,6 +1,6 @@
 # My Ideals - 记录你的生写真收藏
 
-[English](./README.md) | [日本語](./README.ja.md) | [中文](./README.zh.md)
+[English](./README.en.md) | [日本語](./README.ja.md) | [中文](./README.zh.md)
 
 My Ideals 是一个用于管理偶像生写真收藏的 Web 应用。
 
