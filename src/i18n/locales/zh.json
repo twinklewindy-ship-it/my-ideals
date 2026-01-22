@@ -36,7 +36,8 @@
     "save-backup": "保存备份"
   },
   "settings": {
-    "language": "语言"
+    "language": "语言",
+    "help": "使用说明"
   },
   "collection": {
     "collected": "已收集 {{count}} / {{total}}",

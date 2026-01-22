@@ -36,7 +36,8 @@
     "save-backup": "Save Backup"
   },
   "settings": {
-    "language": "Language"
+    "language": "Language",
+    "help": "User Guide"
   },
   "collection": {
     "collected": "{{count}} / {{total}} Collected",

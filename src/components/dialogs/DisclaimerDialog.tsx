@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useSettingsStore } from '@/stores/settingsStore';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { ExclamationTriangleIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { LanguageDropdown } from '../LanguageDropdown';
 
 export function DisclaimerDialog() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const disclaimerAccepted = useSettingsStore(state => state.disclaimerAccepted);
 
   const [isChecked, setIsChecked] = useState(false);
@@ -44,6 +44,16 @@ export function DisclaimerDialog() {
               <p>{t('dialog.disclaimer.content.p2')}</p>
               <p className="font-bold text-gray-800">{t('dialog.disclaimer.content.p3')}</p>
               <p>{t('dialog.disclaimer.content.p4')}</p>
+              <a
+                href={`https://github.com/monaka-ikonoi/my-ideals/blob/main/README.${i18n.language}.md`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800
+                  hover:underline"
+              >
+                {t('settings.help')}
+                <ArrowTopRightOnSquareIcon className="h-3.5 w-3.5" />
+              </a>
             </div>
           </div>
 

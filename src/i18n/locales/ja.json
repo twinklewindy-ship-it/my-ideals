@@ -36,7 +36,8 @@
     "save-backup": "バックアップを保存"
   },
   "settings": {
-    "language": "言語"
+    "language": "言語",
+    "help": "使い方"
   },
   "collection": {
     "collected": "{{count}} / {{total}} 収集済み",
