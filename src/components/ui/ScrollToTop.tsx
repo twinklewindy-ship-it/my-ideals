@@ -14,7 +14,10 @@ export function ScrollToTop({ threshold = 300 }: { threshold?: number }) {
   }, [threshold]);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, window.innerHeight);
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 10);
   };
 
   return (
