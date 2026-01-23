@@ -30,7 +30,7 @@ export function CollectionFilter({
               <button
                 key={member.id}
                 onClick={() => toggleMember(member.id)}
-                className={`rounded-full px-4 py-1.5 text-base font-medium transition-colors ${
+                className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
                   selectedMembers.includes(member.id)
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -55,8 +55,8 @@ export function CollectionFilter({
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             placeholder={t('collection.search-placeholder')}
-            className="w-full rounded-lg border border-gray-300 bg-gray-50 py-2 pr-10 pl-10
-              text-base focus:border-blue-500 focus:bg-white focus:ring-1 focus:ring-blue-500
+            className="w-full rounded-lg border border-gray-300 bg-gray-50 py-2 pr-10 pl-10 text-sm
+              focus:border-blue-500 focus:bg-white focus:ring-1 focus:ring-blue-500
               focus:outline-none"
           />
           {searchQuery && (

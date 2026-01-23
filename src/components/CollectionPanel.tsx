@@ -29,7 +29,7 @@ export const CollectionPanel = memo(function CollectionPanel({ collection }: Col
     <div className="rounded-lg border border-gray-200 bg-white shadow-sm">
       {/* Header */}
       <div className="border-b border-gray-200 px-4 py-3">
-        <h2 className="text-lg font-semibold text-gray-800">{collection.name}</h2>
+        <h2 className="text-md font-semibold text-gray-800 sm:text-lg">{collection.name}</h2>
         <p className="text-sm text-gray-500">
           {t('collection.collected', { count: stats.checked, total: stats.total })}
         </p>
