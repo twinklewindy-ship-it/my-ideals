@@ -78,7 +78,7 @@ export function CollectionFilter({
             type="checkbox"
             checked={hideCompleted}
             onChange={e => setHideCompleted(e.target.checked)}
-            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            className="h-4 w-4 rounded border-gray-300 accent-blue-600 focus:ring-blue-500"
           />
           {t('collection.hide-completed')}
         </label>

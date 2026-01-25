@@ -64,7 +64,8 @@ export function DisclaimerDialog() {
                 type="checkbox"
                 checked={isChecked}
                 onChange={e => setIsChecked(e.target.checked)}
-                className="mt-0.5 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                className="mt-0.5 h-5 w-5 rounded border-gray-300 accent-blue-600
+                  focus:ring-blue-500"
               />
               <span className="text-sm text-gray-700">{t('dialog.disclaimer.checkbox')}</span>
             </label>

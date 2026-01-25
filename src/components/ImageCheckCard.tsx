@@ -72,7 +72,7 @@ export const ImageCheckCard = memo(function ImageCheckCard({
           readOnly
           type="checkbox"
           checked={isChecked}
-          className="pointer-events-none"
+          className="pointer-events-none accent-blue-600"
         />
       </div>
     </label>
