@@ -8,7 +8,7 @@ type ProfileExportButtonProps = {
 };
 
 const VariantStyles = {
-  primary: 'border border-blue-600 bg-blue-600 text-white hover:bg-blue-700',
+  primary: 'border border-blue-600 bg-blue-600 text-white hover:bg-blue-700 hover:border-blue-700',
   secondary: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50',
 };
 
