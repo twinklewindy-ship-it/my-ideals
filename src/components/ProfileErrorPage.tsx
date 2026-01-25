@@ -4,7 +4,7 @@ import { useProfileListStore } from '@/stores/profileListStore';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { useDialogStore } from '@/stores/dialogStore';
 import { ProfileExportButton } from './ProfileExportButton';
-import { ArrowPathIcon, PencilIcon } from '@heroicons/react/24/outline';
+import { ArrowPathIcon, ArrowDownTrayIcon, PencilIcon } from '@heroicons/react/24/outline';
 
 export function ProfileErrorPage() {
   const { t } = useTranslation();
@@ -43,7 +43,13 @@ export function ProfileErrorPage() {
           </button>
           {error.type === 'template' && profile && (
             <>
-              <ProfileExportButton text={t('profile.save-backup')} variant="secondary" />
+              <ProfileExportButton
+                className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4
+                  py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                <ArrowDownTrayIcon className="h-4 w-4" />
+                {t('profile.save-backup')}
+              </ProfileExportButton>
               <button
                 onClick={() =>
                   useDialogStore
