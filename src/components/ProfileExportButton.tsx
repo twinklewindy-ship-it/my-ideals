@@ -8,7 +8,7 @@ type ProfileExportButtonProps = {
 };
 
 const VariantStyles = {
-  primary: 'bg-blue-600 text-white hover:bg-blue-700',
+  primary: 'border border-blue-600 bg-blue-600 text-white hover:bg-blue-700',
   secondary: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50',
 };
 
@@ -30,8 +30,8 @@ export function ProfileExportButton({ text, variant = 'primary' }: ProfileExport
     <button
       onClick={handleExport}
       disabled={!profile}
-      className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium
-        disabled:cursor-not-allowed disabled:opacity-50 ${VariantStyles[variant]}`}
+      className={`flex items-center gap-2 rounded-lg p-2 text-sm font-medium
+        disabled:cursor-not-allowed disabled:opacity-50 sm:px-3 sm:py-2 ${VariantStyles[variant]}`}
     >
       <ArrowDownTrayIcon className="h-4 w-4" />
       <span className="hidden sm:inline">{text ?? t('profile.export')}</span>
