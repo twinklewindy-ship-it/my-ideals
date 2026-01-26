@@ -2,7 +2,7 @@ import { type TemplateResourceBaseUrl } from './imageBaseUrl';
 
 export type TemplateCollectionItem = {
   id: string;
-  member: string;
+  member: string | string[];
   name: string;
   image?: string;
 };

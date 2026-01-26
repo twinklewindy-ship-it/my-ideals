@@ -96,6 +96,18 @@
           "image": "https://raw.githubusercontent.com/monaka-ikonoi/my-ideals/refs/heads/main/public/sample/sample-image.webp"
         }
       ]
+    },
+    {
+      "id": "2025-2s",
+      "name": "ツーショット2025",
+      "items": [
+        {
+          "id": "nanaka-moeko",
+          "member": ["noguchi-nanaka", "yamamoto-moeko"],
+          "name": "野口菜々風 x 山本萌子",
+          "image": "https://raw.githubusercontent.com/monaka-ikonoi/my-ideals/refs/heads/main/public/sample/sample-image.webp"
+        }
+      ]
     }
   ]
 }

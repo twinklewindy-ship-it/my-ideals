@@ -29,7 +29,11 @@ function useFilteredCollections(searchQuery: string, hideCompleted: boolean) {
       const items =
         selected.size === 0
           ? collection.items
-          : collection.items.filter(item => selected.has(item.member));
+          : collection.items.filter(item =>
+              typeof item.member === 'string'
+                ? selected.has(item.member)
+                : item.member.some(m => selected.has(m))
+            );
 
       if (items.length == 0) {
         return acc;
