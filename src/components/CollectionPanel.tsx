@@ -38,7 +38,7 @@ export const CollectionPanel = memo(function CollectionPanel({ collection }: Col
       {/* Grid of cards */}
       <div className="p-4">
         <div
-          className="mx-auto grid max-w-[360px] grid-cols-3 gap-2 lg:max-w-[960px] lg:grid-cols-6
+          className="mx-auto grid max-w-[480px] grid-cols-3 gap-2 lg:max-w-[960px] lg:grid-cols-6
             lg:gap-4"
         >
           {collection.items.map(item => (
