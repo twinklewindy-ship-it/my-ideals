@@ -22,7 +22,7 @@ const TemplateCollection = z.object({
 export const TemplateSchema = z.object({
   magic: z.literal('my-ideals-template'),
   version: z.literal(1),
-  revision: z.number(),
+  revision: z.int(),
   id: z.string(),
   name: z.string(),
   description: z.string().optional(),
