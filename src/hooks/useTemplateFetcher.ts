@@ -1,7 +1,8 @@
-import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { debounce } from 'lodash-es';
-import { z, ZodError } from 'zod';
-import { TemplateSchema, type Template } from '@/domain/template';
+import { z } from 'zod';
+import { type Template } from '@/domain/template';
+import { fetchTemplate, formatTemplateError } from '@/utils/fetchTemplate';
 
 export type TemplateFetchState =
   | { status: 'idle' }
@@ -13,80 +14,28 @@ export type TemplateFetchState =
 
 type TemplateFetcherOptions = {
   initialUrl?: string;
-  templateId?: string;
+  expectedId?: string;
   onSuccess?: (template: Template) => void;
 };
 
 export function useTemplateFetcher({
   initialUrl = '',
-  templateId,
+  expectedId,
   onSuccess = () => {},
 }: TemplateFetcherOptions) {
   const [url, setUrl] = useState(initialUrl);
   const [state, setState] = useState<TemplateFetchState>({ status: 'idle' });
-  const abortControllerRef = useRef<AbortController | null>(null);
 
   const onSuccessRef = useRef(onSuccess);
-  onSuccessRef.current = onSuccess;
-
-  useEffect(() => {
-    return () => {
-      abortControllerRef.current?.abort();
-    };
-  }, []);
-
-  const fetchTemplate = useCallback(
-    async (fetchUrl: string, signal: AbortSignal) => {
-      setState({ status: 'loading' });
-
-      try {
-        const response = await fetch(fetchUrl, { signal });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        const template = TemplateSchema.parse(data);
-
-        if (templateId && template.id !== templateId) {
-          setState({ status: 'id-mismatch', actualId: template.id });
-          return;
-        }
-
-        setState({ status: 'success', template });
-        onSuccessRef.current?.(template);
-      } catch (e) {
-        if (e instanceof Error && e.name === 'AbortError') return;
-
-        let message = 'Failed to fetch template';
-        if (e instanceof ZodError) {
-          message = `Invalid template:\n${e.issues.map(i => `${i.path.join('.')}: ${i.message}`).join('\n')}`;
-        } else if (e instanceof Error) {
-          message = e.message;
-        }
-
-        setState({ status: 'error', message });
-      }
-    },
-    [templateId]
-  );
-
-  const debouncedFetch = useMemo(
-    () =>
-      debounce((fetchUrl: string) => {
-        abortControllerRef.current?.abort();
-        const controller = new AbortController();
-        abortControllerRef.current = controller;
-        fetchTemplate(fetchUrl, controller.signal);
-      }, 500),
-    [fetchTemplate]
-  );
+  useLayoutEffect(() => {
+    onSuccessRef.current = onSuccess;
+  });
 
   useEffect(() => {
     const trimmed = url.trim();
 
     if (!trimmed) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState({ status: 'idle' });
       return;
     }
@@ -97,13 +46,40 @@ export function useTemplateFetcher({
       return;
     }
 
+    let abortController: AbortController | null = null;
+    const doFetch = async (url: string) => {
+      setState({ status: 'loading' });
+
+      abortController?.abort();
+      abortController = new AbortController();
+
+      try {
+        const result = await fetchTemplate(url, expectedId, abortController.signal);
+        if (!result.success) {
+          if (result.error.type === 'id-mismatch') {
+            setState({ status: 'id-mismatch', actualId: result.error.actualId });
+          } else {
+            setState({ status: 'error', message: formatTemplateError(result.error) });
+          }
+          return;
+        }
+
+        setState({ status: 'success', template: result.template });
+        onSuccessRef.current?.(result.template);
+      } catch (e) {
+        // Ignore AbortError
+        if (e instanceof Error && e.name === 'AbortError') return;
+        setState({ status: 'error', message: 'Unknown error' });
+      }
+    };
+    const debouncedFetch = debounce(doFetch, 500);
     debouncedFetch(trimmed);
 
     return () => {
       debouncedFetch.cancel();
-      abortControllerRef.current?.abort();
+      abortController?.abort();
     };
-  }, [url, debouncedFetch]);
+  }, [url, expectedId]);
 
   return {
     url,

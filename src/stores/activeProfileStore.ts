@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { debounce } from 'lodash-es';
 import { type Profile } from '@/domain/profile';
-import { TemplateSchema, type Template } from '@/domain/template';
+import { type Template } from '@/domain/template';
 import { ProfileStorage } from '@/storage/profileStorage';
 import { useProfileListStore } from './profileListStore';
 import { debugLog } from '@/utils/debug';
@@ -11,6 +11,7 @@ import {
   syncProfileWithTemplate,
   type ProfileTemplateDiff,
 } from '@/utils/syncProfile';
+import { fetchTemplate, formatTemplateError } from '@/utils/fetchTemplate';
 
 export type LoadError =
   | { type: 'template'; message: string }
@@ -85,34 +86,12 @@ export const useActiveProfileStore = create<activeProfileStore>()(
           return;
         }
 
-        let res: Response;
-        try {
-          res = await fetch(profile.template.link);
-        } catch (e) {
-          setError('template', `${e instanceof Error ? e.message : 'Network error'}`, profile);
+        const templateResult = await fetchTemplate(profile.template.link, profile.template.id);
+        if (!templateResult.success) {
+          setError('template', formatTemplateError(templateResult.error));
           return;
         }
-
-        if (!res.ok) {
-          setError('template', `HTTP ${res.status}: ${res.statusText}`, profile);
-          return;
-        }
-
-        const data = await res.json();
-        const result = TemplateSchema.safeParse(data);
-
-        if (!result.success) {
-          const errors = result.error.issues
-            .map(i => `${i.path.join('.')}: ${i.message}`)
-            .join('\n');
-          setError('template', `Invalid template:\n${errors}`, profile);
-          return;
-        }
-
-        const template = result.data;
-        if (template.id !== profile.template.id) {
-          return;
-        }
+        const template = templateResult.template;
 
         let changes: ProfileTemplateDiff | null = null;
         let pendingSync = false;

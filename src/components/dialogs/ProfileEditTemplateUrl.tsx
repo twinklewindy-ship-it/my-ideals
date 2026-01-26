@@ -20,7 +20,7 @@ export function ProfileEditTemplateUrlDialog({
   const { t } = useTranslation();
   const { url, setUrl, state } = useTemplateFetcher({
     initialUrl: currentUrl,
-    templateId,
+    expectedId: templateId,
   });
 
   const handleSave = () => {
