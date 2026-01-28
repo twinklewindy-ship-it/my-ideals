@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { XMarkIcon, UsersIcon, LinkIcon } from '@heroicons/react/24/outline';
 import { useProfileListStore } from '@/stores/profileListStore';
 import { useTemplateFetcher } from '@/hooks/useTemplateFetcher';
+import { ProfileFlags, type ProfileFlag } from '@/domain/profile';
 import { TemplateUrlInput } from '../TemplateUrlInput';
 
 type ProfileCreateDialogProps = {
@@ -14,6 +15,7 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
   const { t } = useTranslation();
 
   const [profileName, setProfileName] = useState('');
+  const [enableCount, setEnableCount] = useState(false);
 
   const createProfile = useProfileListStore(state => state.createProfile);
 
@@ -32,7 +34,10 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
     const name = profileName.trim();
     if (fetchState.status !== 'success' || !name || !template) return;
 
-    createProfile(name, { id: template.id, link: url.trim(), revision: template.revision });
+    const flags: ProfileFlag[] = [];
+    if (enableCount) flags.push(ProfileFlags.ENABLE_COUNT);
+
+    createProfile(name, { id: template.id, link: url.trim(), revision: template.revision }, flags);
     onClose();
   };
 
@@ -118,6 +123,17 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
                       focus:outline-none"
                   />
                 </div>
+                <label className="flex cursor-pointer items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={enableCount}
+                    onChange={e => setEnableCount(e.target.checked)}
+                    className="h-4 w-4 rounded border-gray-300 accent-blue-600 focus:ring-blue-500"
+                  />
+                  <span className="text-sm text-gray-700">
+                    {t('dialog.profile-create.enable-count')}
+                  </span>
+                </label>
               </>
             )}
           </div>

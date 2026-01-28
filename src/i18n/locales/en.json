@@ -59,7 +59,8 @@
     },
     "profile-create": {
       "title": "New Profile",
-      "profile-name": "Profile Name"
+      "profile-name": "Profile Name",
+      "enable-count": "Quantity mode"
     },
     "profile-import": {
       "title": "Import Profile",

@@ -59,7 +59,8 @@
     },
     "profile-create": {
       "title": "新規プロファイル作成",
-      "profile-name": "プロファイル名"
+      "profile-name": "プロファイル名",
+      "enable-count": "複数記録モード"
     },
     "profile-import": {
       "title": "プロファイルをインポート",

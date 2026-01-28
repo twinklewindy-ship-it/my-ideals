@@ -28,8 +28,8 @@ export const ProfileSchema = z
           ctx.issues.push({
             code: 'invalid_type',
             expected: valueType,
-            path: ['collections', collectionId, itemId],
             input: value,
+            path: ['collections', collectionId, itemId],
           });
         }
       }
