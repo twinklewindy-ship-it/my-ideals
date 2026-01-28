@@ -89,7 +89,7 @@ export const useActiveProfileStore = create<activeProfileStore>()(
 
         const templateResult = await fetchTemplate(profile.template.link, profile.template.id);
         if (!templateResult.success) {
-          setError('template', formatTemplateError(templateResult.error));
+          setError('template', formatTemplateError(templateResult.error), profile);
           return;
         }
         const template = templateResult.template;
