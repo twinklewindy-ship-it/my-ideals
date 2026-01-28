@@ -70,17 +70,14 @@ export function CollectionFilter({
           )}
         </div>
 
-        <label
-          className="flex cursor-pointer items-center gap-2 text-sm whitespace-nowrap text-gray-600
-            select-none"
-        >
+        <label className="flex cursor-pointer items-center gap-2 whitespace-nowrap select-none">
           <input
             type="checkbox"
             checked={hideCompleted}
             onChange={e => setHideCompleted(e.target.checked)}
             className="h-4 w-4 rounded border-gray-300 accent-blue-600 focus:ring-blue-500"
           />
-          {t('collection.hide-completed')}
+          <span className="text-sm text-gray-700">{t('collection.hide-completed')}</span>
         </label>
       </div>
     </div>
