@@ -1,4 +1,4 @@
-import { type Profile } from '@/domain/profile';
+import { ProfileFlags, profileHasFlag, type Profile } from '@/domain/profile';
 import { type Template } from '@/domain/template';
 import { debugLog } from './debug';
 
@@ -81,6 +81,10 @@ export function diffProfileWithTemplate(profile: Profile, template: Template): C
     }
   }
 
+  debugLog.sync.log(
+    `Template rev ${profile.template.revision} -> ${template.revision}, Added ${addedMap.size}, Removed ${removedMap.size}`
+  );
+
   return {
     added: Array.from(addedMap.values()),
     removed: Array.from(removedMap.values()),
@@ -95,6 +99,9 @@ export function syncProfileWithTemplate(
   debugLog.sync.log(
     `Sync template ${template.id} from ${profile.template.revision} to ${template.revision}`
   );
+
+  const enableCount = profileHasFlag(profile, ProfileFlags.ENABLE_COUNT);
+  debugLog.sync.log(`${template.id}: enableCount: ${enableCount}`);
 
   if (template.revision < profile.template.revision) {
     console.warn(
@@ -111,7 +118,7 @@ export function syncProfileWithTemplate(
       collections[tc.id] = {};
 
       for (const item of tc.items) {
-        collections[tc.id][item.id] = existing[item.id] ?? false;
+        collections[tc.id][item.id] = existing[item.id] ?? (enableCount ? 0 : false);
       }
     }
   } else {
@@ -123,7 +130,7 @@ export function syncProfileWithTemplate(
       }
       for (const item of tc.items) {
         if (!(item.id in collections[tc.id])) {
-          collections[tc.id][item.id] = false;
+          collections[tc.id][item.id] = enableCount ? 0 : false;
         }
       }
     }

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { debounce } from 'lodash-es';
-import { type Profile } from '@/domain/profile';
+import { ProfileFlags, profileHasFlag, type Profile } from '@/domain/profile';
 import { type Template } from '@/domain/template';
 import { ProfileStorage } from '@/storage/profileStorage';
 import { useProfileListStore } from './profileListStore';
@@ -32,6 +32,7 @@ type activeProfileStore = {
   flush: () => void;
   confirmSyncChanges: (cleanup: boolean) => void;
   toggleStatus: (collectionId: string, itemId: string) => void;
+  setCount: (collectionId: string, itemId: string, value: number) => void;
   toggleMember: (member: string) => void;
   updateName: (name: string) => void;
   updateTemplateUrl: (url: string) => void;
@@ -158,12 +159,31 @@ export const useActiveProfileStore = create<activeProfileStore>()(
         set(state => {
           if (!state.profile) return;
 
+          if (profileHasFlag(state.profile, ProfileFlags.ENABLE_COUNT)) return;
+
           if (!state.profile.collections[collectionId]) {
             state.profile.collections[collectionId] = {};
           }
 
           const current = state.profile.collections[collectionId][itemId] ?? false;
           state.profile.collections[collectionId][itemId] = !current;
+        });
+
+        debouncedSave();
+      },
+
+      setCount: (collectionId: string, itemId: string, value: number) => {
+        set(state => {
+          if (!Number.isInteger(value) || value < 0) return;
+
+          if (!state.profile) return;
+
+          if (!profileHasFlag(state.profile, ProfileFlags.ENABLE_COUNT)) return;
+
+          if (!state.profile.collections[collectionId]) {
+            state.profile.collections[collectionId] = {};
+          }
+          state.profile.collections[collectionId][itemId] = value;
         });
 
         debouncedSave();

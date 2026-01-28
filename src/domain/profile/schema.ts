@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ProfileFlags } from './flags';
 
 const ProfileTemplateInfoSchema = z.object({
   link: z.string(),
@@ -12,6 +13,7 @@ export const ProfileSchema = z.object({
   id: z.nanoid(),
   name: z.string(),
   template: ProfileTemplateInfoSchema,
+  flags: z.array(z.enum(Object.values(ProfileFlags))).optional(),
   selectedMembers: z.array(z.string()).default([]),
-  collections: z.record(z.string(), z.record(z.string(), z.boolean())),
+  collections: z.record(z.string(), z.record(z.string(), z.union([z.boolean(), z.number().int()]))),
 });

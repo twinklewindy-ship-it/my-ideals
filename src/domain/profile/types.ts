@@ -1,3 +1,5 @@
+import { type ProfileFlag } from './flags';
+
 export type ProfileTemplateInfo = {
   id: string;
   link: string;
@@ -10,6 +12,7 @@ export type Profile = {
   id: string;
   name: string;
   template: ProfileTemplateInfo;
+  flags?: ProfileFlag[];
   selectedMembers: string[];
-  collections: Record<string, Record<string, boolean>>;
+  collections: Record<string, Record<string, boolean | number>>;
 };

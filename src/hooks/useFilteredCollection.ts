@@ -1,6 +1,7 @@
 import { useMemo, useState, useDeferredValue } from 'react';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { debugLog } from '@/utils/debug';
+import { normalizeStatus } from '@/utils/utils';
 
 function useFilteredCollections(searchQuery: string, hideCompleted: boolean) {
   const collections = useActiveProfileStore(state => state.template?.collections);
@@ -41,7 +42,7 @@ function useFilteredCollections(searchQuery: string, hideCompleted: boolean) {
 
       if (hideCompleted && cachedStatus) {
         const status = cachedStatus[collection.id] ?? {};
-        if (items.every(item => status[item.id] === true)) {
+        if (items.every(item => normalizeStatus(status[item.id]) === true)) {
           return acc;
         }
       }
