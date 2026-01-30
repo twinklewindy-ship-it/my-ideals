@@ -2,9 +2,9 @@ import { useState, memo } from 'react';
 import { urlFromBaseUrl, type TemplateCollectionItem } from '@/domain/template';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { debugLog } from '@/utils/debug';
-import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { ProfileFlags, profileHasFlag } from '@/domain/profile';
 import { normalizeStatus } from '@/utils/utils';
+import { ItemCounter } from './ItemCounter';
 
 type ImageCheckCardProps = {
   collectionId: string;
@@ -88,40 +88,7 @@ export const ImageCheckCard = memo(function ImageCheckCard({
 
       {/* Counter */}
       {enableCount && typeof status === 'number' && (
-        <div className="flex items-center justify-between bg-gray-100 px-1 py-1 sm:px-1.5">
-          <button
-            type="button"
-            className="flex h-6 w-6 items-center justify-center rounded text-gray-500 transition
-              hover:bg-gray-200 active:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-30
-              sm:h-7 sm:w-7"
-            onClick={e => {
-              e.stopPropagation();
-              setCount(collectionId, item.id, status - 1);
-            }}
-            disabled={status === 0}
-          >
-            <MinusIcon className="h-4 w-4" />
-          </button>
-
-          <span
-            className="min-w-[2rem] text-center text-sm font-semibold text-gray-700 tabular-nums
-              sm:text-base"
-          >
-            {status}
-          </span>
-
-          <button
-            type="button"
-            className="flex h-6 w-6 items-center justify-center rounded text-gray-500 transition
-              hover:bg-gray-200 active:bg-gray-300 sm:h-7 sm:w-7"
-            onClick={e => {
-              e.stopPropagation();
-              setCount(collectionId, item.id, status + 1);
-            }}
-          >
-            <PlusIcon className="h-4 w-4" />
-          </button>
-        </div>
+        <ItemCounter value={status} setValue={val => setCount(collectionId, item.id, val)} />
       )}
     </div>
   );
