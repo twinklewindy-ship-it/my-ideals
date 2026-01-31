@@ -39,7 +39,7 @@ export const ImageCheckCard = memo(function ImageCheckCard({
 
   const formatAspectRatio = (a: [number, number] | undefined): string => {
     if (!a) return item.rotated ? '10/7' : '7/10';
-    return item.rotated ? `${a[0]}/${a[1]}` : `${a[1]}/${a[0]}`;
+    return item.rotated ? `${a[1]}/${a[0]}` : `${a[0]}/${a[1]}`;
   };
 
   return (
