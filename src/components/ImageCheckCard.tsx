@@ -9,11 +9,13 @@ import { ItemCounter } from './ItemCounter';
 type ImageCheckCardProps = {
   collectionId: string;
   item: TemplateCollectionItem;
+  aspectRatio?: [number, number];
 };
 
 export const ImageCheckCard = memo(function ImageCheckCard({
   collectionId,
   item,
+  aspectRatio,
 }: ImageCheckCardProps) {
   debugLog.render.log(`ImageCheckCard render: ${collectionId} ${item.id}`);
 
@@ -35,20 +37,32 @@ export const ImageCheckCard = memo(function ImageCheckCard({
   );
   const [showAlt, setShowAlt] = useState(false);
 
+  const formatAspectRatio = (a: [number, number] | undefined): string => {
+    if (!a) return item.rotated ? '10/7' : '7/10';
+    return item.rotated ? `${a[0]}/${a[1]}` : `${a[1]}/${a[0]}`;
+  };
+
   return (
     <div
-      className={`flex w-full flex-col overflow-hidden rounded-md
-        ${!enableCount ? 'cursor-pointer' : ''}`}
+      className={`flex h-full w-full flex-col overflow-hidden rounded-md
+        ${!enableCount ? 'cursor-pointer' : ''} ${item.rotated ? 'col-span-2' : ''}`}
       onClick={() => {
         if (!enableCount) toggleStatus(collectionId, item.id);
       }}
     >
       {/* Image */}
-      <div className="relative">
+      <div
+        className="relative flex-1"
+        style={
+          {
+            aspectRatio: formatAspectRatio(aspectRatio),
+          } as React.CSSProperties
+        }
+      >
         {showAlt ? (
           <div
-            className={`flex aspect-[7/10] w-full items-center justify-center bg-gray-200 p-2
-              text-center text-sm whitespace-pre-line text-gray-600 transition ${
+            className={`flex h-full w-full items-center justify-center bg-gray-200 p-2 text-center
+              text-sm whitespace-pre-line text-gray-600 transition ${
                 !normalizeStatus(status) && 'opacity-50'
               }`}
           >
@@ -63,7 +77,7 @@ export const ImageCheckCard = memo(function ImageCheckCard({
             onError={() =>
               fallbackSrc && imgSrc !== fallbackSrc ? setImgSrc(fallbackSrc) : setShowAlt(true)
             }
-            className={`aspect-[7/10] w-full object-cover transition
+            className={`h-full w-full object-cover transition
               ${!normalizeStatus(status) && 'opacity-50'}`}
           />
         )}

@@ -14,6 +14,8 @@ export const CollectionPanel = memo(function CollectionPanel({ collection }: Col
 
   const { t } = useTranslation();
 
+  const layout = collection.layout ?? useActiveProfileStore.getState().template?.layout;
+
   const statusMap = useActiveProfileStore(state => state.profile?.collections[collection.id]);
   const stats = useMemo(() => {
     let checked = 0;
@@ -38,14 +40,23 @@ export const CollectionPanel = memo(function CollectionPanel({ collection }: Col
       {/* Grid of cards */}
       <div className="p-4">
         <div
-          className="mx-auto grid max-w-[480px] grid-cols-3 gap-2 lg:max-w-[960px] lg:grid-cols-6
-            lg:gap-4"
+          className="mx-auto grid max-w-[480px] grid-cols-[repeat(var(--cols),minmax(0,1fr))]
+            gap-[var(--gap)] [--cols:var(--cols-sm)] [--gap:calc(6*var(--spacing)/var(--cols))]
+            lg:max-w-[960px] lg:[--cols:var(--cols-lg)]
+            lg:[--gap:calc(24*var(--spacing)/var(--cols))]"
+          style={
+            {
+              '--cols-sm': layout?.columns?.[0] ?? 3,
+              '--cols-lg': layout?.columns?.[1] ?? 6,
+            } as React.CSSProperties
+          }
         >
           {collection.items.map(item => (
             <ImageCheckCard
               key={`${collection.id}-${item.id}`}
               collectionId={collection.id}
               item={item}
+              aspectRatio={layout?.aspectRatio}
             />
           ))}
         </div>
