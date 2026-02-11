@@ -14,12 +14,12 @@ type ProfileCreateDialogProps = {
 // --- 新增：定义预设模板 ---
 const PRESETS = [
   {
-    name: '🌸 樱坂46 - 藤吉夏铃',
+    name: '樱坂46 - 藤吉夏铃',
     url: '/presets/sakurazaka46-karin.json',
     desc: '樱坂46生写整理'
   },
   {
-    name: '🌳 欅坂46 - 藤吉夏铃',
+    name: '欅坂46 - 藤吉夏铃',
     url: '/presets/keyakizaka46-karin.json',
     desc: '欅坂46生写整理'
   }
