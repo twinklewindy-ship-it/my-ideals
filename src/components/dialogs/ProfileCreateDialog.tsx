@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { XMarkIcon, UsersIcon, LinkIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, UsersIcon, LinkIcon } from '@heroicons/react/24/outline';
 import { useProfileListStore } from '@/stores/profileListStore';
 import { useTemplateFetcher } from '@/hooks/useTemplateFetcher';
 import { ProfileFlags, type ProfileFlag } from '@/domain/profile';
@@ -11,17 +11,17 @@ type ProfileCreateDialogProps = {
   onClose: () => void;
 };
 
-// --- 新增：定义预设模板 ---
+// 定义预设模板
 const PRESETS = [
   {
-    name: '樱坂46 - 藤吉夏铃',
+    name: '🌸 樱坂46 - 藤吉夏铃',
     url: '/presets/sakurazaka46-karin.json',
-    desc: '樱坂46生写整理'
+    desc: '全单系列生写整理'
   },
   {
-    name: '欅坂46 - 藤吉夏铃',
+    name: '🌳 欅坂46 - 藤吉夏铃',
     url: '/presets/keyakizaka46-karin.json',
-    desc: '欅坂46生写整理'
+    desc: '早期生写整理'
   }
 ];
 
@@ -51,9 +51,15 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
     const flags: ProfileFlag[] = [];
     if (enableCount) flags.push(ProfileFlags.ENABLE_COUNT);
 
-    // 如果是本地预设，url使用绝对路径，如果是外部链接保持原样
     createProfile(name, { id: template.id, link: url.trim(), revision: template.revision }, flags);
     onClose();
+  };
+
+  // ⚠️ 修改点2：处理点击预设的逻辑，自动补全为绝对路径，防止报错
+  const handlePresetClick = (relativeUrl: string) => {
+    // 获取当前网站的域名，拼凑成 http://... 这样的绝对路径
+    const fullUrl = window.location.origin + relativeUrl;
+    setUrl(fullUrl);
   };
 
   const canCreate = fetchState.status === 'success' && profileName.trim();
@@ -79,22 +85,24 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
           {/* Content */}
           <div className="space-y-4 px-4 py-4">
             
-            {/* --- G老师新增：预设按钮区域 --- */}
+            {/* 预设按钮区域 */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">快速选择模板</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {PRESETS.map((preset) => (
                   <button
                     key={preset.url}
-                    onClick={() => setUrl(preset.url)}
+                    // ⚠️ 这里调用新的处理函数
+                    onClick={() => handlePresetClick(preset.url)}
                     className={`flex items-start gap-3 rounded-lg border p-3 text-left transition-all hover:bg-blue-50 hover:border-blue-300
-                      ${url === preset.url 
+                      ${url.endsWith(preset.url) 
                         ? 'border-blue-500 bg-blue-50 ring-1 ring-blue-500' 
                         : 'border-gray-200 bg-white'
                       }`}
                   >
                     <div className="mt-0.5 text-blue-500">
-                      <DocumentTextIcon className="h-5 w-5" />
+                      {/* 换回 LinkIcon 保证不报错 */}
+                      <LinkIcon className="h-5 w-5" />
                     </div>
                     <div>
                       <div className="text-sm font-medium text-gray-900">{preset.name}</div>
@@ -111,7 +119,7 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
               <div className="grow border-t border-gray-200"></div>
             </div>
 
-            {/* 原有的 URL 输入框 */}
+            {/* URL 输入框 */}
             <TemplateUrlInput url={url} onUrlChange={setUrl} state={fetchState} />
 
             {/* Fetch Error */}
@@ -121,7 +129,7 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
               </div>
             )}
 
-            {/* Success: Template Info + Name */}
+            {/* Success */}
             {fetchState.status === 'success' && template && (
               <>
                 <div className="space-y-4 rounded-lg bg-gray-50 p-4">
