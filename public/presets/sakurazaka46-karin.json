@@ -1,7 +1,7 @@
 {
   "magic": "my-ideals-template",
   "version": 1,
-  "revision": 2,
+  "revision": 1,
   "id": "saku-karin",
   "name": "櫻坂46 - 藤吉夏鈴",
   "description": "藤吉夏鈴 樱坂46PART全生写收集",
@@ -230,7 +230,17 @@
       ]
     },
     {
-      "id": "saku-022",
+      "id": "saku-023",
+      "name": "3rd SingleバクラビジュアルMV衣装",
+      "items": [
+        { "id": "saku-023-fujiyoshi-karin-yori", "member": "fujiyoshi-karin", "name": "藤吉夏鈴 ヨリ" },
+        { "id": "saku-023-fujiyoshi-karin-chuu", "member": "fujiyoshi-karin", "name": "藤吉夏鈴 チュウ" },
+        { "id": "saku-023-fujiyoshi-karin-suwari", "member": "fujiyoshi-karin", "name": "藤吉夏鈴 座り" },
+        { "id": "saku-023-fujiyoshi-karin-hiki", "member": "fujiyoshi-karin", "name": "藤吉夏鈴 ヒキ" }
+      ]
+    },
+    {
+      "id": "saku-023",
       "name": "「流れ弾」MV黒衣装",
       "items": [
         { "id": "saku-022-fujiyoshi-karin-yori", "member": "fujiyoshi-karin", "name": "藤吉夏鈴 ヨリ" },
