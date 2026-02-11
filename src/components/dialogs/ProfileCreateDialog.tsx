@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
-import { XMarkIcon, UsersIcon, LinkIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, UsersIcon, LinkIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
 import { useProfileListStore } from '@/stores/profileListStore';
 import { useTemplateFetcher } from '@/hooks/useTemplateFetcher';
 import { ProfileFlags, type ProfileFlag } from '@/domain/profile';
@@ -10,6 +10,20 @@ import { TemplateUrlInput } from '../TemplateUrlInput';
 type ProfileCreateDialogProps = {
   onClose: () => void;
 };
+
+// --- G老师新增：定义预设模板 ---
+const PRESETS = [
+  {
+    name: '🌸 樱坂46 - 藤吉夏铃',
+    url: '/presets/sakurazaka46-karin.json',
+    desc: '全单系列生写整理'
+  },
+  {
+    name: '🌳 欅坂46 - 藤吉夏铃',
+    url: '/presets/keyakizaka46-karin.json',
+    desc: '早期生写整理'
+  }
+];
 
 export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
   const { t } = useTranslation();
@@ -37,6 +51,7 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
     const flags: ProfileFlag[] = [];
     if (enableCount) flags.push(ProfileFlags.ENABLE_COUNT);
 
+    // 如果是本地预设，url使用绝对路径，如果是外部链接保持原样
     createProfile(name, { id: template.id, link: url.trim(), revision: template.revision }, flags);
     onClose();
   };
@@ -63,7 +78,41 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
 
           {/* Content */}
           <div className="space-y-4 px-4 py-4">
-            <TemplateUrlInput url={url} onUrlChange={setUrl} state={fetchState} autoFocus />
+            
+            {/* --- G老师新增：预设按钮区域 --- */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">快速选择模板</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {PRESETS.map((preset) => (
+                  <button
+                    key={preset.url}
+                    onClick={() => setUrl(preset.url)}
+                    className={`flex items-start gap-3 rounded-lg border p-3 text-left transition-all hover:bg-blue-50 hover:border-blue-300
+                      ${url === preset.url 
+                        ? 'border-blue-500 bg-blue-50 ring-1 ring-blue-500' 
+                        : 'border-gray-200 bg-white'
+                      }`}
+                  >
+                    <div className="mt-0.5 text-blue-500">
+                      <DocumentTextIcon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-gray-900">{preset.name}</div>
+                      <div className="text-xs text-gray-500">{preset.desc}</div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative flex items-center py-1">
+              <div className="grow border-t border-gray-200"></div>
+              <span className="shrink-0 px-2 text-xs text-gray-400">或者输入自定义链接</span>
+              <div className="grow border-t border-gray-200"></div>
+            </div>
+
+            {/* 原有的 URL 输入框 */}
+            <TemplateUrlInput url={url} onUrlChange={setUrl} state={fetchState} />
 
             {/* Fetch Error */}
             {fetchState.status === 'error' && (
@@ -92,19 +141,6 @@ export function ProfileCreateDialog({ onClose }: ProfileCreateDialogProps) {
                       <div className="mt-1 flex items-center gap-1 text-xs text-gray-400">
                         <UsersIcon className="h-4 w-4" />
                         {template.author}
-                      </div>
-                    )}
-                    {template.link && (
-                      <div className="mt-1 flex items-center gap-1 text-xs text-gray-400">
-                        <LinkIcon className="h-4 w-4" />
-                        <a
-                          href={template.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="truncate underline hover:text-gray-600"
-                        >
-                          {template.link}
-                        </a>
                       </div>
                     )}
                   </div>
