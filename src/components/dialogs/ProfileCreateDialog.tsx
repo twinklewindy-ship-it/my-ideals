@@ -11,17 +11,17 @@ type ProfileCreateDialogProps = {
   onClose: () => void;
 };
 
-// --- G老师新增：定义预设模板 ---
+// --- 新增：定义预设模板 ---
 const PRESETS = [
   {
     name: '🌸 樱坂46 - 藤吉夏铃',
     url: '/presets/sakurazaka46-karin.json',
-    desc: '全单系列生写整理'
+    desc: '樱坂46生写整理'
   },
   {
     name: '🌳 欅坂46 - 藤吉夏铃',
     url: '/presets/keyakizaka46-karin.json',
-    desc: '早期生写整理'
+    desc: '欅坂46生写整理'
   }
 ];
 
