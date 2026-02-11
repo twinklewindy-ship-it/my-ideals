@@ -59,12 +59,13 @@ export const useActiveProfileStore = create<activeProfileStore>()(
       load: async (profileId: string) => {
         debouncedSave.flush();
 
+        // 1. 先重置状态，但如果我们要利用缓存，可以先不完全清空，或者立刻填充
         set(state => {
           state.profile = null;
           state.template = null;
           state.changes = null;
           state.pendingSync = false;
-          state.isLoading = true;
+          state.isLoading = true; // 先设为加载中
           state.error = null;
         });
 
@@ -87,15 +88,43 @@ export const useActiveProfileStore = create<activeProfileStore>()(
           return;
         }
 
+        // --- 优化：优先读取本地缓存 ---
+        const cachedTemplate = ProfileStorage.getTemplate(profile.template.id);
+        if (cachedTemplate) {
+          debugLog.store.log(`Loaded cached template ${cachedTemplate.id}`);
+          // 如果有缓存，立刻显示出来！不用等网络！
+          set(state => {
+            state.profile = profile;
+            state.template = cachedTemplate;
+            state.isLoading = false; // 结束加载状态，用户立刻看到内容
+          });
+        }
+
+        // 2. 后台静默加载：去网络拉取最新版
         const templateResult = await fetchTemplate(profile.template.link, profile.template.id);
+        
         if (!templateResult.success) {
+          // 如果网络失败了
+          if (cachedTemplate) {
+            // 如果既然有缓存，那就用缓存顶着，只记录日志，不报错给用户
+            console.warn('Network failed, using cached template:', templateResult.error);
+            return; 
+          }
+          // 没缓存又没网络，那只能报错了
           setError('template', formatTemplateError(templateResult.error), profile);
           return;
         }
-        const template = templateResult.template;
 
+        const template = templateResult.template;
+        
+        // --- 优化：保存到本地缓存 ---
+        ProfileStorage.setTemplate(template);
+
+        // 3. 检查更新逻辑（和之前一样）
         let changes: ProfileTemplateDiff | null = null;
         let pendingSync = false;
+        
+        // 注意：这里我们对比的是“网络上的最新版”和“你档案里记录的版本”
         if (profile.template.revision !== template.revision) {
           if (profile.template.revision !== 0) {
             changes = diffProfileWithTemplate(profile, template);
@@ -107,9 +136,10 @@ export const useActiveProfileStore = create<activeProfileStore>()(
           }
         }
 
+        // 4. 用最新数据更新界面
         set(state => {
           state.profile = profile;
-          state.template = template;
+          state.template = template; // 替换为最新的
           state.changes = changes;
           state.pendingSync = pendingSync;
           state.isLoading = false;
