@@ -1,7 +1,7 @@
 {
   "magic": "my-ideals-template",
   "version": 1,
-  "revision": 3,
+  "revision": 4,
   "id": "saku-karin",
   "name": "櫻坂46 - 藤吉夏鈴",
   "description": "藤吉夏鈴 樱坂46PART全生写收集",
@@ -1337,7 +1337,7 @@
     },
     {
       "id": "saku-052",
-      "name": "「桜月」MV青衣装",
+      "name": "「桜月」MV衣装",
       "items": [
         {
           "id": "saku-052-fujiyoshi-karin-yori",
