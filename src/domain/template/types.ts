@@ -16,6 +16,7 @@ export type TemplateCollectionItem = {
 export type TemplateCollection = {
   id: string;
   name: string;
+  category?: string; // 确保这里有 category
   layout?: TemplateLayout;
   items: TemplateCollectionItem[];
 };
@@ -34,7 +35,9 @@ export type Template = {
   description?: string;
   author?: string;
   link?: string;
-  imageResourceType: 'inline' | 'baseUrl';
+  categories?: string[];
+  // 修正：统一为 itemUrl 和 baseUrl
+  imageResourceType: 'itemUrl' | 'baseUrl'; 
   imageBaseUrl?: TemplateResourceBaseUrl;
   layout?: TemplateLayout;
   members: TemplateMember[];

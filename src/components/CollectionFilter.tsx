@@ -7,6 +7,9 @@ type CollectionFilterProps = {
   setSearchQuery: (query: string) => void;
   hideCompleted: boolean;
   setHideCompleted: (enabled: boolean) => void;
+  // --- 分类筛选 ---
+  selectedCategory: string | null;
+  setSelectedCategory: (category: string | null) => void;
 };
 
 export function CollectionFilter({
@@ -14,6 +17,8 @@ export function CollectionFilter({
   setSearchQuery,
   hideCompleted,
   setHideCompleted,
+  selectedCategory,
+  setSelectedCategory,
 }: CollectionFilterProps) {
   const { t } = useTranslation();
 
@@ -21,8 +26,12 @@ export function CollectionFilter({
   const selectedMembers = useActiveProfileStore(state => state.profile!.selectedMembers);
   const toggleMember = useActiveProfileStore(state => state.toggleMember);
 
+  // --- 获取模板中的分类定义 ---
+  const categories = useActiveProfileStore(state => state.template?.categories);
+
   return (
     <div className="space-y-3">
+      {/* 成员筛选区域 (如果成员多于1个才显示) */}
       {members.length > 1 && (
         <>
           <div className="flex flex-wrap gap-2">
@@ -40,11 +49,30 @@ export function CollectionFilter({
               </button>
             ))}
           </div>
-
           <div className="border-t border-gray-200" />
         </>
       )}
 
+      {/* --- 分类标签栏 --- */}
+      {categories && categories.length > 0 && (
+        <div className="flex flex-wrap gap-2 pb-1">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(selectedCategory === cat ? null : cat)}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors border
+                ${selectedCategory === cat
+                  ? 'bg-gray-800 text-white border-gray-800' // 选中态：黑底白字
+                  : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300 hover:bg-gray-50' // 未选中态
+                }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* 搜索框与复选框区域 */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
         <div className="relative flex-1">
           <MagnifyingGlassIcon

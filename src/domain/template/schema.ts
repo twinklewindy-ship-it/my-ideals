@@ -22,6 +22,7 @@ const TemplateCollectionItem = z.object({
 const TemplateCollection = z.object({
   id: z.string(),
   name: z.string(),
+  category: z.string().optional(),
   layout: TemplateLayoutSchema.optional(),
   items: z.array(TemplateCollectionItem),
 });
@@ -29,13 +30,17 @@ const TemplateCollection = z.object({
 export const TemplateSchema = z.object({
   magic: z.literal('my-ideals-template'),
   version: z.literal(1),
-  revision: z.int(),
+  revision: z.number(),
   id: z.string(),
   name: z.string(),
   description: z.string().optional(),
   author: z.string().optional(),
-  link: z.url().optional(),
-  imageResourceType: z.enum(['inline', 'baseUrl']),
+  
+  // 允许空字符串或相对路径
+  link: z.string().optional(), 
+  
+  categories: z.array(z.string()).optional(),
+  imageResourceType: z.enum(['itemUrl', 'baseUrl']), 
   imageBaseUrl: TemplateResourceBaseUrlSchema.optional(),
   layout: TemplateLayoutSchema.optional(),
   members: z.array(TemplateMember),
