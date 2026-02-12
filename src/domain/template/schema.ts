@@ -19,9 +19,11 @@ const TemplateCollectionItem = z.object({
   rotated: z.boolean().optional(),
 });
 
+// --- 给合集添加 category 字段 ---
 const TemplateCollection = z.object({
   id: z.string(),
   name: z.string(),
+  category: z.string().optional(), // 新增
   layout: TemplateLayoutSchema.optional(),
   items: z.array(TemplateCollectionItem),
 });
@@ -29,12 +31,16 @@ const TemplateCollection = z.object({
 export const TemplateSchema = z.object({
   magic: z.literal('my-ideals-template'),
   version: z.literal(1),
-  revision: z.int(),
+  revision: z.number(),
   id: z.string(),
   name: z.string(),
   description: z.string().optional(),
   author: z.string().optional(),
-  link: z.url().optional(),
+  link: z.string().url().optional(), 
+  
+  // --- 给模板添加 categories 列表 ---
+  categories: z.array(z.string()).optional(), // 新增
+
   imageResourceType: z.enum(['inline', 'baseUrl']),
   imageBaseUrl: TemplateResourceBaseUrlSchema.optional(),
   layout: TemplateLayoutSchema.optional(),
