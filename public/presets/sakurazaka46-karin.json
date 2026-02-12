@@ -1,7 +1,7 @@
 {
   "magic": "my-ideals-template",
   "version": 1,
-  "revision": 5,
+  "revision": 6,
   "categories": [
     "单曲·专辑",
     "巡演·周年",
@@ -2234,7 +2234,7 @@
     },
     {
       "id": "saku-083",
-      "name": "「3rd YEAR ANNERVISRY LIVE」ライブ衣装★",
+      "name": "「3rd YEAR ANNIVERSARY LIVE」ライブ衣装★",
       "category": "巡演·周年",
       "items": [
         {
@@ -2747,7 +2747,7 @@
     },
     {
       "id": "saku-102",
-      "name": "「3rd YEAR ANNERVISRY LIVE」ライブ衣装",
+      "name": "「3rd YEAR ANNIVERSARY LIVE」ライブ衣装",
       "category": "巡演·周年",
       "items": [
         {
@@ -3179,7 +3179,7 @@
     },
     {
       "id": "saku-118",
-      "name": "「4th  YEAR ANNERVISRY LIVE」ライブ衣装★",
+      "name": "「4th  YEAR ANNIVERSARY LIVE」ライブ衣装★",
       "category": "巡演·周年",
       "items": [
         {
