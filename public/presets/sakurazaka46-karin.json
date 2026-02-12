@@ -2,6 +2,15 @@
   "magic": "my-ideals-template",
   "version": 1,
   "revision": 4,
+  "categories": [
+    "单曲·专辑",
+    "巡演·周年",
+    "其他演出",
+    "日式服装",
+    "圣诞·万圣节",
+    "私服主题衣装",
+    "其他主题衣装"
+  ],
   "id": "saku-karin",
   "name": "櫻坂46 - 藤吉夏鈴",
   "description": "藤吉夏鈴 樱坂46PART全生写收集",
@@ -22,6 +31,7 @@
     {
       "id": "saku-001",
       "name": "Nobody's fault封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-001-fujiyoshi-karin-yori",
@@ -48,6 +58,7 @@
     {
       "id": "saku-002",
       "name": "Nobody's fault衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-002-fujiyoshi-karin-yori",
@@ -74,6 +85,7 @@
     {
       "id": "saku-003",
       "name": "クリスマスサンタ衣装",
+      "category": "圣诞·万圣节",
       "items": [
         {
           "id": "saku-003-fujiyoshi-karin-yori",
@@ -100,6 +112,7 @@
     {
       "id": "saku-004",
       "name": "冬私服コーディネート衣装",
+      "category": "私服主题衣装",
       "items": [
         {
           "id": "saku-004-fujiyoshi-karin-yori",
@@ -126,6 +139,7 @@
     {
       "id": "saku-005",
       "name": "2021年振袖衣装",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-005-fujiyoshi-karin-yori",
@@ -152,6 +166,7 @@
     {
       "id": "saku-006",
       "name": "「Nobody's fault」MVロケーション制服衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-006-fujiyoshi-karin-yori",
@@ -178,6 +193,7 @@
     {
       "id": "saku-007",
       "name": "「なぜ　恋をして来なかったんだろう」MVロケーション衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-007-fujiyoshi-karin-yori",
@@ -204,6 +220,7 @@
     {
       "id": "saku-008",
       "name": "「Buddies」MVロケーション衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-008-fujiyoshi-karin-yori",
@@ -230,6 +247,7 @@
     {
       "id": "saku-009",
       "name": "「Nobody's fault」カップリング曲TVパフォーマンス衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-009-fujiyoshi-karin-yori",
@@ -256,6 +274,7 @@
     {
       "id": "saku-010",
       "name": "2020年歌番組衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-010-fujiyoshi-karin-yori",
@@ -282,6 +301,7 @@
     {
       "id": "saku-011",
       "name": "BAN封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-011-fujiyoshi-karin-yori",
@@ -308,6 +328,7 @@
     {
       "id": "saku-012",
       "name": "「BAN」MVロケーション衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-012-fujiyoshi-karin-yori",
@@ -334,6 +355,7 @@
     {
       "id": "saku-013",
       "name": "「偶然の答え」MVロケーション衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-013-fujiyoshi-karin-yori",
@@ -360,6 +382,7 @@
     {
       "id": "saku-014",
       "name": "「思ったよりも寂しくない」MVロケーション衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-014-fujiyoshi-karin-yori",
@@ -386,6 +409,7 @@
     {
       "id": "saku-015",
       "name": "「BAN」歌番組衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-015-fujiyoshi-karin-yori",
@@ -412,6 +436,7 @@
     {
       "id": "saku-016",
       "name": "2021年浴衣衣装",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-016-fujiyoshi-karin-yori",
@@ -438,6 +463,7 @@
     {
       "id": "saku-017",
       "name": "2021年夏私服コーディネート衣装",
+      "category": "私服主题衣装",
       "items": [
         {
           "id": "saku-017-fujiyoshi-karin-yori",
@@ -464,6 +490,7 @@
     {
       "id": "saku-018",
       "name": "流れ弾封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-018-fujiyoshi-karin-yori",
@@ -490,6 +517,7 @@
     {
       "id": "saku-019",
       "name": "「流れ弾」MVロケーション衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-019-fujiyoshi-karin-yori",
@@ -516,6 +544,7 @@
     {
       "id": "saku-020",
       "name": "2021年クリスマスサンタ衣装",
+      "category": "圣诞·万圣节",
       "items": [
         {
           "id": "saku-020-fujiyoshi-karin-yori",
@@ -542,6 +571,7 @@
     {
       "id": "saku-021",
       "name": "「1st TOUR 2021」ライブオープニング衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-021-fujiyoshi-karin-yori",
@@ -568,6 +598,7 @@
     {
       "id": "saku-022",
       "name": "「流れ弾」MV黒衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-022-fujiyoshi-karin-yori",
@@ -594,6 +625,7 @@
     {
       "id": "saku-023",
       "name": "3rd Single 「BACKS LIVE！！」ビジュアルMV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-023-fujiyoshi-karin-yori",
@@ -620,6 +652,7 @@
     {
       "id": "saku-024",
       "name": "2022年振袖衣装",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-024-fujiyoshi-karin-yori",
@@ -646,6 +679,7 @@
     {
       "id": "saku-025",
       "name": "「流れ弾」ジャケット写真衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-025-fujiyoshi-karin-yori",
@@ -672,6 +706,7 @@
     {
       "id": "saku-026",
       "name": "五月雨よ封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-026-fujiyoshi-karin-yori",
@@ -698,6 +733,7 @@
     {
       "id": "saku-027",
       "name": "「五月雨よ」MVロケーション衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-027-fujiyoshi-karin-yori",
@@ -724,6 +760,7 @@
     {
       "id": "saku-028",
       "name": "2022年春私服コーディネート衣装",
+      "category": "私服主题衣装",
       "items": [
         {
           "id": "saku-028-fujiyoshi-karin-yori",
@@ -750,6 +787,7 @@
     {
       "id": "saku-029",
       "name": "パティシエ衣装",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-029-fujiyoshi-karin-yori",
@@ -776,6 +814,7 @@
     {
       "id": "saku-030",
       "name": "「僕のジレンマ」MVロケーション衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-030-fujiyoshi-karin-yori",
@@ -802,6 +841,7 @@
     {
       "id": "saku-031",
       "name": "「五月雨よ」MVパフォーマンス衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-031-fujiyoshi-karin-yori",
@@ -828,6 +868,7 @@
     {
       "id": "saku-032",
       "name": "「車間距離」MVロケーション衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-032-fujiyoshi-karin-yori",
@@ -854,6 +895,7 @@
     {
       "id": "saku-033",
       "name": "「W-KEYAKI FES.2021」ライブパフォーマンスピンク衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-033-fujiyoshi-karin-yori",
@@ -880,6 +922,7 @@
     {
       "id": "saku-034",
       "name": "2022年キャンプコーディネート衣装",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-034-fujiyoshi-karin-yori",
@@ -906,6 +949,7 @@
     {
       "id": "saku-035",
       "name": "「渡邉理佐卒業 コンサート」衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-035-fujiyoshi-karin-yori",
@@ -932,6 +976,7 @@
     {
       "id": "saku-036",
       "name": "2022年浴衣衣装★",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-036-fujiyoshi-karin-yori",
@@ -958,6 +1003,7 @@
     {
       "id": "saku-037",
       "name": "as you konw封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-037-fujiyoshi-karin-yori",
@@ -974,6 +1020,7 @@
     {
       "id": "saku-038",
       "name": "「摩擦係数」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-038-fujiyoshi-karin-yori",
@@ -1000,6 +1047,7 @@
     {
       "id": "saku-039",
       "name": "「1st TOUR 2021」ライブ衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-039-fujiyoshi-karin-yori",
@@ -1025,7 +1073,8 @@
     },
     {
       "id": "saku-040",
-      "name": "2022年ライブ衣装（渡邉理佐卒業コンサート/コンセントレーション/ジャマイカビール/制服の人魚）",
+      "name": "「ジャマイカビール」ライブ衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-040-fujiyoshi-karin-yori",
@@ -1052,6 +1101,7 @@
     {
       "id": "saku-041",
       "name": "2022年秋私服コーディネート衣装",
+      "category": "私服主题衣装",
       "items": [
         {
           "id": "saku-041-fujiyoshi-karin-yori",
@@ -1078,6 +1128,7 @@
     {
       "id": "saku-042",
       "name": "2022年ハロウィン衣装",
+      "category": "圣诞·万圣节",
       "items": [
         {
           "id": "saku-042-fujiyoshi-karin-yori",
@@ -1104,6 +1155,7 @@
     {
       "id": "saku-043",
       "name": "2022年クリスマスサンタ衣装★",
+      "category": "圣诞·万圣节",
       "items": [
         {
           "id": "saku-043-fujiyoshi-karin-yori",
@@ -1130,6 +1182,7 @@
     {
       "id": "saku-044",
       "name": "「W-KEYAKI FES.2022」ライブバフォーマンス ピンク衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-044-fujiyoshi-karin-yori",
@@ -1156,6 +1209,7 @@
     {
       "id": "saku-045",
       "name": "2022年もこもこパジャマ衣装",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-045-fujiyoshi-karin-yori",
@@ -1182,6 +1236,7 @@
     {
       "id": "saku-046",
       "name": "2023年振袖衣装",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-046-fujiyoshi-karin-yori",
@@ -1208,6 +1263,7 @@
     {
       "id": "saku-047",
       "name": "うさみみコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-047-fujiyoshi-karin-yori",
@@ -1234,6 +1290,7 @@
     {
       "id": "saku-048",
       "name": "2023年冬私服コーデ",
+      "category": "私服主题衣装",
       "items": [
         {
           "id": "saku-048-fujiyoshi-karin-yori",
@@ -1260,6 +1317,7 @@
     {
       "id": "saku-049",
       "name": "「2nd YEAR ANNIVERSARY ～Buddies感謝祭～」ライブ衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-049-fujiyoshi-karin-yori",
@@ -1286,6 +1344,7 @@
     {
       "id": "saku-050",
       "name": "エプロンコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-050-fujiyoshi-karin-yori",
@@ -1312,6 +1371,7 @@
     {
       "id": "saku-051",
       "name": "桜月封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-051-fujiyoshi-karin-yori",
@@ -1338,6 +1398,7 @@
     {
       "id": "saku-052",
       "name": "「桜月」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-052-fujiyoshi-karin-yori",
@@ -1364,6 +1425,7 @@
     {
       "id": "saku-053",
       "name": "「2nd TOUR 2022」青衣装★",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-053-fujiyoshi-karin-yori",
@@ -1390,6 +1452,7 @@
     {
       "id": "saku-054",
       "name": "スーツコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-054-fujiyoshi-karin-yori",
@@ -1416,6 +1479,7 @@
     {
       "id": "saku-055",
       "name": "「Cool」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-055-fujiyoshi-karin-yori",
@@ -1442,6 +1506,7 @@
     {
       "id": "saku-056",
       "name": "「桜月」MV青衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-056-fujiyoshi-karin-yori",
@@ -1468,6 +1533,7 @@
     {
       "id": "saku-057",
       "name": "「2nd TOUR 2022」オープニング衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-057-fujiyoshi-karin-yori",
@@ -1494,6 +1560,7 @@
     {
       "id": "saku-058",
       "name": "カラーコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-058-fujiyoshi-karin-yori",
@@ -1520,6 +1587,7 @@
     {
       "id": "saku-059",
       "name": "「3rd TOUR 2023」オープニング衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-059-fujiyoshi-karin-yori",
@@ -1546,6 +1614,7 @@
     {
       "id": "saku-060",
       "name": "大正浪漫衣装",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-060-fujiyoshi-karin-yori",
@@ -1572,6 +1641,7 @@
     {
       "id": "saku-061",
       "name": "Start over！封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-061-fujiyoshi-karin-yori",
@@ -1598,6 +1668,7 @@
     {
       "id": "saku-062",
       "name": "「Start over！」ジャケ写衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-062-fujiyoshi-karin-yori",
@@ -1624,6 +1695,7 @@
     {
       "id": "saku-063",
       "name": "「Start over！」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-063-fujiyoshi-karin-yori",
@@ -1650,6 +1722,7 @@
     {
       "id": "saku-064",
       "name": "サマーワンピース",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-064-fujiyoshi-karin-yori",
@@ -1676,6 +1749,7 @@
     {
       "id": "saku-065",
       "name": "「ドローン旋回中」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-065-fujiyoshi-karin-yori",
@@ -1702,6 +1776,7 @@
     {
       "id": "saku-066",
       "name": "「W-KEYAKI FES.2022」赤ピンク衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-066-fujiyoshi-karin-yori",
@@ -1728,6 +1803,7 @@
     {
       "id": "saku-067",
       "name": "デニムコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-067-fujiyoshi-karin-yori",
@@ -1754,6 +1830,7 @@
     {
       "id": "saku-068",
       "name": "2023年ハロウィン衣装",
+      "category": "圣诞·万圣节",
       "items": [
         {
           "id": "saku-068-fujiyoshi-karin-yori",
@@ -1780,6 +1857,7 @@
     {
       "id": "saku-069",
       "name": "2023年クリスマスサンタ衣装★",
+      "category": "圣诞·万圣节",
       "items": [
         {
           "id": "saku-069-fujiyoshi-karin-yori",
@@ -1806,6 +1884,7 @@
     {
       "id": "saku-070",
       "name": "「3rd TOUR 2023」白スーツ衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-070-fujiyoshi-karin-yori",
@@ -1832,6 +1911,7 @@
     {
       "id": "saku-071",
       "name": "2023年夏フェス衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-071-fujiyoshi-karin-yori",
@@ -1858,6 +1938,7 @@
     {
       "id": "saku-072",
       "name": "2023年読書コーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-072-fujiyoshi-karin-yori",
@@ -1884,6 +1965,7 @@
     {
       "id": "saku-073",
       "name": "2024年振袖衣装",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-073-fujiyoshi-karin-yori",
@@ -1910,6 +1992,7 @@
     {
       "id": "saku-074",
       "name": "2022年年末歌唱衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-074-fujiyoshi-karin-yori",
@@ -1936,6 +2019,7 @@
     {
       "id": "saku-075",
       "name": "承認欲求封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-075-fujiyoshi-karin-yori",
@@ -1962,6 +2046,7 @@
     {
       "id": "saku-076",
       "name": "「承認欲求」ジャケット写真衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-076-fujiyoshi-karin-yori",
@@ -1988,6 +2073,7 @@
     {
       "id": "saku-077",
       "name": "「承認欲求」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-077-fujiyoshi-karin-yori",
@@ -2014,6 +2100,7 @@
     {
       "id": "saku-078",
       "name": "おうちコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-078-fujiyoshi-karin-yori",
@@ -2040,6 +2127,7 @@
     {
       "id": "saku-079",
       "name": "「隙間風よ」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-079-fujiyoshi-karin-yori",
@@ -2066,6 +2154,7 @@
     {
       "id": "saku-080",
       "name": "「Start over！」歌唱衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-080-fujiyoshi-karin-yori",
@@ -2092,6 +2181,7 @@
     {
       "id": "saku-081",
       "name": "ジャンプスーツ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-081-fujiyoshi-karin-yori",
@@ -2118,6 +2208,7 @@
     {
       "id": "saku-082",
       "name": "「3rd TOUR 2023」ピンク衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-082-fujiyoshi-karin-yori",
@@ -2144,6 +2235,7 @@
     {
       "id": "saku-083",
       "name": "「3rd YEAR ANNERVISRY LIVE」ライブ衣装★",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-083-fujiyoshi-karin-yori",
@@ -2170,6 +2262,7 @@
     {
       "id": "saku-084",
       "name": "何歳の頃に戻りたいのか？封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-084-fujiyoshi-karin-yori",
@@ -2196,6 +2289,7 @@
     {
       "id": "saku-085",
       "name": "「何歳の頃に戻りたいのか？」ジャケット写真衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-085-fujiyoshi-karin-yori",
@@ -2222,6 +2316,7 @@
     {
       "id": "saku-086",
       "name": "2024年春私服コーデ",
+      "category": "私服主题衣装",
       "items": [
         {
           "id": "saku-086-fujiyoshi-karin-yori",
@@ -2248,6 +2343,7 @@
     {
       "id": "saku-087",
       "name": "「何歳の頃に戻りたいのか？」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-087-fujiyoshi-karin-yori",
@@ -2274,6 +2370,7 @@
     {
       "id": "saku-088",
       "name": "「小林由依卒業コンサート」ライブ衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-088-fujiyoshi-karin-yori",
@@ -2300,6 +2397,7 @@
     {
       "id": "saku-089",
       "name": "カラーデニム",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-089-fujiyoshi-karin-yori",
@@ -2326,6 +2424,7 @@
     {
       "id": "saku-090",
       "name": "2024年浴衣★",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-090-fujiyoshi-karin-yori",
@@ -2352,6 +2451,7 @@
     {
       "id": "saku-091",
       "name": "「小林由依卒業コンサート」赤衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-091-fujiyoshi-karin-yori",
@@ -2378,6 +2478,7 @@
     {
       "id": "saku-092",
       "name": "「3rd TOUR 2023」ライブ衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-092-fujiyoshi-karin-yori",
@@ -2404,6 +2505,7 @@
     {
       "id": "saku-093",
       "name": "麦わら帽子コーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-093-fujiyoshi-karin-yori",
@@ -2430,6 +2532,7 @@
     {
       "id": "saku-094",
       "name": "2023年年末歌唱衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-094-fujiyoshi-karin-yori",
@@ -2456,6 +2559,7 @@
     {
       "id": "saku-095",
       "name": "自業自得封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-095-fujiyoshi-karin-yori",
@@ -2482,6 +2586,7 @@
     {
       "id": "saku-096",
       "name": "「自業自得」ジャケット写真衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-096-fujiyoshi-karin-yori",
@@ -2508,6 +2613,7 @@
     {
       "id": "saku-097",
       "name": "「自業自得」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-097-fujiyoshi-karin-yori",
@@ -2534,6 +2640,7 @@
     {
       "id": "saku-098",
       "name": "「4thアリツ 2024」ライブ衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-098-fujiyoshi-karin-yori",
@@ -2560,6 +2667,7 @@
     {
       "id": "saku-099",
       "name": "2024年ハロウィン衣装",
+      "category": "圣诞·万圣节",
       "items": [
         {
           "id": "saku-099-fujiyoshi-karin-yori",
@@ -2586,6 +2694,7 @@
     {
       "id": "saku-100",
       "name": "カラーニットコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-100-fujiyoshi-karin-yori",
@@ -2612,6 +2721,7 @@
     {
       "id": "saku-101",
       "name": "2024年クリスマスサンタ衣装★",
+      "category": "圣诞·万圣节",
       "items": [
         {
           "id": "saku-101-fujiyoshi-karin-yori",
@@ -2638,6 +2748,7 @@
     {
       "id": "saku-102",
       "name": "「3rd YEAR ANNERVISRY LIVE」ライブ衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-102-fujiyoshi-karin-yori",
@@ -2664,6 +2775,7 @@
     {
       "id": "saku-103",
       "name": "「4th ARENA TOUR in東京ドーム」オープニング衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-103-fujiyoshi-karin-yori",
@@ -2690,6 +2802,7 @@
     {
       "id": "saku-104",
       "name": "どうぶつ着ぐるみ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-104-fujiyoshi-karin-yori",
@@ -2716,6 +2829,7 @@
     {
       "id": "saku-105",
       "name": "マフラーコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-105-fujiyoshi-karin-yori",
@@ -2742,6 +2856,7 @@
     {
       "id": "saku-106",
       "name": "I want tomorrow to come封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-106-fujiyoshi-karin-yori",
@@ -2768,6 +2883,7 @@
     {
       "id": "saku-107",
       "name": "「I want tomorrow to come」 ジャケット写真衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-107-fujiyoshi-karin-yori",
@@ -2794,6 +2910,7 @@
     {
       "id": "saku-108",
       "name": "「I want tomorrow to come」 MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-108-fujiyoshi-karin-yori",
@@ -2820,6 +2937,7 @@
     {
       "id": "saku-109",
       "name": "2025年振袖",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-109-fujiyoshi-karin-yori",
@@ -2846,6 +2964,7 @@
     {
       "id": "saku-110",
       "name": "2023年年末衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-110-fujiyoshi-karin-yori",
@@ -2872,6 +2991,7 @@
     {
       "id": "saku-111",
       "name": "いぬみみコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-111-fujiyoshi-karin-yori",
@@ -2898,6 +3018,7 @@
     {
       "id": "saku-112",
       "name": "UDAGAWA GENERATION封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-112-fujiyoshi-karin-yori",
@@ -2924,6 +3045,7 @@
     {
       "id": "saku-113",
       "name": "「UDAGAWA GENERATION」ジャケット写真衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-113-fujiyoshi-karin-yori",
@@ -2950,6 +3072,7 @@
     {
       "id": "saku-114",
       "name": "「UDAGAWA GENERATION」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-114-fujiyoshi-karin-yori",
@@ -2976,6 +3099,7 @@
     {
       "id": "saku-115",
       "name": "2024年夏フェス衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-115-fujiyoshi-karin-yori",
@@ -3002,6 +3126,7 @@
     {
       "id": "saku-116",
       "name": "モードコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-116-fujiyoshi-karin-yori",
@@ -3028,6 +3153,7 @@
     {
       "id": "saku-117",
       "name": "「4th ARENA TOUR 2024」オープニング衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-117-fujiyoshi-karin-yori",
@@ -3054,6 +3180,7 @@
     {
       "id": "saku-118",
       "name": "「4th  YEAR ANNERVISRY LIVE」ライブ衣装★",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-118-fujiyoshi-karin-yori",
@@ -3080,6 +3207,7 @@
     {
       "id": "saku-119",
       "name": "「4th  ARENA TOUR」ライブ衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-119-fujiyoshi-karin-yori",
@@ -3106,6 +3234,7 @@
     {
       "id": "saku-120",
       "name": "ネクタイコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-120-fujiyoshi-karin-yori",
@@ -3132,6 +3261,7 @@
     {
       "id": "saku-121",
       "name": "Addiction封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-121-fujiyoshi-karin-yori",
@@ -3158,6 +3288,7 @@
     {
       "id": "saku-122",
       "name": "「Addiction」MV衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-122-fujiyoshi-karin-yori",
@@ -3184,6 +3315,7 @@
     {
       "id": "saku-123",
       "name": "レザージャケットコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-123-fujiyoshi-karin-yori",
@@ -3210,6 +3342,7 @@
     {
       "id": "saku-124",
       "name": "2025年浴衣★",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-124-fujiyoshi-karin-yori",
@@ -3236,6 +3369,7 @@
     {
       "id": "saku-125",
       "name": "「4th ARENA TOUR IN 東京ド-ム」ライプ衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-125-fujiyoshi-karin-yori",
@@ -3262,6 +3396,7 @@
     {
       "id": "saku-126",
       "name": "2024年夏フェス衣装",
+      "category": "其他演出",
       "items": [
         {
           "id": "saku-126-fujiyoshi-karin-yori",
@@ -3288,6 +3423,7 @@
     {
       "id": "saku-127",
       "name": "ポロシャツコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-127-fujiyoshi-karin-yori",
@@ -3314,6 +3450,7 @@
     {
       "id": "saku-128",
       "name": "Make or Break封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-128-fujiyoshi-karin-yori",
@@ -3340,6 +3477,7 @@
     {
       "id": "saku-129",
       "name": "「Make or Break」ジャケ写衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-129-fujiyoshi-karin-yori",
@@ -3366,6 +3504,7 @@
     {
       "id": "saku-130",
       "name": "「Make or Break」MV衣装A",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-130-fujiyoshi-karin-yori",
@@ -3392,6 +3531,7 @@
     {
       "id": "saku-131",
       "name": "「Make or Break」MV衣装B",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-131-fujiyoshi-karin-yori",
@@ -3418,6 +3558,7 @@
     {
       "id": "saku-132",
       "name": "クラシックコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-132-fujiyoshi-karin-yori",
@@ -3444,6 +3585,7 @@
     {
       "id": "saku-133",
       "name": "「5th TOUR 2025 “Addiction”」ライブ衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-133-fujiyoshi-karin-yori",
@@ -3470,6 +3612,7 @@
     {
       "id": "saku-134",
       "name": "チェックコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-134-fujiyoshi-karin-yori",
@@ -3496,6 +3639,7 @@
     {
       "id": "saku-135",
       "name": "パイレーツ衣装",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-135-fujiyoshi-karin-yori",
@@ -3522,6 +3666,7 @@
     {
       "id": "saku-136",
       "name": "「5th TOUR 2025 “Addiction”」黒衣装",
+      "category": "巡演·周年",
       "items": [
         {
           "id": "saku-136-fujiyoshi-karin-yori",
@@ -3548,6 +3693,7 @@
     {
       "id": "saku-137",
       "name": "Unhappy birthday構文封入生写",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-137-fujiyoshi-karin-yori",
@@ -3574,6 +3720,7 @@
     {
       "id": "saku-138",
       "name": "「Unhappy birthday構文」ジャケット写真衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-138-fujiyoshi-karin-yori",
@@ -3600,6 +3747,7 @@
     {
       "id": "saku-139",
       "name": "「Unhappy birthday構文」MV衣装A",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-139-fujiyoshi-karin-yori",
@@ -3626,6 +3774,7 @@
     {
       "id": "saku-140",
       "name": "「Unhappy birthday構文」MV衣装B",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-140-fujiyoshi-karin-yori",
@@ -3652,6 +3801,7 @@
     {
       "id": "saku-141",
       "name": "冬服",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-141-fujiyoshi-karin-yori",
@@ -3678,6 +3828,7 @@
     {
       "id": "saku-142",
       "name": "2025年サンタ装★",
+      "category": "圣诞·万圣节",
       "items": [
         {
           "id": "saku-142-fujiyoshi-karin-yori",
@@ -3704,6 +3855,7 @@
     {
       "id": "saku-143",
       "name": "2026年 振袖",
+      "category": "日式服装",
       "items": [
         {
           "id": "saku-143-fujiyoshi-karin-yori",
@@ -3730,6 +3882,7 @@
     {
       "id": "saku-144",
       "name": "スタイリング制服",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-144-fujiyoshi-karin-yori",
@@ -3756,6 +3909,7 @@
     {
       "id": "saku-145",
       "name": "2026年 バレンタインコーデ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-145-fujiyoshi-karin-yori",
@@ -3782,6 +3936,7 @@
     {
       "id": "saku-146",
       "name": "ジャージ",
+      "category": "其他主题衣装",
       "items": [
         {
           "id": "saku-146-fujiyoshi-karin-yori",
