@@ -2,6 +2,15 @@
   "magic": "my-ideals-template",
   "version": 1,
   "revision": 4,
+  "categories": [
+    "单曲·专辑",
+    "巡演·周年",
+    "其他演出",
+    "日式服装",
+    "圣诞·万圣节",
+    "私服主题衣装",
+    "其他主题衣装"
+  ],
   "id": "saku-karin",
   "name": "櫻坂46 - 藤吉夏鈴",
   "description": "藤吉夏鈴 樱坂46PART全生写收集",
@@ -22,6 +31,7 @@
     {
       "id": "saku-001",
       "name": "Nobody's fault封入生写",
+      "category": "单曲·专辑"
       "items": [
         {
           "id": "saku-001-fujiyoshi-karin-yori",
@@ -48,6 +58,7 @@
     {
       "id": "saku-002",
       "name": "Nobody's fault衣装",
+      "category": "单曲·专辑"
       "items": [
         {
           "id": "saku-002-fujiyoshi-karin-yori",
@@ -74,6 +85,7 @@
     {
       "id": "saku-003",
       "name": "クリスマスサンタ衣装",
+      "category": "圣诞·万圣节"
       "items": [
         {
           "id": "saku-003-fujiyoshi-karin-yori",
