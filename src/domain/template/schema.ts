@@ -19,11 +19,10 @@ const TemplateCollectionItem = z.object({
   rotated: z.boolean().optional(),
 });
 
-// --- 给合集添加 category 字段 ---
 const TemplateCollection = z.object({
   id: z.string(),
   name: z.string(),
-  category: z.string().optional(), // 新增
+  category: z.string().optional(),
   layout: TemplateLayoutSchema.optional(),
   items: z.array(TemplateCollectionItem),
 });
@@ -36,12 +35,12 @@ export const TemplateSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
   author: z.string().optional(),
-  link: z.string().url().optional(), 
+  link: z.string().url().optional(), // 修正：z.string().url()
+  categories: z.array(z.string()).optional(),
   
-  // --- 给模板添加 categories 列表 ---
-  categories: z.array(z.string()).optional(), // 新增
-
-  imageResourceType: z.enum(['inline', 'baseUrl']),
+  // 修正：统一为 itemUrl，与 types.ts 保持一致
+  imageResourceType: z.enum(['itemUrl', 'baseUrl']), 
+  
   imageBaseUrl: TemplateResourceBaseUrlSchema.optional(),
   layout: TemplateLayoutSchema.optional(),
   members: z.array(TemplateMember),
