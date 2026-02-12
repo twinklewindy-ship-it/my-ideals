@@ -16,7 +16,7 @@ export type TemplateCollectionItem = {
 export type TemplateCollection = {
   id: string;
   name: string;
-  category?: string; // --- 分类字段 ---
+  category?: string; // 确保这里有 category
   layout?: TemplateLayout;
   items: TemplateCollectionItem[];
 };
@@ -28,20 +28,18 @@ export type TemplateMember = {
 
 export type Template = {
   magic: 'my-ideals-template';
-  version: number;
+  version: 1;
   revision: number;
   id: string;
   name: string;
   description?: string;
   author?: string;
-  categories?: string[]; // --- 分类列表定义 ---
+  link?: string;
+  categories?: string[];
+  // 修正：统一为 itemUrl 和 baseUrl
+  imageResourceType: 'itemUrl' | 'baseUrl'; 
+  imageBaseUrl?: TemplateResourceBaseUrl;
   layout?: TemplateLayout;
-  imageResourceType: 'baseUrl' | 'itemUrl';
-  imageBaseUrl?: {
-    root: string;
-    format?: string;
-    fallback?: string;
-  };
   members: TemplateMember[];
   collections: TemplateCollection[];
 };
