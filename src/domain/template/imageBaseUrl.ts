@@ -8,9 +8,9 @@ export type TemplateResourceBaseUrl = {
 
 export const TemplateResourceBaseUrlSchema = z.object({
   // 使用 z.string().url()
-  root: z.string().url(),
+  root: z.string(),
   format: z.enum(['jpg', 'png', 'webp']),
-  fallback: z.string().url().optional(),
+  fallback: z.string().optional(),
 });
 
 export const urlFromBaseUrl = (id: string, config: TemplateResourceBaseUrl): string =>
