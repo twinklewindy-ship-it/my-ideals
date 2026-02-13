@@ -1,7 +1,7 @@
 {
   "magic": "my-ideals-template",
   "version": 1,
-  "revision": 7,
+  "revision": 8,
   "categories": [
     "单曲·专辑",
     "巡演·周年",
@@ -30,7 +30,7 @@
   "collections": [
     {
       "id": "saku-001",
-      "name": "Nobody's fault封入",
+      "name": "「Nobody's fault」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -300,7 +300,7 @@
     },
     {
       "id": "saku-011",
-      "name": "BAN封入",
+      "name": "「BAN」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -489,7 +489,7 @@
     },
     {
       "id": "saku-018",
-      "name": "流れ弾封入",
+      "name": "「流れ弾」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -705,7 +705,7 @@
     },
     {
       "id": "saku-026",
-      "name": "五月雨よ封入",
+      "name": "「五月雨よ」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -1002,7 +1002,7 @@
     },
     {
       "id": "saku-037",
-      "name": "as you konw封入",
+      "name": "「As you know」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -1370,7 +1370,7 @@
     },
     {
       "id": "saku-051",
-      "name": "桜月封入",
+      "name": "「桜月」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -1640,7 +1640,7 @@
     },
     {
       "id": "saku-061",
-      "name": "Start over！封入",
+      "name": "「Start over！」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -2018,7 +2018,7 @@
     },
     {
       "id": "saku-075",
-      "name": "承認欲求封入",
+      "name": "「承認欲求」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -2261,7 +2261,7 @@
     },
     {
       "id": "saku-084",
-      "name": "何歳の頃に戻りたいのか？封入",
+      "name": "「何歳の頃に戻りたいのか？」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -2558,7 +2558,7 @@
     },
     {
       "id": "saku-095",
-      "name": "自業自得封入",
+      "name": "「自業自得」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -2855,7 +2855,7 @@
     },
     {
       "id": "saku-106",
-      "name": "I want tomorrow to come封入",
+      "name": "「I want tomorrow to come」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -3017,7 +3017,7 @@
     },
     {
       "id": "saku-112",
-      "name": "UDAGAWA GENERATION封入",
+      "name": "「UDAGAWA GENERATION」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -3260,7 +3260,7 @@
     },
     {
       "id": "saku-121",
-      "name": "Addiction封入",
+      "name": "「Addiction」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -3449,7 +3449,7 @@
     },
     {
       "id": "saku-128",
-      "name": "Make or Break封入",
+      "name": "「Make or Break」封入",
       "category": "单曲·专辑",
       "items": [
         {
@@ -3692,7 +3692,7 @@
     },
     {
       "id": "saku-137",
-      "name": "Unhappy birthday構文封入",
+      "name": "「Unhappy birthday構文」封入",
       "category": "单曲·专辑",
       "items": [
         {
