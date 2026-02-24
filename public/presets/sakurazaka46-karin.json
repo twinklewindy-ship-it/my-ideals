@@ -543,7 +543,7 @@
     },
     {
       "id": "saku-020",
-      "name": "2021年クリスマスサンタ衣装",
+      "name": "2021年 サンタ衣装",
       "category": "圣诞·万圣节",
       "items": [
         {
@@ -3368,7 +3368,7 @@
     },
     {
       "id": "saku-125",
-      "name": "「4th ARENA TOUR IN 東京ドーム」ライプ衣装",
+      "name": "「4th ARENA TOUR IN 東京ドーム」ライブ衣装",
       "category": "巡演·周年",
       "items": [
         {
@@ -3955,6 +3955,60 @@
         },
         {
           "id": "saku-146-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
+    },
+    {
+      "id": "saku-147",
+      "name": "スタジャンコーデ",
+      "category": "其他主题衣装",
+      "items": [
+        {
+          "id": "saku-147-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-147-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-147-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-147-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
+    },
+    {
+      "id": "saku-148",
+      "name": "「5th TOUR 2025 “Addiction”ドーム公演」シルバー衣装",
+      "category": "巡演·周年",
+      "items": [
+        {
+          "id": "saku-148-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-148-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-148-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-148-fujiyoshi-karin-hiki",
           "member": "fujiyoshi-karin",
           "name": "藤吉夏鈴 ヒキ"
         }
