@@ -1,7 +1,7 @@
 {
   "magic": "my-ideals-template",
   "version": 1,
-  "revision": 10,
+  "revision": 11,
   "categories": [
     "单曲·专辑",
     "巡演·周年",
@@ -4144,6 +4144,60 @@
         },
         {
           "id": "saku-153-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
+    },
+     {
+      "id": "saku-154",
+      "name": "「The growing up train」ジャケット写真衣装",
+      "category": "单曲·专辑",
+      "items": [
+        {
+          "id": "saku-154-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-154-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-154-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-154-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
+    },
+     {
+      "id": "saku-155",
+      "name": "「The growing up train」MV衣装",
+      "category": "单曲·专辑",
+      "items": [
+        {
+          "id": "saku-155-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-155-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-155-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-155-fujiyoshi-karin-hiki",
           "member": "fujiyoshi-karin",
           "name": "藤吉夏鈴 ヒキ"
         }
