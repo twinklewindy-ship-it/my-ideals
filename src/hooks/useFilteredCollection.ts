@@ -1,4 +1,4 @@
-import { useMemo, useState, useDeferredValue } from 'react';
+import { useMemo, useState, useDeferredValue, useEffect } from 'react';
 import { useActiveProfileStore } from '@/stores/activeProfileStore';
 import { debugLog } from '@/utils/debug';
 import { normalizeStatus } from '@/utils/utils';
@@ -67,8 +67,21 @@ export function useCollectionFilter() {
   const [searchQuery, setSearchQuery] = useState('');
   const [hideCompleted, setHideCompleted] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const profileId = useActiveProfileStore(state => state.profile?.id);
+
+  // --- 监听档案切换，重置所有筛选状态 ---
+  useEffect(() => {
+    setSearchQuery('');
+    setHideCompleted(false);
+    setSelectedCategory(null);
+  }, [profileId]); // 只要 profileId 发生变化，执行副作用
+
   const deferredQuery = useDeferredValue(searchQuery);
-  const filteredCollections = useFilteredCollections(deferredQuery, hideCompleted, selectedCategory);
+  const filteredCollections = useFilteredCollections(
+    deferredQuery, 
+    hideCompleted, 
+    selectedCategory
+  );
 
   return {
     filterProps: {
@@ -76,8 +89,8 @@ export function useCollectionFilter() {
       setSearchQuery,
       hideCompleted,
       setHideCompleted,
-      selectedCategory,   
-      setSelectedCategory, 
+      selectedCategory,
+      setSelectedCategory,
     },
     filteredCollections,
   };
