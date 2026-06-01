@@ -4229,6 +4229,33 @@
           "name": "藤吉夏鈴 ヒキ"
         }
       ]
+    },
+     {
+      "id": "saku-157",
+      "name": "ギンガムチェックコーデ",
+      "category": "其他主题衣装",
+      "items": [
+        {
+          "id": "saku-157-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-157-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-157-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-157-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
     }
   ]
 }
