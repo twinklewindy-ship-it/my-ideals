@@ -4256,6 +4256,33 @@
           "name": "藤吉夏鈴 ヒキ"
         }
       ]
+    },
+     {
+      "id": "saku-158",
+      "name": "「Lonesome rabbit / What's “KAZOKU”?」封入",
+      "category": "单曲·专辑",
+      "items": [
+        {
+          "id": "saku-158-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-158-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-158-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-158-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
     }
   ]
 }
