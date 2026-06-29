@@ -1,7 +1,7 @@
 {
   "magic": "my-ideals-template",
   "version": 1,
-  "revision": 14,
+  "revision": 15,
   "categories": [
     "单曲·专辑",
     "巡演·周年",
@@ -4340,7 +4340,7 @@
     },
      {
       "id": "saku-161",
-      "name": "「What's “KAZOKU”?」MV制服衣装",
+      "name": "「Lonesome rabbit」MV衣装",
       "category": "单曲·专辑",
       "items": [
         {
@@ -4367,7 +4367,7 @@
     },
      {
       "id": "saku-162",
-      "name": "「What's “KAZOKU”?」MVパジャマ衣装",
+      "name": "「What's “KAZOKU”?」MV制服衣装",
       "category": "单曲·专辑",
       "items": [
         {
@@ -4394,8 +4394,8 @@
     },
      {
       "id": "saku-163",
-      "name": "マリン衣装",
-      "category": "其他主题衣装",
+      "name": "「What's “KAZOKU”?」MVパジャマ衣装",
+      "category": "单曲·专辑",
       "items": [
         {
           "id": "saku-163-fujiyoshi-karin-yori",
@@ -4414,6 +4414,33 @@
         },
         {
           "id": "saku-163-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
+    },
+     {
+      "id": "saku-164",
+      "name": "マリン衣装",
+      "category": "其他主题衣装",
+      "items": [
+        {
+          "id": "saku-164-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-164-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-164-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-164-fujiyoshi-karin-hiki",
           "member": "fujiyoshi-karin",
           "name": "藤吉夏鈴 ヒキ"
         }
