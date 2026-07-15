@@ -4445,6 +4445,141 @@
           "name": "藤吉夏鈴 ヒキ"
         }
       ]
+    },
+     {
+      "id": "saku-165",
+      "name": "2026年 浴衣",
+      "category": "日式服装",
+      "items": [
+        {
+          "id": "saku-165-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-165-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-165-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-165-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
+    },
+     {
+      "id": "saku-166",
+      "name": "「5th TOUR 2025 “Addiction” ドーム公演」オープニング衣装",
+      "category": "巡演·周年",
+      "items": [
+        {
+          "id": "saku-166-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-166-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-166-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-166-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
+    },
+     {
+      "id": "saku-167",
+      "name": "「5th YEAR ANNIVERSARY LIVE」キービジュアル衣装",
+      "category": "巡演·周年",
+      "items": [
+        {
+          "id": "saku-167-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-167-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-167-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-167-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
+    },
+     {
+      "id": "saku-168",
+      "name": "「The growing up train」歌唱衣装",
+      "category": "单曲·专辑",
+      "items": [
+        {
+          "id": "saku-168-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-168-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-168-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-168-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
+    },
+     {
+      "id": "saku-169",
+      "name": "サマーニット",
+      "category": "其他主题衣装",
+      "items": [
+        {
+          "id": "saku-169-fujiyoshi-karin-yori",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヨリ"
+        },
+        {
+          "id": "saku-169-fujiyoshi-karin-chuu",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 チュウ"
+        },
+        {
+          "id": "saku-169-fujiyoshi-karin-suwari",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 座り"
+        },
+        {
+          "id": "saku-169-fujiyoshi-karin-hiki",
+          "member": "fujiyoshi-karin",
+          "name": "藤吉夏鈴 ヒキ"
+        }
+      ]
     }
   ]
 }
